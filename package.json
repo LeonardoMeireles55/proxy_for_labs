@@ -1,0 +1,17 @@
+{
+  "author": "",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "hl7v2": "^0.14.0",
+    "winston": "^3.17.0"
+  },
+  "description": "",
+  "license": "ISC",
+  "main": "index.js",
+  "name": "proxy_for_labs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "commonjs",
+  "version": "1.0.0"
+}
