@@ -1,6 +1,7 @@
 const net = require('node:net')
 const log =  require('../utils/logger')
 const env = require('../config')
+const hl7Buffers = require('../communications/constants/buffers')
 
 const TCPReverseProxy = net.createServer((lisSocket) => {
   log.debug('LIS connected:', lisSocket.remoteAddress)
@@ -12,6 +13,12 @@ const TCPReverseProxy = net.createServer((lisSocket) => {
 
       equipmentSocket.on('data', (data) => {
         log.debug('Forwarding data from equipment to LIS')
+
+        if (data[0] === hl7Buffers.ENQ) {
+          log.debug('Received ENQ from equipment, sending ACK to LIS')
+          lisSocket.write(Buffer.from([hl7Buffers.ACK]))
+        }
+
         lisSocket.write(data)
       })
 

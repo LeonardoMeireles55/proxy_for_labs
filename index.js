@@ -2,6 +2,7 @@ const log = require('./src/utils/logger')
 const env = require('./src/config')
 const TCPForwardProxy = require('./src/proxies/tcp-forward-proxy')
 const TCPReverseProxy = require('./src/proxies/tcp-reverse-proxy')
+const Connection = require('./src/proxies/connection')
 
 
 const startApp = () => {
