@@ -4,12 +4,18 @@ const env = require('../config')
 const { asciiBuffers } = require('../communications/constants/buffers')
 const { convertAstmToJson } = require('../communications/parsers/astm')
 
-const simulateConnection = () => {
+const simulateClientConnection = () => {
     const client = net.createConnection({
         host: env.lisHost,
         port: env.lisPort
     }, () => {
-        log.debug(`Connected to EQUIPMENT server at ${env.equipmentHost}:${env.equipmentPort}`)
+        log.debug(`Connected to LIS server at ${env.lisHost}:${env.lisPort}`)
+    })
+
+    client.on('connect', () => {
+        log.debug('Connection to LIS established')
+        // Send initial ENQ to simulate equipment request
+        client.write(Buffer.from([asciiBuffers.ENQ]))
     })
 
     client.on('data', (data) => {
@@ -34,4 +40,4 @@ const simulateConnection = () => {
     return client
 }
 
-module.exports = simulateConnection
+module.exports = simulateClientConnection

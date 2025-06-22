@@ -1,6 +1,6 @@
 // @ts-nocheck
 const winston = require('winston');
-const config = require('../config');
+const env = require('../config');
 
 const createLogger = () => {
     const logFormat = winston.format.combine(
@@ -18,24 +18,24 @@ const createLogger = () => {
         })
     ];
 
-    if (config.logging.enableFileLogging) {
+    if (env.logging.enableFileLogging) {
         transports.push(
             new winston.transports.File({
-                filename: `${config.logging.logDir}/error.log`,
+                filename: `${env.logging.logDir}/error.log`,
                 level: 'error',
-                maxsize: config.logging.maxFileSize,
-                maxFiles: config.logging.maxFiles
+                maxsize: env.logging.maxFileSize,
+                maxFiles: env.logging.maxFiles
             }),
             new winston.transports.File({
-                filename: `${config.logging.logDir}/combined.log`,
-                maxsize: config.logging.maxFileSize,
-                maxFiles: config.logging.maxFiles
+                filename: `${env.logging.logDir}/combined.log`,
+                maxsize: env.logging.maxFileSize,
+                maxFiles: env.logging.maxFiles
             })
         );
     }
 
     return winston.createLogger({
-        level: config.logLevel,
+        level: env.logLevel,
         format: logFormat,
         transports
     });

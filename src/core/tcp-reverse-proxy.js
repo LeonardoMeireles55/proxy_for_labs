@@ -14,7 +14,7 @@ const tcpReverseProxy = net.createServer((lisSocket) => {
       equipmentSocket.on('data', (data) => {
         log.debug('Forwarding data from equipment to LIS')
 
-        if (data[0] === asciiBuffers.ENQ) {
+        if (data[0] === asciiBuffers.ACK) {
           log.debug('Received ENQ from equipment, sending ACK to LIS')
           lisSocket.write(Buffer.from([asciiBuffers.ACK]))
         }

@@ -1,13 +1,81 @@
-# TCP Proxy for Laboratory Systems
+# Laboratory TCP Proxy
 
-A lightweight TCP proxy server designed for laboratory environments to facilitate communication between Laboratory Information Systems (LIS) and laboratory equipment. Supports both forward and reverse proxy configurations with comprehensive logging and configuration management.
+A robust TCP proxy server for laboratory equipment communication with ASTM and HL7 protocol support.
 
-## Table of Contents
+## 🏗️ Project Structure
 
-- [Features](#features)
-- [Architecture](#architecture)
-- [Installation](#installation)
-- [Configuration](#configuration)
+```
+proxy_for_labs/
+├── cli/                          # Command line interfaces
+│   ├── proxy-server.js          # Main server CLI
+│   ├── lis-simulator.js         # LIS simulator CLI
+│   └── help.js                  # Help command
+├── src/                         # Source code
+│   ├── app.js                   # Main application class
+│   ├── core/                    # Core proxy functionality
+│   │   ├── tcp-forward-proxy.js
+│   │   ├── tcp-reverse-proxy.js
+│   │   └── simulate-connection.js
+│   ├── simulators/              # Equipment simulators
+│   │   ├── simulate-equipment.js
+│   │   └── simulate-connection.js
+│   ├── communications/          # Protocol handling
+│   │   ├── constants/
+│   │   │   └── buffers.js       # ASTM/HL7 constants
+│   │   ├── helpers/
+│   │   │   ├── checksum.js
+│   │   │   └── cobas-c-300.js
+│   │   └── parsers/
+│   │       ├── astm.js          # ASTM parser
+│   │       └── hl7.js           # HL7 parser
+│   ├── config/                  # Configuration
+│   │   └── index.js
+│   ├── middleware/              # Express middleware
+│   │   ├── get-api-token-by-login.js
+│   │   └── send-to-external-api.js
+│   └── utils/                   # Utilities
+│       ├── logger.js
+│       └── messages.js
+├── docs/                        # Documentation
+├── tools/                       # Development tools (empty after reorganization)
+├── index.js                     # Legacy entry point (still works)
+└── package.json                 # Package configuration
+```
+
+## 🚀 Quick Start
+
+### Installation
+```bash
+npm install
+```
+
+### Running the Server
+
+#### Using npm scripts (recommended):
+```bash
+# Start as reverse proxy
+IS_REVERSE_PROXY=true npm run server
+
+# Start as forward proxy
+IS_FORWARD_PROXY=true npm run server
+
+# Development mode (reverse proxy)
+npm run dev
+
+# Show help
+npm run help
+```
+
+#### Using the legacy entry point:
+```bash
+# Still works for backward compatibility
+IS_REVERSE_PROXY=true node index.js
+```
+
+### Running the LIS Simulator
+```bash
+npm run lis
+```
 - [Usage](#usage)
 - [Proxy Types](#proxy-types)
 - [Environment Variables](#environment-variables)

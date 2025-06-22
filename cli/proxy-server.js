@@ -1,30 +1,36 @@
-const { startApp, stopApp } = require('./src/app')
-const log = require('./src/utils/logger')
+#!/usr/bin/env node
 
-// Main application startup
+const { startApp, stopApp } = require('../src/app')
+const log = require('../src/utils/logger')
+
+console.log('🚀 Laboratory Proxy Server')
+console.log('==========================')
+
+// Main application startup function
 const main = async () => {
     try {
         await startApp()
+        console.log('✅ Proxy server is running. Press Ctrl+C to stop.')
     } catch (error) {
         log.error('Failed to start application:', error.message)
         process.exit(1)
     }
 }
 
-// Graceful shutdown handler
+// Create shutdown handler function
 const createShutdownHandler = (signal) => async () => {
-    log.info(`Received ${signal}. Shutting down gracefully...`)
+    console.log(`\n🛑 Received ${signal}. Shutting down gracefully...`)
 
     // Set timeout to force exit if graceful shutdown fails
     const forceExitTimeout = setTimeout(() => {
-        log.error('Graceful shutdown timeout reached, forcing exit')
+        console.log('⚠️  Graceful shutdown timeout reached, forcing exit')
         process.exit(1)
     }, 10000) // 10 seconds timeout
 
     try {
         await stopApp()
         clearTimeout(forceExitTimeout)
-        log.info('Graceful shutdown completed')
+        console.log('✅ Server stopped successfully')
         process.exit(0)
     } catch (error) {
         clearTimeout(forceExitTimeout)
@@ -33,7 +39,7 @@ const createShutdownHandler = (signal) => async () => {
     }
 }
 
-// Error handlers
+// Error handling functions
 const handleUncaughtException = (err) => {
     log.error('Uncaught Exception:', err)
     process.exit(1)
@@ -44,7 +50,7 @@ const handleUnhandledRejection = (reason, promise) => {
     process.exit(1)
 }
 
-// Setup process event handlers
+// Setup all process event handlers
 const setupProcessHandlers = () => {
     process.on('SIGTERM', createShutdownHandler('SIGTERM'))
     process.on('SIGINT', createShutdownHandler('SIGINT'))
@@ -52,13 +58,10 @@ const setupProcessHandlers = () => {
     process.on('unhandledRejection', handleUnhandledRejection)
 }
 
-// Initialize and run application
+// Initialize and run
 const run = () => {
     setupProcessHandlers()
     main()
 }
 
 run()
-
-
-
