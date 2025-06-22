@@ -1,6 +1,6 @@
 const net = require('node:net')
 const readline = require('node:readline')
-const { convertAstmToJson } = require('../src/communications/astm')
+const { convertAstmToJson } = require('../src/communications/parsers/astm')
 
 const PROXY_HOST = 'localhost'
 const PROXY_PORT = 7005

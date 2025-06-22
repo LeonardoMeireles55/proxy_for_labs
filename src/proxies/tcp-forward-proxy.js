@@ -3,7 +3,7 @@ const log = require('../utils/logger')
 const env = require('../config')
 
 
-const TCPForwardProxy = net.createServer((clientSocket) => {
+const tcpForwardProxy = net.createServer((clientSocket) => {
 
     log.debug('Established a new connection from client:', clientSocket.remoteAddress)
 
@@ -34,4 +34,4 @@ const TCPForwardProxy = net.createServer((clientSocket) => {
     })
 })
 
-module.exports = TCPForwardProxy
+module.exports = tcpForwardProxy
