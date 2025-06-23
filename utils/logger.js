@@ -18,22 +18,6 @@ const createLogger = () => {
         })
     ];
 
-    if (env.logging.enableFileLogging) {
-        transports.push(
-            new winston.transports.File({
-                filename: `${env.logging.logDir}/error.log`,
-                level: 'error',
-                maxsize: env.logging.maxFileSize,
-                maxFiles: env.logging.maxFiles
-            }),
-            new winston.transports.File({
-                filename: `${env.logging.logDir}/combined.log`,
-                maxsize: env.logging.maxFileSize,
-                maxFiles: env.logging.maxFiles
-            })
-        );
-    }
-
     return winston.createLogger({
         level: env.logLevel,
         format: logFormat,

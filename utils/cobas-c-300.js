@@ -1,4 +1,4 @@
-const { hl7Framing } = require('../constants/buffers')
+const { hl7Framing } = require('./buffers')
 
 // HL7 v2.x encoding characters for Cobas Pure C300
 const HL7_DELIMITERS = {

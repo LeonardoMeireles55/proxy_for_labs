@@ -1,32 +1,17 @@
 {
   "author": "",
+  "bin": {
+    "connection-simulator": "cli/connection-simulator.js",
+    "equipment-simulator": "cli/equipment-simulator.js",
+    "lis-simulator": "cli/lis-simulator.js",
+    "proxy-labs": "cli/proxy-server.js"
+  },
   "dependencies": {
     "dotenv": "^16.5.0",
     "hl7v2": "^0.14.0",
     "winston": "^3.17.0"
   },
   "description": "TCP Proxy for Laboratory Equipment Communication with ASTM/HL7 Support",
-  "license": "ISC",
-  "main": "index.js",
-  "name": "proxy_for_labs",
-  "scripts": {
-    "start": "node index.js",
-    "server": "node cli/proxy-server.js",
-    "lis": "node cli/lis-simulator.js",
-    "equipment": "node cli/equipment-simulator.js",
-    "connection": "node cli/connection-simulator.js",
-    "help": "node cli/help.js",
-    "dev": "IS_REVERSE_PROXY=true node cli/proxy-server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "type": "commonjs",
-  "version": "1.0.0",
-  "bin": {
-    "proxy-labs": "cli/proxy-server.js",
-    "lis-simulator": "cli/lis-simulator.js",
-    "equipment-simulator": "cli/equipment-simulator.js",
-    "connection-simulator": "cli/connection-simulator.js"
-  },
   "keywords": [
     "laboratory",
     "proxy",
@@ -34,5 +19,19 @@
     "hl7",
     "tcp",
     "medical"
-  ]
+  ],
+  "license": "ISC",
+  "main": "index.js",
+  "name": "proxy_for_labs",
+  "scripts": {
+    "equipment": "node cli/equipment-simulator.js",
+    "forward": "IS_FORWARD_PROXY=true node index.js",
+    "lis": "node cli/lis-simulator.js",
+    "reverse": "IS_REVERSE_PROXY=true node index.js",
+    "server": "node index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "commonjs",
+  "version": "1.0.0"
 }

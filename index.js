@@ -1,64 +1,62 @@
-const { startApp, stopApp } = require('./src/app')
-const log = require('./src/utils/logger')
+const config = require('./config')
+const log = require('./utils/logger')
+const { gracefulShutdown } = require('./proxy/utils')
+const startForwardProxy = require('./proxy/forward')
+const startReverseProxy = require('./proxy/reverse')
+
+// Store active servers for graceful shutdown
+let activeServers = []
 
 // Main application startup
 const main = async () => {
-    try {
-        await startApp()
-    } catch (error) {
-        log.error('Failed to start application:', error.message)
-        process.exit(1)
+  try {
+    log.info('Starting proxy server...')
+
+    if (config.isForwardProxy) {
+      log.info('Starting in forward proxy mode')
+      const server = await startForwardProxy(config)
+      activeServers.push(server)
+    } else if (config.isReverseProxy) {
+      log.info('Starting in reverse proxy mode')
+      const server = await startReverseProxy(config)
+      activeServers.push(server)
     }
+
+    log.info(`Proxy server started successfully on port ${config.proxyPort}`)
+  } catch (error) {
+    log.error('Failed to start proxy server:', error.message)
+    process.exit(1)
+  }
 }
 
 // Graceful shutdown handler
-const createShutdownHandler = (signal) => async () => {
-    log.info(`Received ${signal}. Shutting down gracefully...`)
+const shutdown = async (signal) => {
+  log.info(`Received ${signal}. Shutting down gracefully...`)
 
-    // Set timeout to force exit if graceful shutdown fails
-    const forceExitTimeout = setTimeout(() => {
-        log.error('Graceful shutdown timeout reached, forcing exit')
-        process.exit(1)
-    }, 10000) // 10 seconds timeout
-
-    try {
-        await stopApp()
-        clearTimeout(forceExitTimeout)
-        log.info('Graceful shutdown completed')
-        process.exit(0)
-    } catch (error) {
-        clearTimeout(forceExitTimeout)
-        log.error('Error during shutdown:', error.message)
-        process.exit(1)
-    }
-}
-
-// Error handlers
-const handleUncaughtException = (err) => {
-    log.error('Uncaught Exception:', err)
+  try {
+    await gracefulShutdown(activeServers, config.shutdownTimeout)
+    log.info('Graceful shutdown completed')
+    process.exit(0)
+  } catch (error) {
+    log.error('Error during shutdown:', error.message)
     process.exit(1)
+  }
 }
 
-const handleUnhandledRejection = (reason, promise) => {
-    log.error('Unhandled Rejection at:', promise, 'reason:', reason)
-    process.exit(1)
-}
+// Setup process handlers
+process.on('SIGTERM', () => shutdown('SIGTERM'))
+process.on('SIGINT', () => shutdown('SIGINT'))
+process.on('uncaughtException', (err) => {
+  log.error('Uncaught Exception:', err)
+  process.exit(1)
+})
+process.on('unhandledRejection', (reason, promise) => {
+  log.error('Unhandled Rejection at:', promise, 'reason:', reason)
+  process.exit(1)
+})
 
-// Setup process event handlers
-const setupProcessHandlers = () => {
-    process.on('SIGTERM', createShutdownHandler('SIGTERM'))
-    process.on('SIGINT', createShutdownHandler('SIGINT'))
-    process.on('uncaughtException', handleUncaughtException)
-    process.on('unhandledRejection', handleUnhandledRejection)
-}
-
-// Initialize and run application
-const run = () => {
-    setupProcessHandlers()
-    main()
-}
-
-run()
+// Start the application
+main()
 
 
 

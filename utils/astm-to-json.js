@@ -1,7 +1,7 @@
-const log = require('../../utils/logger')
-const { astmFraming } = require('../constants/buffers')
+const log = require('./logger')
+const { astmFraming } = require('./buffers')
 
-function convertAstmToJson(astmMessage, encoding = 'latin1') {
+function astmToJson(astmMessage, encoding = 'latin1') {
     // Handle both Buffer and string inputs
     let rawBuffer
     if (Buffer.isBuffer(astmMessage)) {
@@ -90,4 +90,4 @@ function convertAstmToJson(astmMessage, encoding = 'latin1') {
     return results
 }
 
-module.exports = { convertAstmToJson };
+module.exports = { astmToJson };

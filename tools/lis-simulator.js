@@ -1,7 +1,8 @@
 const net = require('node:net')
 const readline = require('node:readline')
-const { convertAstmToJson } = require('../src/communications/parsers/astm')
-const { astmFraming } = require('../src/communications/constants/buffers')
+const log = require('../utils/logger')
+const { astmToJson } = require('../utils/astm-to-json')
+const { astmFraming } = require('../utils/buffers')
 
 const PROXY_HOST = 'localhost'
 const PROXY_PORT = 7005
@@ -48,48 +49,48 @@ const messageTemplates = {
 }
 
 const showMenu = () => {
-  console.log('\n📋 LIS Simulator Menu:')
-  console.log('═'.repeat(50))
+  log.info('\n📋 LIS Simulator Menu:')
+  log.info('═'.repeat(50))
 
   Object.entries(messageTemplates).forEach(([key, template]) => {
-    console.log(`${key}. ${template.name}`)
+    log.info(`${key}. ${template.name}`)
   })
 
-  console.log('9. Custom message (free text)')
-  console.log('0. Show menu again')
-  console.log('q. Quit')
-  console.log('═'.repeat(50))
-  console.log('Select an option:')
+  log.info('9. Custom message (free text)')
+  log.info('0. Show menu again')
+  log.info('q. Quit')
+  log.info('═'.repeat(50))
+  log.info('Select an option:')
 }
 
 const sendMessage = (socket, message) => {
-  console.log(`📤 Sending: ${message.replace(/[\x00-\x1F]/g, (char) => `<${char.charCodeAt(0).toString(16).toUpperCase()}>`)}`)
+  log.info(`📤 Sending: ${message.replace(/[\x00-\x1F]/g, (char) => `<${char.charCodeAt(0).toString(16).toUpperCase()}>`)}`)
   socket.write(message)
 }
 
 const connectToProxy = () => {
-  console.log(`Connecting to proxy at ${PROXY_HOST}:${PROXY_PORT}...`)
+  log.info(`Connecting to proxy at ${PROXY_HOST}:${PROXY_PORT}...`)
 
   const socket = net.createConnection({ host: PROXY_HOST, port: PROXY_PORT }, () => {
-    console.log('✅ Connected to proxy!')
-    console.log('Welcome to LIS Simulator!')
+    log.info('✅ Connected to proxy!')
+    log.info('Welcome to LIS Simulator!')
     showMenu()
     promptForMessage()
   })
 
   socket.on('data', (data) => {
-    console.log(`📨 Received from equipment:`)
-    console.log(convertAstmToJson(data.toString('latin1')))
-    console.log('\nSelect an option:')
+    log.info(`📨 Received from equipment:`)
+    log.info(astmToJson(data))
+    log.info('\nSelect an option:')
   })
 
   socket.on('error', (err) => {
-    console.error('❌ Connection error:', err.message)
+    log.error('❌ Connection error:', err.message)
     process.exit(1)
   })
 
   socket.on('end', () => {
-    console.log('🔌 Disconnected from proxy')
+    log.info('🔌 Disconnected from proxy')
     process.exit(0)
   })
 
@@ -120,7 +121,7 @@ const connectToProxy = () => {
 
       if (messageTemplates[choice]) {
         const template = messageTemplates[choice]
-        console.log(`📋 Selected: ${template.name}`)
+        log.info(`📋 Selected: ${template.name}`)
         sendMessage(socket, template.message)
         promptForMessage()
         return
