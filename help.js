@@ -1,7 +1,21 @@
 #!/usr/bin/env node
 
+/**
+ * @fileoverview Help and Usage Documentation CLI
+ * This module provides command-line help and usage instructions
+ * for the Laboratory Tools TCP Proxy system.
+ *
+ * @author Leonardo Meireles
+ * @version 1.0.0
+ */
+
 const log = require('./utils/logger');
 
+/**
+ * Displays comprehensive help information for the Laboratory Tools CLI
+ * Shows available commands, environment configuration options, and workflow examples
+ * for both forward and reverse proxy modes.
+ */
 log.info('🧪 Laboratory Tools CLI');
 log.info('========================');
 log.info('');

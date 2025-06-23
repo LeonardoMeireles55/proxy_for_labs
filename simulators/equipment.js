@@ -1,8 +1,24 @@
+/**
+ * @fileoverview Laboratory Equipment Simulator
+ * This module simulates a laboratory equipment device that communicates using ASTM protocol.
+ * It handles basic ASTM handshaking and can be used for testing proxy functionality.
+ *
+ * @author Leonardo Meireles
+ * @version 1.0.0
+ */
+
 const net = require('node:net')
 const log = require('../utils/logger')
 const { ASTM } = require('../proxy/utils')
 
-// Simple Equipment Simulator
+/**
+ * Creates a laboratory equipment simulator server
+ * The simulator accepts client connections and performs ASTM protocol handshaking,
+ * including sending ENQ to initiate communication and responding to acknowledgments.
+ *
+ * @function createEquipmentSimulator
+ * @returns {import('net').Server} TCP server instance that simulates laboratory equipment
+ */
 const createEquipmentSimulator = () => {
   return net.createServer((socket) => {
     log.info(`New client connected: ${socket.remoteAddress}`)

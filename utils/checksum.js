@@ -1,8 +1,19 @@
 /**
+ * @fileoverview ASTM Checksum Utilities
+ * This module provides functions for calculating and extracting checksums
+ * from ASTM protocol messages according to the standard specification.
+ *
+ * @author Leonardo Meireles
+ * @version 1.0.0
+ */
+
+/**
  * Extracts the checksum from an ASTM message
  * The checksum follows the ETB or ETX character as two ASCII hex characters
- * @param {Buffer} data - The message buffer
- * @returns {string|null} - The extracted checksum as a hex string or null if not found
+ *
+ * @function extractChecksum
+ * @param {Buffer} data - The message buffer containing ASTM data
+ * @returns {string|null} The extracted checksum as a hex string or null if not found
  */
 const extractChecksum = (data) => {
     // Look for ETB character (0x17) or ETX character (0x03)
@@ -21,14 +32,16 @@ const extractChecksum = (data) => {
     return null
   }
 
-  /**
-   * Calculates the checksum for an ASTM message
-   * The checksum is calculated by summing all bytes from STX+1 up to and INCLUDING ETX/ETB
-   * then taking the result modulo 256 and converting to a 2-character hex string
-   * @param {Buffer} data - The message buffer
-   * @returns {string} - The calculated checksum as a hex string
-   */
-  const calculateChecksum = (data) => {
+/**
+ * Calculates the checksum for an ASTM message according to ASTM specification
+ * The checksum is calculated by summing all bytes from STX+1 up to and INCLUDING ETX/ETB
+ * then taking the result modulo 256 and converting to a 2-character hex string
+ *
+ * @function calculateChecksum
+ * @param {Buffer} data - The message buffer containing ASTM data
+ * @returns {string} The calculated checksum as a 2-character uppercase hex string
+ */
+const calculateChecksum = (data) => {
     // Find STX (0x02) and ETX (0x03) or ETB (0x17) positions
     const stxIndex = Array.from(data).findIndex(function (byte) { return byte === 0x02 })
     const etxIndex = Array.from(data).findIndex(function (byte) { return byte === 0x03 })
@@ -54,7 +67,7 @@ const extractChecksum = (data) => {
     return (sum % 256).toString(16).toUpperCase().padStart(2, '0')
   }
 
-  module.exports = {
+module.exports = {
     extractChecksum: extractChecksum,
     calculateChecksum: calculateChecksum
-  }
+}

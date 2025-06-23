@@ -1,6 +1,34 @@
+/**
+ * @fileoverview Configuration module for the TCP Proxy for Laboratory Equipment Communication
+ * This module loads environment variables and provides validated configuration settings
+ * for both forward and reverse proxy modes.
+ *
+ * @author Leonardo Meireles
+ * @version 1.0.0
+ */
+
 require('dotenv').config()
 
-// Simple configuration with sensible defaults
+/**
+ * Main configuration object containing all server settings
+ * @typedef {Object} ProxyConfig
+ * @property {number} proxyPort - Port number for the proxy server
+ * @property {number} equipmentPort - Port number for equipment connections
+ * @property {number} lisPort - Port number for LIS (Laboratory Information System) connections
+ * @property {string} equipmentHost - Hostname for equipment server
+ * @property {string} lisHost - Hostname for LIS server
+ * @property {string} proxyHost - Hostname for proxy server
+ * @property {boolean} isReverseProxy - Whether to run in reverse proxy mode
+ * @property {boolean} isForwardProxy - Whether to run in forward proxy mode
+ * @property {string} logLevel - Logging level (debug, info, warn, error)
+ * @property {number} connectionTimeout - Connection timeout in milliseconds
+ * @property {number} shutdownTimeout - Graceful shutdown timeout in milliseconds
+ */
+
+/**
+ * Simple configuration with sensible defaults
+ * @type {ProxyConfig}
+ */
 const config = {
   // Server ports
   proxyPort: parseInt(process.env.PORT || '7005'),

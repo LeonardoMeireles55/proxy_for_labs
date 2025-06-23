@@ -1,9 +1,26 @@
+/**
+ * @fileoverview TCP Reverse Proxy implementation
+ * This module creates a reverse proxy server that accepts connections from LIS
+ * and forwards them to laboratory equipment, handling ASTM protocol handshakes.
+ *
+ * @author Leonardo Meireles
+ * @version 1.0.0
+ */
+
 const net = require('node:net')
 const log = require('../utils/logger')
-const { ASTM } = require('./utils')
 
-// Simple TCP Reverse Proxy
-// Accepts connections from LIS and forwards to equipment
+/**
+ * Creates a TCP reverse proxy server
+ * The reverse proxy accepts connections from LIS and forwards traffic to equipment,
+ * with special handling for ASTM protocol control characters.
+ *
+ * @function createReverseProxy
+ * @param {Object} config - Configuration object containing server settings
+ * @param {string} config.equipmentHost - Hostname of the target equipment server
+ * @param {number} config.equipmentPort - Port number of the target equipment server
+ * @returns {import('net').Server} TCP server instance configured as reverse proxy
+ */
 const createReverseProxy = (config) => {
   const server = net.createServer((lisSocket) => {
     log.info(`LIS connected: ${lisSocket.remoteAddress}`)
@@ -19,16 +36,7 @@ const createReverseProxy = (config) => {
     // Forward data from equipment to LIS
     equipmentSocket.on('data', (data) => {
       log.debug('Forwarding data from equipment to LIS')
-
-      // Handle ASTM handshake
-      if (data[0] === ASTM.ENQ) {
-        log.debug('Received ENQ from equipment, sending ACK to LIS')
-        lisSocket.write(Buffer.from([ASTM.ACK]))
-      }
-
-      else {
         lisSocket.write(data)
-      }
     })
 
     // Forward data from LIS to equipment
@@ -64,7 +72,18 @@ const createReverseProxy = (config) => {
   return server
 }
 
-// Start reverse proxy server
+/**
+ * Starts the reverse proxy server and binds it to the configured port
+ *
+ * @async
+ * @function startReverseProxy
+ * @param {Object} config - Configuration object containing server settings
+ * @param {number} config.proxyPort - Port number for the proxy server to listen on
+ * @param {string} config.equipmentHost - Hostname of the target equipment server
+ * @param {number} config.equipmentPort - Port number of the target equipment server
+ * @returns {Promise<import('net').Server>} Promise that resolves to the started server instance
+ * @throws {Error} If server fails to start or bind to port
+ */
 const startReverseProxy = (config) => {
   return new Promise((resolve, reject) => {
     const server = createReverseProxy(config)

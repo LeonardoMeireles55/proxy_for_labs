@@ -1,6 +1,44 @@
+/**
+ * @fileoverview ASTM Message to JSON Converter
+ * This module provides functionality to convert ASTM protocol messages
+ * into structured JSON objects for easier processing and analysis.
+ *
+ * @author Leonardo Meireles
+ * @version 1.0.0
+ */
+
 const log = require('./logger')
 const { astmFraming } = require('./buffers')
 
+/**
+ * Represents a parsed ASTM segment with structured fields
+ * @typedef {Object} ASTMSegment
+ * @property {string} recordType - The ASTM record type (H, P, O, R, etc.)
+ * @property {string} sequenceNumber - The sequence number of the record
+ * @property {Array<string|Array<string>>} fields - Array of field values, components split by '^'
+ */
+
+/**
+ * Represents the result of ASTM message parsing
+ * @typedef {Object} ASTMParseResult
+ * @property {string} messageType - Type of message: 'ASTM Control Message', 'ASTM Data Message', or 'Raw Data'
+ * @property {Array<string>} [controlCharacters] - Array of control character descriptions (for control messages)
+ * @property {Array<ASTMSegment>} [segments] - Array of parsed data segments (for data messages)
+ * @property {string} rawHex - Hexadecimal representation of the raw buffer
+ * @property {Buffer} rawBuffer - Original raw buffer data
+ * @property {string} [interpretation] - Human-readable interpretation (for control messages)
+ * @property {string} [rawString] - String representation of the data (for data messages)
+ */
+
+/**
+ * Converts ASTM messages (both control and data messages) to structured JSON objects
+ * Handles ASTM framing, control characters, and data segment parsing with field components
+ *
+ * @function astmToJson
+ * @param {Buffer|string} astmMessage - The ASTM message to parse (Buffer or string)
+ * @param {string} [encoding='latin1'] - Character encoding to use for string conversion
+ * @returns {ASTMParseResult} Parsed ASTM message as structured JSON object
+ */
 function astmToJson(astmMessage, encoding = 'latin1') {
     // Handle both Buffer and string inputs
     let rawBuffer

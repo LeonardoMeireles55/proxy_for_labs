@@ -1,14 +1,8 @@
 {
   "author": "",
-  "bin": {
-    "connection-simulator": "cli/connection-simulator.js",
-    "equipment-simulator": "cli/equipment-simulator.js",
-    "lis-simulator": "cli/lis-simulator.js",
-    "proxy-labs": "cli/proxy-server.js"
-  },
   "dependencies": {
     "dotenv": "^16.5.0",
-    "hl7v2": "^0.14.0",
+    "hl7parser": "^1.0.1",
     "winston": "^3.17.0"
   },
   "description": "TCP Proxy for Laboratory Equipment Communication with ASTM/HL7 Support",
