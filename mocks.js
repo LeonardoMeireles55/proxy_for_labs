@@ -11,6 +11,7 @@ const config = require('./config');
 const log = require('./utils/logger');
 const equipmentSimulator = require('./simulators/equipment');
 const lisSimulator = require('./simulators/lis');
+const createLisSimulator = require('./simulators/lis')
 
 /**
  * Simulator startup result
@@ -35,7 +36,7 @@ const startSimulators = () => {
         log.info(`Equipment simulator listening on port ${config.equipmentPort}`);
       });
 
-    const lisClient = lisSimulator(config).connectToProxy();
+      const lisClient = createLisSimulator(config);
 
     resolve({ equipmentServer, lisClient });
     } catch (error) {

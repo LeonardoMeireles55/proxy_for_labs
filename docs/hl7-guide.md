@@ -22,3 +22,56 @@ Below is a list of the most commonly used HL7 segments, their meaning, and typic
 | **Zxx** | Custom Segment          | Institution-defined segment (non-standard/custom)               |
 
 > 💡 HL7 segments vary by message type (e.g., ADT, ORU, ORM, SIU). Always refer to the relevant HL7 chapter/specification.
+>
+## HL7 Syntax
+
+HL7 messages are composed of multiple segments and follow a specific byte structure.
+
+### Message Structure
+
+- **Start**: `<VT>` (0x0B)
+- **Segment separator**: `<CR>` (0x0D)
+- **End**: `<FS><CR>` (0x1C 0x0D)
+
+**Message Format**:
+
+- Use only UTF-8 characters.
+- Special characters are escaped.
+
+**Table 3.2-1 - Special Character Conversion**
+
+| Target                  | Conversion Rule |
+|-------------------------|-----------------|
+| Field separator         | `|` → `¥F¥`      |
+| Component separator     | `^` → `¥S¥`      |
+| Subcomponent separator  | `&` → `¥T¥`      |
+| Repeating separator (*) | `~` → `¥R¥`      |
+| Escape character        | `¥` → `¥E¥`      |
+
+(*) `~` not used for sample barcodes.
+
+---
+
+### 3.2.2 Segment Types
+
+**Table 3.2-2 - Segment Types**
+
+| No | Abbr | Name                               |
+|----|------|------------------------------------|
+| 1  | ECD  | Equipment Command Segment          |
+| 2  | EQU  | Equipment Detail Segment           |
+| 3  | INV  | Inventory Detail Segment           |
+| 4  | MSA  | Message Acknowledgment Segment     |
+| 5  | MSH  | Message Header Segment             |
+| 6  | NTE  | Comment Segment                    |
+| 7  | OBR  | Observation Request Segment        |
+| 8  | OBX  | Observation/Result Segment         |
+| 9  | PID  | Patient Identification Segment     |
+| 10 | QPD  | Query Parameter Definition Segment |
+| 11 | RCP  | Response Control Parameter Segment |
+| 12 | SAC  | Specimen Container Detail Segment  |
+| 13 | SPM  | Specimen Segment                   |
+| 14 | TCD  | Test Code Detail Segment           |
+| 15 | TQ1  | Timing/Quantity Segment            |
+| 16 | ORC  | Common Order                       |
+| 17 | ERR  | Error Segment                      |

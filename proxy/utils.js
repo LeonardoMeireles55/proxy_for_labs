@@ -78,7 +78,18 @@ const ASTM = {
   CR: 0x0D    // Carriage Return
 }
 
+/**
+ * HL7 protocol control character constants
+ * @type {Object}
+ */
+const HL7 = {
+  START_BLOCK: 0x0B,  // VT - Start of block
+  END_BLOCK: 0x1C,    // FS - End of block
+  CARRIAGE_RETURN: 0x0D // CR - Message terminator
+}
+
 module.exports = {
   gracefulShutdown,
-  ASTM
+  ASTM,
+  HL7
 }

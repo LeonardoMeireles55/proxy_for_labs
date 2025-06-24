@@ -5,8 +5,12 @@ const hl7 = require('hl7parser')
 const parseHl7Message = (data) => {
     const message = hl7.create(data.toString('utf8'))
 
+    log.info(message.get('MSH.7').toString()) // Log the message type
+
     return message
 }
+
+parseHl7Message('MSH|-¥&|cpure||host||20160724080600+0200||OML^O34^OML_O42|1236|P|2.5.1|||||UNICODE UTF-8|||LAB-28R^ROCHE<CR>MSA|AA|1236<CR><FS><CR>')
 
 const extractLabValues = (parsedMessage) => {
     const labResults = []
