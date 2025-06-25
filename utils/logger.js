@@ -10,9 +10,30 @@
 const winston = require('winston');
 const env = require('../config');
 
+// Configurar cores customizadas
+winston.addColors({
+    error: 'red',
+    warn: 'yellow',
+    info: 'cyan',
+    debug: 'green'
+});
+
+/**
+ * Custom formatter for better console readability
+ */
+const customConsoleFormat = winston.format.combine(
+    winston.format.timestamp({ format: 'HH:mm:ss' }),
+    winston.format.colorize({ all: true }),
+    winston.format.printf(({ level, message, timestamp, ...meta }) => {
+        const metaStr = Object.keys(meta).length ?
+            `\n${JSON.stringify(meta, null, 2)}` : '';
+        return `[${timestamp}] ${level}: ${message}${metaStr}`;
+    })
+);
+
 /**
  * Creates and configures a Winston logger instance
- * Sets up console transport with colorized output and JSON formatting
+ * Sets up console transport with enhanced formatting
  *
  * @function createLogger
  * @returns {winston.Logger} Configured Winston logger instance
@@ -26,10 +47,7 @@ const createLogger = () => {
 
     const transports = [
         new winston.transports.Console({
-            format: winston.format.combine(
-                winston.format.colorize(),
-                winston.format.simple()
-            )
+            format: customConsoleFormat
         })
     ];
 

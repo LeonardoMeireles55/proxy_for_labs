@@ -31,7 +31,7 @@ require('dotenv').config()
  */
 const config = {
   // Server ports
-  proxyPort: parseInt(process.env.PORT || '7005'),
+  proxyPort: parseInt(process.env.PORT || '5400'),
   equipmentPort: parseInt(process.env.EQUIPMENT_PORT || '7006'),
   lisPort: parseInt(process.env.LIS_PORT || '8080'),
 

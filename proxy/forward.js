@@ -35,36 +35,42 @@ const createForwardProxy = (config) => {
     // Forward data from target to client
     targetSocket.on('data', (data) => {
       log.debug('Forwarding data from LIS to client')
-      clientSocket.write(data)
+      try {
+        clientSocket.write(data)
+      } catch (error) {
+        log.error('Error forwarding LIS data to client:', error.message)
+        return
+      }
     })
 
     // Forward data from client to target
     clientSocket.on('data', (data) => {
       log.debug('Forwarding data from client to LIS')
-      targetSocket.write(data)
+      try {
+        targetSocket.write(data)
+      } catch (error) {
+        log.error('Error processing client data:', error.message)
+        return
+      }
     })
 
     // Handle client disconnect
     clientSocket.on('close', () => {
       log.info('Client disconnected')
-      targetSocket.end()
     })
 
     // Handle target disconnect
     targetSocket.on('close', () => {
       log.info('LIS server disconnected')
-      clientSocket.end()
     })
 
     // Handle errors
     clientSocket.on('error', (err) => {
       log.error('Client socket error:', err.message)
-      targetSocket.destroy()
     })
 
     targetSocket.on('error', (err) => {
       log.error('Target socket error:', err.message)
-      clientSocket.destroy()
     })
   })
 
