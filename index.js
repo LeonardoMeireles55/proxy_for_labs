@@ -33,18 +33,29 @@ const main = async () => {
     log.info('Starting proxy server...')
 
     if (config.isForwardProxy) {
+
       log.info('Starting in forward proxy mode')
+
       const server = await startForwardProxy(config)
+
       activeServers.push(server)
-    } else if (config.isReverseProxy) {
+    }
+
+    if (config.isReverseProxy) {
+
       log.info('Starting in reverse proxy mode')
+
       const server = await startReverseProxy(config)
+
       activeServers.push(server)
     }
 
     log.info(`Proxy server started successfully on port ${config.proxyPort}`)
+
   } catch (error) {
+
     log.error('Failed to start proxy server:', error.message)
+
     process.exit(1)
   }
 }
@@ -62,11 +73,18 @@ const shutdown = async (signal) => {
   log.info(`Received ${signal}. Shutting down gracefully...`)
 
   try {
+
     await gracefulShutdown(activeServers, config.shutdownTimeout)
+
     log.info('Graceful shutdown completed')
+
     process.exit(0)
-  } catch (error) {
+  }
+
+  catch (error) {
+
     log.error('Error during shutdown:', error.message)
+
     process.exit(1)
   }
 }

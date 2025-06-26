@@ -1,33 +1,15 @@
 const log = require('../utils/logger')
 
-const mockCobasMessage = 'MSH|-¥&|host||cpure||20160712181012+0200||OML^O33^OML_O33|messageId|P|2.5.1|||NE|AL||UNICODE UTF-8|||LAB-28R^ROCHE<CR>SPM|1|30001||ORH^^HL70487|||||||Q^^HL70369<CR>SAC|||2345678||||||Lot^^99ROC|ABCDEF|9876543<CR>OBX|1|NM|20131^20131^99ROC^^^IHELAW|1|0.100|U/L^^99ROC||10^^99ROC~112^^99ROC~102^^99ROC|||C|||||cobas~REALTIME||c303^ROCHE~3333^ROCHE~1^ROCHE|20191212143110||||||||||RSLT<CR>OBX|2|CE|20131^20131^99ROC^^^IHELAW|1|-2^^99ROC|||10^^99ROC~112^^99ROC~102^^99ROC|||C|||||cobas~REALTIME||c303^ROCHE~3333^ROCHE~1^ROCHE|20191212143110||||||||||RSLT<CR>'
+const mockCobasMessage = 'MSH|-¥&|cpure||host||20180220160418+0100||OUL^R23^OUL_R23|19|P|2.5.1|||NE|AL||UNICODE·UTF-8|||LAB-29C^ROCHE<CR>SPM||20901&CALIBRATOR||ORH^^HL70487|||||||C^^HL70369||||||||20200630<CR>OBX|1||20470^20470^99ROC|Curve||||LotCalib^^99ROC|||F|||||lauberd1~REALTIME|Full~LinearRegression~Level1|c303^ROCHE~3333^ROCHE~1^ROCHE|20180220155403||18<CR>SAC|||20901^CALIBRATOR|||||||999999|0<CR>OBR|1|""||20470^^99ROC||||||||||||||||||||||||||||||||||||||||||Full^^99ROC<CR>ORC|SC||||CM<CR>OBX|1|NA|20470^20470^99ROC|Signal|0.0000~0.0002^0.0002^0.0406^0.0001^0.0411~0.0271^0.0273^0.1731^0.0269^0.1735~0.0000^^^^~0.0000^^^^~0.0000^^^^~0.0000^^^^~^^^^^^^^^^^^^^~0.000000^375^^^^|Î¼mol/L^^99ROC||""|||F|||||lauberd1~REALTIME|Full~LinearRegression~Level1|c303^ROCHE~3333^ROCHE~1^ROCHE|20180220155403<CR>INV|2047001|OK^^HL70383~CURRENT^^99ROC|R1|513|1|14||||||20190430||||261813<CR>INV|2047001|OK^^HL70383~CURRENT^^99ROC|R3|513|1|14||||||20190430||||261813<CR>OBX|2|DTM|PT^Pipetting_Time^99ROC^S_OTHER^Other·Supplemental^IHELAW|Signal|20180220160359~20180220160403|||""|||F|||||lauberd1~REALTIME|Full~LinearRegression~Level1|c303^ROCHE~3333^ROCHE~1^ROCHE|20180220155403<CR>SPM||20401&CALIBRATOR||ORH^^HL70487|||||||C^^HL70369||||||||20181230<CR>OBX|1||20470^20470^99ROC|Curve||||LotCalib^^99ROC|||F|||||lauberd1~REALTIME|Full~LinearRegression~Level2|c303^ROCHE~3333^ROCHE~1^ROCHE|20180220155403||18<CR>SAC|||20401^CALIBRATOR|||||||186423|0<CR>OBR|1|""||20470^^99ROC||||||||||||||||||||||||||||||||||||||||||Full^^99ROC<CR>ORC|SC||||CM<CR>OBX|1|NA|20470^20470^99ROC|Signal|0.0000~0.0002^0.0002^0.0406^0.0001^0.0411~0.0271^0.0273^0.1731^0.0269^0.1735~0.0000^^^^~0.0000^^^^~0.0000^^^^~0.0000^^^^~^^^^^^^^^^^^^^~0.000000^375^^^^|Î¼mol/L^^99ROC||""|||F|||||lauberd1~REALTIME|Full~LinearRegression~Level2|c303^ROCHE~3333^ROCHE~1^ROCHE|20180220155403<CR>INV|2047001|OK^^HL70383~CURRENT^^99ROC|R1|513|1|14||||||20190430||||261813<CR>INV|2047001|OK^^HL70383~CURRENT^^99ROC|R3|513|1|14||||||20190430||||261813<CR>OBX|2|DTM|PT^Pipetting_Time^99ROC^S_OTHER^Other·Supplemental^IHELAW|Signal|20180220160414~20180220160417|||""|||F|||||lauberd1~REALTIME|Full~LinearRegression~Level2|c303^ROCHE~3333^ROCHE~1^ROCHE|20180220155403<CR><FS><CR>'
+const { MESSAGE_STRUCTURE_AS_STRING, HL7_FRAMING, HL7_SEPARATORS } = require('./buffers')
 
-const messageStructure = {
-    VT: '<VT>',    // Start Block character (Vertical Tab)
-    CR: '<CR>',    // Carriage Return (segment separator)
-    FS: '<FS>',    // File Separator
-    END_BLOCK:  '<FS><CR>'  // Message end: <FS><CR>
-};
-
-const HL7_SEPARATORS = {
-    FIELD: '|',
-    COMPONENT: '^',
-    SUBCOMPONENT: '&',
-    REPEAT: '~',
-    ESCAPE: '\\'
-  };
-
-const HL7_CONTROL_CHARS = {
-    START: String.fromCharCode(0x0B),
-    SEGMENT_END: String.fromCharCode(0x0D),
-    MESSAGE_END: String.fromCharCode(0x1C) + String.fromCharCode(0x0D)
-};
 
 
   // Clean message - remove control characters
   const cleanMessage = (message) => {
-    message.replace(new RegExp('^' + HL7_CONTROL_CHARS.START), '') // Remove start character
-    .replace(new RegExp(HL7_CONTROL_CHARS.MESSAGE_END + '$'), '') // Remove end characters
+      return message.replace(new RegExp('^' + HL7_FRAMING.START_BLOCK), '') // Remove start character
+    .replace(new RegExp(HL7_FRAMING.SEGMENT_SEPARATOR + '$'), '') // Remove segment separator
+    .replace(new RegExp(HL7_FRAMING.END_BLOCK + '$'), '') // Remove end characters
     .trim();
   }
 
@@ -48,42 +30,32 @@ const unescapeHL7 = (text) => {
         .replace(/\\E\\/g, '\\')    // Escape character
   }
 
-
-// Helper functions for HL7 message construction
-const hl7Utils = {
-    createMessage(segments) {
-        const startBlock = messageStructure.VT;
-        const segmentSep = messageStructure.FS
-        const endBlock = messageStructure.END_BLOCK;
-
-        return startBlock + segments.join(segmentSep) + endBlock;
-    },
-
-    parseMessage(message) {
+    const parseMessage = (message) => {
         // Remove start block if present
-        let cleaned = message.charCodeAt(0) === messageStructure.VT
+        let cleaned = message.charCodeAt(0) === MESSAGE_STRUCTURE_AS_STRING.START_BLOCK
             ? message.substring(1)
             : message;
 
         // Remove end block if present
-        if (cleaned.endsWith(messageStructure.END_BLOCK)) {
-            cleaned = cleaned.slice(0, -8);
+        if (cleaned.endsWith(MESSAGE_STRUCTURE_AS_STRING.END_BLOCK)) {
+            cleaned = cleaned.slice(0, -MESSAGE_STRUCTURE_AS_STRING.END_BLOCK.length);
         }
 
         // Split by segment separator (CR) and filter empty segments
-        return cleaned
-            .split((messageStructure.CR))
+         return cleaned
+             .split((MESSAGE_STRUCTURE_AS_STRING.SEGMENT_SEPARATOR))
             .filter(segment => segment.trim().length > 0);
-    },
 
-    isValidMessage(message) {
-        return message.charCodeAt(0) === messageStructure.START_BLOCK &&
-               message.charCodeAt(message.length - 2) === messageStructure.FS &&
-               message.charCodeAt(message.length - 1) === messageStructure.CR;
-    },
+    }
+
+    const isValidMessage = (message) => {
+        return message.charCodeAt(0) === MESSAGE_STRUCTURE_AS_STRING.START_BLOCK &&
+            message.charCodeAt(message.length - 2) === MESSAGE_STRUCTURE_AS_STRING.FS &&
+            message.charCodeAt(message.length - 1) === MESSAGE_STRUCTURE_AS_STRING.CR;
+    }
 
 
-    toJson(message) {
+    const HL7toJson = (message) => {
         const segments = message
         const json = {}
 
@@ -100,47 +72,71 @@ const hl7Utils = {
     })
         return json;
 
-    },
+    }
 
-    getQuantityOfSegments(message) {
-        const segments = this.toJson(message).MSH[0];
+    const getQuantityOfSegments = (message) => {
+        const segments = HL7toJson(message).MSH[0];
         const fields = segments.split('|');
 
         return {
             count: fields.length - 1, // Subtract 1 because first element is empty after split
             positions: fields.map((_, index) => index + 1).slice(1) // Skip first empty element
         };
-    },
+    }
 
-    getSegmentData(message, segmentType) {
-        const jsonData = this.toJson(message);
-        return jsonData[segmentType]?.[0] || '';
-    },
+    const getSegmentData = (message, segmentType) => {
+        const jsonData = HL7toJson(message);
+        return jsonData[segmentType]?.[0] || 'empty';
+    }
 
-    getInformationBySegmentType(message, segmentType, fieldIndex) {
-        const segmentData = this.getSegmentData(message, segmentType);
+    const getInformationBySegmentTypeAndIndex = (message, segmentType, fieldIndex) => {
+        const segmentData = getSegmentData(message, segmentType);
 
         if (!segmentData) return 'empty';
 
         const fields = segmentData.split('|');
         return fields[fieldIndex - 1] || 'empty';
-    },
+    }
 
-};
+    const getInformationBySegmentType = (message, segmentType) => {
+        const type = segmentType.toUpperCase();
+        const jsonData = HL7toJson(message);
+        const segmentData = jsonData[segmentType];
+
+        return {
+            type: type,
+            data: segmentData,
+            count: segmentData ? segmentData.length : 0,
+        }
+
+
+}
 
 const extractLabValues = (message) => {
-
-    const parsedMessage = hl7Utils.parseMessage(message)
+    const parsedMessage = parseMessage(message)
 
     log.debug('Parsed HL7:', parsedMessage)
 
     try {
-        const messageType = hl7Utils.getInformationBySegmentType(parsedMessage, 'MSH', 9).toString()
-        const hl7Version = hl7Utils.getInformationBySegmentType(parsedMessage, 'MSH', 12).toString()
-        const patientId = hl7Utils.getInformationBySegmentType(parsedMessage, 'PID', 3).toString()
-        const date = hl7Utils.getInformationBySegmentType(parsedMessage, 'MSH', 7).toString()
-        const instrumentName = hl7Utils.getInformationBySegmentType(parsedMessage, 'MSH', 3).toString()
+        const messageType = getInformationBySegmentTypeAndIndex(parsedMessage, 'MSH', 9).toString()
+        const hl7Version = getInformationBySegmentTypeAndIndex(parsedMessage, 'MSH', 12).toString()
+        const patientId = getInformationBySegmentTypeAndIndex(parsedMessage, 'PID', 3)?.toString() || null
+        const date = getInformationBySegmentTypeAndIndex(parsedMessage, 'MSH', 7).toString()
+        const instrumentName = getInformationBySegmentTypeAndIndex(parsedMessage, 'MSH', 3).toString()
 
+        const obxSegments = Object.values(parsedMessage).filter((segment) => segment.startsWith('OBX'))
+
+
+        const labResults = obxSegments.map((segment) => {
+            const fields = segment.split('|')
+            return {
+                observationId: fields[3]?.split('^')[0] || null,
+                value: fields[5] || null,
+                unit: fields[6]?.split('^')[0] || null,
+                observationTimestamp: fields[19] || null,
+                status: fields[11] || null,
+            }
+        })
 
         return {
             messageType,
@@ -148,17 +144,37 @@ const extractLabValues = (message) => {
             patientId,
             date,
             instrumentName,
+            labResults,
         }
-
     } catch (error) {
         log.error('Error extracting lab values:', error)
         return {}
     }
-}
+};
+
 
 const extracted = extractLabValues(mockCobasMessage)
+
+
 log.debug('Extracted Lab Values:', extracted)
 
 
+const json = HL7toJson(parseMessage(mockCobasMessage))
+log.debug('HL7 Message Type:', json)
 
-module.exports = { messageStructure, hl7Utils, extractLabValues };
+const debug = getInformationBySegmentType(parseMessage(mockCobasMessage), 'OBX')
+log.debug('Debug Information:', debug)
+
+
+
+module.exports = {
+    extractLabValues,
+    HL7toJson,
+    parseMessage,
+    isValidMessage,
+    unescapeHL7,
+    getQuantityOfSegments,
+    getSegmentData,
+    getInformationBySegmentType,
+    getInformationBySegmentTypeAndIndex,
+    };

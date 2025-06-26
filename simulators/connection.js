@@ -1,3 +1,5 @@
+const config  = require('../config')
+
 /**
  * @fileoverview Connection Simulator for Testing Laboratory Equipment Communication
  * This module provides a simple connection simulator that connects to a server
@@ -9,14 +11,15 @@
 
 const net = require('net')
 const log = require('../utils/logger')
-const { parseAstmMessage, createSampleMessages } = require('../protocols/astm')
+const { parseAstmMessage, createSampleMessages } = require('../protocols/astm-lib')
 
 /**
  * Configuration object for connection simulator
  * @typedef {Object} ConnectionConfig
  * @property {string} lisHost - Hostname of the LIS server to connect to
  * @property {number} lisPort - Port number of the LIS server
- * @property {boolean} [secure] - Whether to use secure connection (currently unused)
+ * @property {string} proxyHost - Hostname of the proxy server (if applicable)
+ * @property {number} proxyPort - Port number of the proxy server (if applicable)
  */
 
 /**
@@ -59,11 +62,15 @@ const handleServerData = (data) => {
   log.debug('Raw data:', data.toString())
 
   try {
+
     const parsed = parseAstmMessage(data)
+
     if (parsed) {
       log.info('Parsed ASTM message:', parsed.type, parsed.message || 'Data message')
     }
-  } catch (error) {
+
+  }
+  catch (error) {
     log.debug('Could not parse as ASTM:', error.message)
   }
 }
@@ -82,7 +89,7 @@ const startConnectionSimulator = (config) => {
   return new Promise((resolve, reject) => {
     const client = new net.Socket()
 
-    client.connect(config.lisPort, config.lisHost, () => {
+    client.connect(config.proxyPort, config.proxyHost, () => {
       log.info(`Connected to server at ${config.lisHost}:${config.lisPort}`)
 
       // Send a sample message after connecting
@@ -103,5 +110,9 @@ const startConnectionSimulator = (config) => {
     resolve(client)
   })
 }
+
+startConnectionSimulator(config)
+
+
 
 module.exports = startConnectionSimulator

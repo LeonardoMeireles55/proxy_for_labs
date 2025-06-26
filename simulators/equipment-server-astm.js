@@ -16,10 +16,10 @@ const { ASTM } = require('../proxy/utils')
  * The simulator accepts client connections and performs ASTM protocol handshaking,
  * including sending ENQ to initiate communication and responding to acknowledgments.
  *
- * @function createEquipmentSimulator
+ * @function createEquipmentServerASTM
  * @returns {import('net').Server} TCP server instance that simulates laboratory equipment
  */
-const createEquipmentSimulator = () => {
+const createEquipmentServerASTM = () => {
   return net.createServer((socket) => {
     log.info(`New client connected: ${socket.remoteAddress}`)
 
@@ -33,15 +33,22 @@ const createEquipmentSimulator = () => {
       log.debug(`Received data: ${data.toString('latin1')}`)
 
       if (data[0] === ASTM.ENQ) {
+
         log.debug('Received ENQ, sending ACK')
+
         socket.write(Buffer.from([ASTM.ACK]))
-      } else if (data[0] === ASTM.ACK) {
+      }
+
+      if (data[0] === ASTM.ACK) {
         log.debug('Received ACK, ready for data transmission')
-      } else {
+      }
+
+      else {
         // Echo back any other data
         log.debug('Echoing data back')
         socket.write(Buffer.from([ASTM.ACK]))
       }
+
     })
 
     socket.on('error', (err) => {
@@ -54,4 +61,4 @@ const createEquipmentSimulator = () => {
   })
 }
 
-module.exports = createEquipmentSimulator
+module.exports = createEquipmentServerASTM

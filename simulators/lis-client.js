@@ -9,8 +9,8 @@
 
 const net = require('node:net')
 const log = require('../utils/logger')
-const { parseAstmMessage } = require('../protocols/astm')
-const { parseHl7Message } = require('../protocols/hl7')
+const { parseAstmMessage } = require('../protocols/astm-lib')
+const { parseMessage } = require('../protocols/hl7-lib')
 
 /**
  * Configuration object for LIS simulator
@@ -34,7 +34,7 @@ const { parseHl7Message } = require('../protocols/hl7')
  * @function createLisSimulator
  * @param {LISConfig} config - Configuration object for proxy connection
  */
-const createLisSimulator = (config) => {
+const createLisClientSimulator = (config) => {
   /**
    * Connects to the proxy server and starts the interactive CLI
    * @returns {void}
@@ -44,9 +44,10 @@ const createLisSimulator = (config) => {
     })
 
     client.on('data', (data) => {
-      const message = parseAstmMessage(data)
+      const message = parseAstmMessage(data) || parseMessage(data.toString('utf8'))
 
-      log.info(`Received message ASTM: ${message.message}`)
+      log.info(`Received message ASTM: ${message.message}`) ||
+      log.info(`Received message HL7: ${message}`)
 
     })
 
@@ -62,4 +63,4 @@ const createLisSimulator = (config) => {
   }
 
 
-module.exports = createLisSimulator
+module.exports = createLisClientSimulator

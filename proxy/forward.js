@@ -62,6 +62,7 @@ const createForwardProxy = (config) => {
     // Handle target disconnect
     targetSocket.on('close', () => {
       log.info('LIS server disconnected')
+      targetSocket.end()
     })
 
     // Handle errors
