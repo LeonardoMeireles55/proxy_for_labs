@@ -8,7 +8,7 @@
  */
 
 const config = require('./config')
-const log = require('./utils/logger')
+const log = require('./helpers/logging/logger')
 const { gracefulShutdown } = require('./proxy/utils')
 const startForwardProxy = require('./proxy/forward')
 const startReverseProxy = require('./proxy/reverse')
@@ -25,7 +25,6 @@ let activeServers = []
  *
  * @async
  * @function main
- * @returns {Promise<void>} Promise that resolves when the server starts successfully
  * @throws {Error} If server fails to start or configuration is invalid
  */
 const main = async () => {
@@ -35,8 +34,7 @@ const main = async () => {
     if (config.isForwardProxy) {
 
       log.info('Starting in forward proxy mode')
-
-      const server = await startForwardProxy(config)
+      const server = startForwardProxy(config)
 
       activeServers.push(server)
     }
@@ -52,10 +50,7 @@ const main = async () => {
 
     log.info(`Proxy server started successfully on port ${config.proxyPort}`)
 
-  } catch (error) {
-
-    log.error('Failed to start proxy server:', error.message)
-
+  } catch {
     process.exit(1)
   }
 }
@@ -77,6 +72,18 @@ const shutdown = async (signal) => {
     await gracefulShutdown(activeServers, config.shutdownTimeout)
 
     log.info('Graceful shutdown completed')
+
+    activeServers.forEach(server => {
+      if (server && server.close) {
+        server.close(() => {
+          log.info('Server closed successfully')
+        })
+      }
+    })
+
+    activeServers = []
+
+    log.info('All servers shut down, exiting process')
 
     process.exit(0)
   }

@@ -6,47 +6,48 @@
  * @author Leonardo Meireles
  * @version 1.0.0
  */
-
+const log = require('./helpers/logging/logger');
 const config = require('./config');
-const log = require('./utils/logger');
-const equipmentSimulator = require('./simulators/equipment');
-const lisSimulator = require('./simulators/lis');
-const createLisSimulator = require('./simulators/lis')
+const LisServer = require('./simulators/lis/lis-server')
+const createEquipmentClientHL7 = require('./simulators/hl-7/equipment-client-hl7')
+
 
 /**
  * Simulator startup result
  * @typedef {Object} SimulatorResult
- * @property {import('net').Server} equipmentServer - The started equipment simulator server
- * @property {Object} lisClient - The LIS simulator client connection
+ * @property {Object} equipmentClient - The started equipment simulator client
+ * @property {Object} lisServer - The LIS simulator client connection
  */
 
 /**
  * Starts both equipment and LIS simulators concurrently
  * Useful for testing scenarios where both simulators need to run together
  *
- * @async
  * @function startSimulators
- * @returns {Promise<SimulatorResult>} Promise that resolves to simulator instances
  * @throws {Error} If any simulator fails to start
  */
 const startSimulators = () => {
-  return new Promise((resolve, reject) => {
     try {
-      const equipmentServer = equipmentSimulator().listen(config.equipmentPort, () => {
-        log.info(`Equipment simulator listening on port ${config.equipmentPort}`);
+      const lisServer = LisServer().listen(config.lisPort, () => {
+
+        log.info(`LIS simulator started on port ${config.lisPort}`);
+        log.info('Initializing equipment client...');
+
+        createEquipmentClientHL7();
       });
 
-      const lisClient = createLisSimulator(config);
+      lisServer.on('error', (err) => {
+        log.error(`LIS server error: ${err.message}`);
+      });
 
-    resolve({ equipmentServer, lisClient });
+
+
     } catch (error) {
-      reject(error);
+      log.error(`Failed to start simulators: ${error.message}`);
     }
-  });
-
-}
+  }
 
 // Auto-start simulators when module is run directly
 startSimulators()
 
-module.exports = startSimulators;
+module.exports = startSimulators

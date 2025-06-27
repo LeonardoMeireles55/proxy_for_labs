@@ -8,7 +8,7 @@
  */
 
 // Import centralized logger
-const log = require('../utils/logger');
+const log = require('../helpers/logging/logger');
 
 /**
  * Gracefully shuts down an array of server instances with timeout handling

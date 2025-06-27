@@ -8,22 +8,20 @@
  */
 
 const net = require('node:net')
-const log = require('../utils/logger')
-const { parseAstmMessage } = require('../protocols/astm-lib')
-const { parseMessage } = require('../protocols/hl7-lib')
+const log = require('../../helpers/logging/logger')
+const { parseAstmMessage } = require('../../helpers/libs/astm-lib')
+const { parseMessage } = require('../../helpers/libs/hl7-lib')
 
 /**
  * Configuration object for LIS simulator
  * @typedef {Object} LISConfig
  * @property {string} proxyHost - Hostname of the proxy server to connect to
  * @property {number} proxyPort - Port number of the proxy server
- * @property {boolean} [secure] - Whether to use secure connection (currently unused)
  */
 
 /**
  * LIS simulator object with connection functionality
  * @typedef {Object} LISSimulator
- * @property {Function} connectToProxy - Function to establish connection to proxy server
  */
 
 /**
@@ -35,28 +33,26 @@ const { parseMessage } = require('../protocols/hl7-lib')
  * @param {LISConfig} config - Configuration object for proxy connection
  */
 const createLisClientSimulator = (config) => {
-  /**
-   * Connects to the proxy server and starts the interactive CLI
-   * @returns {void}
-   */
+
     const client = net.createConnection({ host: config.proxyHost, port: config.proxyPort }, () => {
-      log.info(`Connected to proxy server at ${config.proxyHost}:${config.proxyPort}`)
+      log.info(`Lis Client -> connected to proxy server at ${config.proxyHost}:${config.proxyPort}`
+      )
     })
 
     client.on('data', (data) => {
       const message = parseAstmMessage(data) || parseMessage(data.toString('utf8'))
 
-      log.info(`Received message ASTM: ${message.message}`) ||
-      log.info(`Received message HL7: ${message}`)
+      log.info(`Lis Client -> received message ASTM: ${message.message}`) ||
+      log.info(`Lis Client -> received message HL7: ${message}`)
 
     })
 
     client.on('error', (err) => {
-      log.error(`Connection error: ${err.message}`)
+      log.error(`Lis Client -> ${err.message}`)
     })
 
     client.on('close', () => {
-      log.info('Connection closed')
+      log.info('Lis Client -> connection closed')
     })
 
     return client

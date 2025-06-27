@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-const { ASTM } = require('../proxy/utils')
+const { ASTM } = require('../../proxy/utils')
 
 /**
  * Represents a parsed ASTM message segment

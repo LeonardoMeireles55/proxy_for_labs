@@ -1,0 +1,42 @@
+{
+  "messageType": "ORU^R01^ORU_R01",
+  "hl7Version": "2.5",
+  "patientId": "820154899^^^^HC",
+  "patientName": "BEIGHE^DENISE^I^^^^L",
+  "date": "20190917010635-0600",
+  "instrumentName": "Informatics",
+  "labResults": [
+    {
+      "sequenceId": "1",
+      "valueType": "NM",
+      "observationId": "4548-4",
+      "observationName": "Hemoglobin A1c",
+      "observationSystem": "LN",
+      "alternateId": "10009230",
+      "alternateName": "Hemoglobin A1c",
+      "alternateSystem": "L",
+      "value": "5.2",
+      "unit": "%",
+      "unitSystem": "ISO+",
+      "referenceRange": "-",
+      "abnormalFlags": "-",
+      "observationTimestamp": "-"
+    },
+    {
+      "sequenceId": "2",
+      "valueType": "NM",
+      "observationId": "27353-2",
+      "observationName": "Estimated Average Glucose (eAG)",
+      "observationSystem": "LN",
+      "alternateId": "12009230",
+      "alternateName": "Estimated Average Glucose (eAG)",
+      "alternateSystem": "L",
+      "value": "103",
+      "unit": "-",
+      "unitSystem": "ISO+",
+      "referenceRange": "Not Established",
+      "abnormalFlags": "-",
+      "observationTimestamp": "-"
+    }
+  ]
+}

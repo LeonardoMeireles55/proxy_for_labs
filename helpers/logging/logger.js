@@ -8,7 +8,7 @@
 
 // @ts-nocheck
 const winston = require('winston');
-const env = require('../config');
+const env = require('../../config');
 
 // Configurar cores customizadas
 winston.addColors({
@@ -40,8 +40,7 @@ const customConsoleFormat = winston.format.combine(
  */
 const createLogger = () => {
     const logFormat = winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.errors({ stack: true }),
+        winston.format.errors({ verbose: true, stack: true }),
         winston.format.json()
     );
 

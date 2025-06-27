@@ -8,8 +8,8 @@
  */
 
 const net = require('node:net')
-const log = require('../utils/logger')
-const { ASTM } = require('../proxy/utils')
+const log = require('../../helpers/logging/logger')
+const { ASTM } = require('../../proxy/utils')
 
 /**
  * Creates a laboratory equipment simulator server
@@ -25,27 +25,26 @@ const createEquipmentServerASTM = () => {
 
     // Send initial ENQ to start communication
     setTimeout(() => {
-      log.debug('Sending ENQ to start communication')
+      log.info('Sending ENQ to start communication')
       socket.write(Buffer.from([ASTM.ENQ]))
     }, 1000)
 
     socket.on('data', (data) => {
-      log.debug(`Received data: ${data.toString('latin1')}`)
+      log.info(`Received data: ${data.toString('latin1')}`)
 
       if (data[0] === ASTM.ENQ) {
 
-        log.debug('Received ENQ, sending ACK')
+        log.info('Received ENQ, sending ACK')
 
         socket.write(Buffer.from([ASTM.ACK]))
       }
 
       if (data[0] === ASTM.ACK) {
-        log.debug('Received ACK, ready for data transmission')
+        log.info('Received ACK, ready for data transmission')
       }
 
       else {
-        // Echo back any other data
-        log.debug('Echoing data back')
+        log.info('Echoing data back')
         socket.write(Buffer.from([ASTM.ACK]))
       }
 

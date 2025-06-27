@@ -7,8 +7,8 @@
  * @version 1.0.0
  */
 
-const log = require('./logger')
-const { astmFraming } = require('./buffers')
+const log = require('../logging/logger')
+const { ASTM_FRAMING } = require('./buffers')
 
 /**
  * Represents a parsed ASTM segment with structured fields
@@ -51,14 +51,14 @@ function astmToJson(astmMessage, encoding = 'latin1') {
 
     // Check for ASTM control characters
     const controlChars = {
-        [astmFraming.HANDSHAKE_ENQ]: 'ENQ (Enquiry)',
-        [astmFraming.HANDSHAKE_ACK]: 'ACK (Acknowledge)',
-        [astmFraming.HANDSHAKE_NAK]: 'NAK (Negative Acknowledge)',
-        [astmFraming.END_TRANSMISSION]: 'EOT (End of Transmission)',
-        [astmFraming.START_FRAME]: 'STX (Start of Text)',
-        [astmFraming.END_FRAME]: 'ETX (End of Text)',
-        [astmFraming.MULTIPART_END]: 'ETB (End of Transmission Block)',
-        [astmFraming.FRAME_END]: 'CR (Carriage Return)'
+        [ASTM_FRAMING.HANDSHAKE_ENQ]: 'ENQ (Enquiry)',
+        [ASTM_FRAMING.HANDSHAKE_ACK]: 'ACK (Acknowledge)',
+        [ASTM_FRAMING.HANDSHAKE_NAK]: 'NAK (Negative Acknowledge)',
+        [ASTM_FRAMING.END_TRANSMISSION]: 'EOT (End of Transmission)',
+        [ASTM_FRAMING.START_FRAME]: 'STX (Start of Text)',
+        [ASTM_FRAMING.END_FRAME]: 'ETX (End of Text)',
+        [ASTM_FRAMING.MULTIPART_END]: 'ETB (End of Transmission Block)',
+        [ASTM_FRAMING.FRAME_END]: 'CR (Carriage Return)'
     }
 
     // Display raw hex for debugging
@@ -95,10 +95,10 @@ function astmToJson(astmMessage, encoding = 'latin1') {
     lines.forEach(line => {
         // Remove framing characters if present
         let cleanLine = line
-        if (line.charCodeAt(0) === astmFraming.START_FRAME) {
+        if (line.charCodeAt(0) === ASTM_FRAMING.START_FRAME) {
             cleanLine = line.substring(1)
         }
-        if (cleanLine.charCodeAt(cleanLine.length - 1) === astmFraming.END_FRAME) {
+        if (cleanLine.charCodeAt(cleanLine.length - 1) === ASTM_FRAMING.END_FRAME) {
             cleanLine = cleanLine.substring(0, cleanLine.length - 1)
         }
 
