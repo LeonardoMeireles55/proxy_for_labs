@@ -7,8 +7,8 @@
  * @version 1.0.0
  */
 
-const log = require('../logging/logger')
-const { ASTM_FRAMING } = require('./buffers')
+const { ASTM_FRAMING } = require('../../shared/buffers')
+const log = require('../../shared/logger')
 
 /**
  * Represents a parsed ASTM segment with structured fields

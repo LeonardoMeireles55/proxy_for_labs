@@ -1,3 +1,6 @@
+const MLLP_START = String.fromCharCode(0x0B) // <VT>
+const MLLP_END = String.fromCharCode(0x1C) + String.fromCharCode(0x0D)//<FS><CR>
+
 const hl7Message = [
     'MSH|^~\\&|Informatics|161387862^Quest Diagnostics^L||LABGATEWAY^UnitedHealth Group^L|20190917010635-0600||ORU^R01^ORU_R01|M1926001063500000963|P|2.5||||||||',
     'PID|1||820154899^^^^HC||BEIGHE^DENISE^I^^^^L||19600415|F|||3174 E DESERT BROOM WAY^^PHOENIX^AZ^85048^^M||(623)252-1760',
@@ -8,34 +11,82 @@ const hl7Message = [
     'FT1|1|||20190815||CG|83036^^C4^9230^Hemoglobin A1c With eAG^L|||||||705963^United Healthcare^HC|||||||||||83036^^C4^9230^Hemoglobin A1c With eAG^L'
 ].join('\r')
 
-const MLLP_START = String.fromCharCode(0x0B) // <VT>
-const MLLP_END = String.fromCharCode(0x1C) + String.fromCharCode(0x0D) // <FS><CR>
 
 const fullMessage = MLLP_START + hl7Message + MLLP_END
 
 const buffer = Buffer.from(fullMessage, 'utf-8');
 
-
-
-const HL7Example1 = `MSH|^~\&|EPIC|SIISCLIENT818^LINDAS TEST ORGANIZATION|^SIIS||20150202115044||VXU^V04^VXU_V04|225|P|2.5.1||||AL|PID|1||E46700^^^^MR^||DOE^JOHN^C^JR^^^L|SMITH|20140515|M|SMITH^JOHN|2106-3^WHITE^HL70005|115 MAINSTREET^^GOODTOWN^KY^42010^USA^L^010||^PRN^PH^^^270^6009800||EN^ENGLISH^HL70296||||523968712|||2186-5^NOT HISPANIC OR LATINO^HL70012||||||||N|
-PD1|||||||||||02^Reminder/recall-any method^HL70215|||||A^Active^HL70441|20150202^20150202 NK1|1|DOE^MARY|MTH^MOTHER^HL70063|
-ORC|RE||9645^SIISCLIENT818||||||20150202111146|2001^HARVEY^MARVIN^K|RXA|0|1|20150202|20150202|20^DTaP^CVX^90700^DTAP^CPT|.5|ML^mL^ISO+ ||00^New immunization record^NIP001|JONES^MARK|^^^SIISCLIENT818||||A7894-2|20161115|PMC^SANOFI PASTEUR^MVX||||A RXR|ID^INTRADERMAL^HL70162|LD^LEFT
-OBX|1|CE|64994-7^VACCINE FUNDING PROGRAM ELIGIBILITY CATEGORY^LN|1| V02^MEDICAID^HL70064||||||F|||20150202|||VXC40^ELIGIBILITY CAPTURED AT THE IMMUNIZATION LEVEL^CDCPHINVS
-OBX|2|CE|30956-7^VACCINE TYPE^LN|2|88^FLU^CVX||||||F|||20150202102525 OBX|3|TS|29768-9^Date vaccine information statement published^LN|2|20120702||||||F OBX|4|TS|29769-7^Date vaccine information statement presented^LN|2|20120202||||||F
-RXA|0|1|20141215|20141115|141^influenza, SEASONAL 36^CVX^90658^Influenza Split^CPT|999|||01^HISTORICAL INFORMATION – SOURCE UNSPECIFIED^ NIP001||||||||||||A`
-
-const HL7Example2 = 'MSH|-¥&|cpure||host||20180220160418+0100||OUL^R23^OUL_R23|19|P|2.5.1|||NE|AL||UNICODE·UTF-8|||LAB-29C^ROCHE<CR>SPM||20901&CALIBRATOR||ORH^^HL70487|||||||C^^HL70369||||||||20200630<CR>OBX|1||20470^20470^99ROC|Curve||||LotCalib^^99ROC|||F|||||lauberd1~REALTIME|Full~LinearRegression~Level1|c303^ROCHE~3333^ROCHE~1^ROCHE|20180220155403||18<CR>SAC|||20901^CALIBRATOR|||||||999999|0<CR>OBR|1|""||20470^^99ROC||||||||||||||||||||||||||||||||||||||||||Full^^99ROC<CR>ORC|SC||||CM<CR>OBX|1|NA|20470^20470^99ROC|Signal|0.0000~0.0002^0.0002^0.0406^0.0001^0.0411~0.0271^0.0273^0.1731^0.0269^0.1735~0.0000^^^^~0.0000^^^^~0.0000^^^^~0.0000^^^^~^^^^^^^^^^^^^^~0.000000^375^^^^|Î¼mol/L^^99ROC||""|||F|||||lauberd1~REALTIME|Full~LinearRegression~Level1|c303^ROCHE~3333^ROCHE~1^ROCHE|20180220155403<CR>INV|2047001|OK^^HL70383~CURRENT^^99ROC|R1|513|1|14||||||20190430||||261813<CR>INV|2047001|OK^^HL70383~CURRENT^^99ROC|R3|513|1|14||||||20190430||||261813<CR>OBX|2|DTM|PT^Pipetting_Time^99ROC^S_OTHER^Other·Supplemental^IHELAW|Signal|20180220160359~20180220160403|||""|||F|||||lauberd1~REALTIME|Full~LinearRegression~Level1|c303^ROCHE~3333^ROCHE~1^ROCHE|20180220155403<CR>SPM||20401&CALIBRATOR||ORH^^HL70487|||||||C^^HL70369||||||||20181230<CR>OBX|1||20470^20470^99ROC|Curve||||LotCalib^^99ROC|||F|||||lauberd1~REALTIME|Full~LinearRegression~Level2|c303^ROCHE~3333^ROCHE~1^ROCHE|20180220155403||18<CR>SAC|||20401^CALIBRATOR|||||||186423|0<CR>OBR|1|""||20470^^99ROC||||||||||||||||||||||||||||||||||||||||||Full^^99ROC<CR>ORC|SC||||CM<CR>OBX|1|NA|20470^20470^99ROC|Signal|0.0000~0.0002^0.0002^0.0406^0.0001^0.0411~0.0271^0.0273^0.1731^0.0269^0.1735~0.0000^^^^~0.0000^^^^~0.0000^^^^~0.0000^^^^~^^^^^^^^^^^^^^~0.000000^375^^^^|Î¼mol/L^^99ROC||""|||F|||||lauberd1~REALTIME|Full~LinearRegression~Level2|c303^ROCHE~3333^ROCHE~1^ROCHE|20180220155403<CR>INV|2047001|OK^^HL70383~CURRENT^^99ROC|R1|513|1|14||||||20190430||||261813<CR>INV|2047001|OK^^HL70383~CURRENT^^99ROC|R3|513|1|14||||||20190430||||261813<CR>OBX|2|DTM|PT^Pipetting_Time^99ROC^S_OTHER^Other·Supplemental^IHELAW|Signal|20180220160414~20180220160417|||""|||F|||||lauberd1~REALTIME|Full~LinearRegression~Level2|c303^ROCHE~3333^ROCHE~1^ROCHE|20180220155403<CR><FS><CR>'
-
-const HL7Example3 = `MSH|^~\&|EPIC|EPICADT|iFW|SMSADT|199912271408|CHARRIS|ADT^A04|1817457|D|2.5|
-PID||0493575^^^2^ID 1|454721||DOE^JOHN^^^^|DOE^JOHN^^^^|19480203|M||B|254 MYSTREET AVE^^MYTOWN^OH^44123^USA||(216)123-4567|||M|NON|400003403~1129086|
-NK1||ROE^MARIE^^^^|SPO||(216)123-4567||EC|||||||||||||||||||||||||||
-PV1||O|168 ~219~C~PMA^^^^^^^^^||||277^ALLEN MYLASTNAME^BONNIE^^^^|||||||||| ||2688684|||||||||||||||||||||||||199912271408||||||002376853`
-
 const HL7Example4 = buffer
 
+/**
+ * Creates MSH segment for acknowledgment messages
+ * @param {string} messageControlId - Control ID for this acknowledgment
+ * @param {string} processingId - P (Production), T (Test), D (Debug)
+ * @param {string} versionId - HL7 version (default: 2.5.1)
+ * @param {string} triggerEvent - Trigger event from original message MSH-9-2
+ */
+const createMSHSegment = (messageControlId, processingId = 'P', versionId = '2.5.1', triggerEvent = 'R01') => {
+    const timestamp = new Date().toISOString().replace(/[-:T.]/g, '').slice(0, 14)
+    return [
+        'MSH',
+        '^~\\&',                    // MSH-2: Encoding characters
+        'HOST',               // MSH-3: Sending application
+        '',                        // MSH-4: Sending facility
+        'cobaspure',                    // MSH-5: Receiving application
+        '',                        // MSH-6: Receiving facility
+        timestamp,                 // MSH-7: Date/time of message
+        '',                        // MSH-8: Security
+        `ACK^${triggerEvent}^ACK`, // MSH-9: Message type (ACK^<varies>^ACK format)
+        messageControlId,          // MSH-10: Message control ID
+        processingId,              // MSH-11: Processing ID
+        versionId,                 // MSH-12: Version ID
+        '',                        // MSH-13: Sequence number
+        '',                        // MSH-14: Continuation pointer
+        '',                        // MSH-15: Accept acknowledgment type
+        '',                        // MSH-16: Application acknowledgment type
+        '',                        // MSH-17: Country code
+        'UNICODE UTF-8',           // MSH-18: Character set
+        '',                        // MSH-19: Principal language of message
+        '',                        // MSH-20: Alternate character set handling scheme
+        ''                         // MSH-21: Message profile identifier
+    ].join('|')
+}
+
+/**
+ * Creates MSA segment for acknowledgment messages
+ * @param {string} ackCode - AA (Accept), AR (Reject), AE (Error)
+ * @param {string} messageControlId - From original message MSH-10
+ */
+const createMSASegment = (ackCode, messageControlId) =>
+    `MSA|${ackCode}|${messageControlId}`
+
+/**
+ * Creates complete acknowledgment message
+ * @param {string} ackCode - AA, AR, or AE
+ * @param {string} originalMessageControlId - From MSH-10 of original message
+ * @param {string} processingId - P (Production), T (Test), D (Debug)
+ * @param {string} versionId - HL7 version
+ * @param {string} triggerEvent - From original message MSH-9-2
+ */
+const createAcknowledgment = (ackCode = 'AA', originalMessageControlId = 'M1926001063500000963', processingId = 'P', versionId = '2.5.1', triggerEvent = 'R01') => {
+    const ackControlId = `ACK${Date.now()}`
+    const msh = createMSHSegment(ackControlId, processingId, versionId, triggerEvent)
+    const msa = createMSASegment(ackCode, originalMessageControlId)
+    const buffer =  Buffer.from(`${MLLP_START}${msh}\r${msa}${MLLP_END}`, 'utf-8')
+    return buffer
+}
+
+// Static examples for testing
+const acknowledgmentAccept = createAcknowledgment('AA', 'M1926001063500000963')
+
+const acknowledgmentReject = createAcknowledgment('AR', 'M1926001063500000963')
+
+const acknowledgmentError = createAcknowledgment('AE', 'M1926001063500000963')
+
 module.exports = {
-    HL7Example1,
-    HL7Example2,
-    HL7Example3,
-    HL7Example4
+    HL7Example4,
+    createAcknowledgment,
+    acknowledgmentAccept,
+    acknowledgmentReject,
+    acknowledgmentError
 }

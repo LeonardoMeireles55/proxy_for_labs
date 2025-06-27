@@ -8,23 +8,23 @@
  */
 
 const net = require('node:net')
-const log = require('../../helpers/logging/logger')
-const buffers = require('../../helpers/utils/buffers')
+const log = require('../../libs/shared/logger')
+const { ASCII_BUFFERS } = require('../../libs/shared/buffers')
 
 /**
  * ASTM message handlers for LIS server
  */
 const messageHandlers = {
-  [buffers.ASCII_BUFFERS.ENQ]: (socket) => {
+  [ASCII_BUFFERS.ENQ]: (socket) => {
     log.info('Lis Server -> received ENQ, sending ACK')
-    socket.write(Buffer.from([buffers.ASCII_BUFFERS.ACK]))
+    socket.write(Buffer.from([ASCII_BUFFERS.ACK]))
   },
 
-  [buffers.ASCII_BUFFERS.ACK]: () => {
+  [ASCII_BUFFERS.ACK]: () => {
     log.info('Lis Server -> received ACK, ready for data transmission')
   },
 
-  [buffers.ASCII_BUFFERS.EOT]: (socket) => {
+  [ASCII_BUFFERS.EOT]: (socket) => {
     log.info('Lis Server -> received EOT, closing connection')
     socket.end()
   },
@@ -33,7 +33,7 @@ const messageHandlers = {
     log.info('Lis Server -> received raw data:')
     // Here you can handle raw data if needed
     // For now, just echo it back
-    socket.write(Buffer.from([buffers.ASCII_BUFFERS.ACK]))
+    socket.write(Buffer.from([ASCII_BUFFERS.ACK]))
   }
 
  }
@@ -46,7 +46,7 @@ const handleData = (socket, data) => {
 
   if (messageType === null || messageType === undefined) {
     log.warn('Lis Server -> received empty data, sending NAK')
-    return socket.write(Buffer.from([buffers.ASCII_BUFFERS.NAK]))
+    return socket.write(Buffer.from([ASCII_BUFFERS.NAK]))
   }
 
   const handler = messageHandlers[messageType]

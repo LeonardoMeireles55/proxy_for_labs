@@ -8,9 +8,11 @@
  */
 
 const net = require('node:net')
-const log = require('../../helpers/logging/logger')
-const { parseAstmMessage } = require('../../helpers/libs/astm-lib')
-const { parseMessage } = require('../../helpers/libs/hl7-lib')
+const log = require('../../libs/shared/logger')
+const { parseMessage } = require('../../libs/hl7')
+const { parseAstmMessage } = require('../../libs/astm')
+
+
 
 /**
  * Configuration object for LIS simulator

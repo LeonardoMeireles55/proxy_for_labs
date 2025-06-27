@@ -8,7 +8,7 @@
  */
 
 const net = require('node:net')
-const log = require('../helpers/logging/logger')
+const log = require('../libs/shared/logger')
 
 /**
  * Creates a TCP reverse proxy server

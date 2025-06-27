@@ -8,8 +8,7 @@
  */
 
 const config = require('./config')
-const log = require('./helpers/logging/logger')
-const { gracefulShutdown } = require('./proxy/utils')
+const log = require('./libs/shared/logger')
 const startForwardProxy = require('./proxy/forward')
 const startReverseProxy = require('./proxy/reverse')
 
@@ -18,97 +17,114 @@ const startReverseProxy = require('./proxy/reverse')
  * @type {Array<import('net').Server>}
  */
 let activeServers = []
+let isShuttingDown = false
+
+/**
+ * Starts forward proxy if configured
+ */
+const initializeForwardProxy = () => {
+    log.info('Starting in forward proxy mode')
+    const server = startForwardProxy(config)
+    activeServers.push(server)
+}
+
+/**
+ * Starts reverse proxy if configured
+ */
+const initializeReverseProxy = async () => {
+    log.info('Starting in reverse proxy mode')
+    const server = await startReverseProxy(config)
+    activeServers.push(server)
+}
+
+/**
+ * Closes a single server
+ */
+const closeServer = (server) => {
+    return /** @type {Promise<void>} */(/** @type {Promise<void>} */(new Promise(resolve => {
+        if (server?.close) {
+            server.close(() => {
+                log.debug('Server closed')
+              resolve(process.exit(1)
+              )
+            })
+        } else {
+            resolve()
+        }
+    })))
+}
+
+/**
+ * Closes all active servers
+ */
+const closeAllServers = () => {
+    return Promise.all(activeServers.map(closeServer))
+}
 
 /**
  * Main application startup function
- * Initializes the proxy server based on configuration (forward or reverse mode)
- *
- * @async
- * @function main
- * @throws {Error} If server fails to start or configuration is invalid
  */
 const main = async () => {
-  try {
-    log.info('Starting proxy server...')
+    try {
+        log.info('Starting proxy server...')
 
-    if (config.isForwardProxy) {
+        if (config.isForwardProxy) {
+            initializeForwardProxy()
+        }
 
-      log.info('Starting in forward proxy mode')
-      const server = startForwardProxy(config)
+        if (config.isReverseProxy) {
+            await initializeReverseProxy()
+        }
 
-      activeServers.push(server)
+        log.info(`Proxy server started successfully on port ${config.proxyPort}`)
+
+    } catch (error) {
+        log.error('Failed to start proxy server:', error.message)
+        process.exit(1)
     }
-
-    if (config.isReverseProxy) {
-
-      log.info('Starting in reverse proxy mode')
-
-      const server = await startReverseProxy(config)
-
-      activeServers.push(server)
-    }
-
-    log.info(`Proxy server started successfully on port ${config.proxyPort}`)
-
-  } catch {
-    process.exit(1)
-  }
 }
 
 /**
- * Graceful shutdown handler for process termination signals
- * Closes all active servers and performs cleanup before process exit
- *
- * @async
- * @function shutdown
- * @param {string} signal - The termination signal received (SIGTERM, SIGINT, etc.)
- * @returns {Promise<void>} Promise that resolves when shutdown is complete
+ * Graceful shutdown handler - prevents duplicate shutdowns
  */
 const shutdown = async (signal) => {
-  log.info(`Received ${signal}. Shutting down gracefully...`)
+    if (isShuttingDown) {
+        log.debug('Shutdown already in progress, ignoring signal')
+        return
+    }
 
-  try {
+    isShuttingDown = true
+    log.info(`Received ${signal}. Shutting down gracefully...`)
 
-    await gracefulShutdown(activeServers, config.shutdownTimeout)
-
-    log.info('Graceful shutdown completed')
-
-    activeServers.forEach(server => {
-      if (server && server.close) {
-        server.close(() => {
-          log.info('Server closed successfully')
-        })
-      }
-    })
-
-    activeServers = []
-
-    log.info('All servers shut down, exiting process')
-
-    process.exit(0)
-  }
-
-  catch (error) {
-
-    log.error('Error during shutdown:', error.message)
-
-    process.exit(1)
-  }
+    try {
+        await closeAllServers()
+        activeServers = []
+        log.info('Graceful shutdown completed')
+        process.exit(0)
+    } catch (error) {
+        log.error('Error during shutdown:', error.message)
+        process.exit(1)
+    }
 }
 
-// Setup process handlers
-process.on('SIGTERM', () => shutdown('SIGTERM'))
-process.on('SIGINT', () => shutdown('SIGINT'))
-process.on('uncaughtException', (err) => {
-  log.error('Uncaught Exception:', err)
-  process.exit(1)
-})
-process.on('unhandledRejection', (reason, promise) => {
-  log.error('Unhandled Rejection at:', promise, 'reason:', reason)
-  process.exit(1)
-})
+/**
+ * Sets up process signal handlers - prevents duplicate listeners
+ */
+const setupProcessHandlers = () => {
+    process.once('SIGTERM', () => shutdown('SIGTERM'))
+    process.once('SIGINT', () => shutdown('SIGINT'))
+    process.once('uncaughtException', (err) => {
+        log.error('Uncaught Exception:', err)
+        process.exit(1)
+    })
+    process.once('unhandledRejection', (reason) => {
+        log.error('Unhandled Rejection:', reason)
+        process.exit(1)
+    })
+}
 
-// Start the application
+// Initialize process handlers and start application
+setupProcessHandlers()
 main()
 
 

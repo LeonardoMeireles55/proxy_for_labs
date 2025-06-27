@@ -2,9 +2,6 @@
   "author": "",
   "dependencies": {
     "dotenv": "^16.5.0",
-    "hl7parser": "^1.0.1",
-    "simple-hl7": "^3.3.0",
-    "tiny-hl7": "^1.0.7",
     "winston": "^3.17.0"
   },
   "description": "TCP Proxy for Laboratory Equipment Communication with ASTM/HL7 Support",

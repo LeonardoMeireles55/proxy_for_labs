@@ -6,10 +6,10 @@
  * @author Leonardo Meireles
  * @version 1.0.0
  */
-const log = require('./helpers/logging/logger');
 const config = require('./config');
+const log = require('./libs/shared/logger')
 const LisServer = require('./simulators/lis/lis-server')
-const createEquipmentClientHL7 = require('./simulators/hl-7/equipment-client-hl7')
+// const createEquipmentClientHL7 = require('./simulators/hl-7/equipment-client-hl7')
 
 
 /**
@@ -33,7 +33,7 @@ const startSimulators = () => {
         log.info(`LIS simulator started on port ${config.lisPort}`);
         log.info('Initializing equipment client...');
 
-        createEquipmentClientHL7();
+        // createEquipmentClientHL7();
       });
 
       lisServer.on('error', (err) => {

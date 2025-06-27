@@ -7,8 +7,9 @@
  * @version 1.0.0
  */
 
+const log = require('../libs/shared/logger')
+
 // Import centralized logger
-const log = require('../helpers/logging/logger');
 
 /**
  * Gracefully shuts down an array of server instances with timeout handling
@@ -89,7 +90,5 @@ const HL7 = {
 }
 
 module.exports = {
-  gracefulShutdown,
-  ASTM,
-  HL7
+  gracefulShutdown
 }
