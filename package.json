@@ -17,12 +17,8 @@
   "main": "index.js",
   "name": "proxy_for_labs",
   "scripts": {
-    "equipment": "node cli/equipment-simulator.js",
-    "forward": "IS_FORWARD_PROXY=true node index.js",
-    "lis": "node cli/lis-simulator.js",
-    "reverse": "IS_REVERSE_PROXY=true node index.js",
-    "server": "node index.js",
-    "start": "node index.js",
+    "mock": "node mocks.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "commonjs",

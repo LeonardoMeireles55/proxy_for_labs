@@ -1,7 +1,0 @@
-{
-  "equipment": {
-    "equipmentInstanceIdentifier": "0^ROCHE~24F3-03^ROCHE~0^ROCHE",
-    "eventDateTime": "20250627163005",
-    "equipmentState": "OP^NORMAL_OPERATION^99LECIS^15^TM without rack supply^99HITACHI"
-  }
-}

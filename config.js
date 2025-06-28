@@ -23,6 +23,7 @@ require('dotenv').config()
  * @property {string} logLevel - Logging level (debug, info, warn, error)
  * @property {number} connectionTimeout - Connection timeout in milliseconds
  * @property {number} shutdownTimeout - Graceful shutdown timeout in milliseconds
+ * @property {number} reconnectDelay - Delay in milliseconds before reconnection attempts
  */
 
 /**
@@ -49,7 +50,8 @@ const config = {
 
   // Timeouts
   connectionTimeout: 30000,
-  shutdownTimeout: 10000
+  shutdownTimeout: 10000,
+  reconnectDelay: parseInt(process.env.RECONNECT_DELAY || '5000'),
 }
 
 // Validate configuration

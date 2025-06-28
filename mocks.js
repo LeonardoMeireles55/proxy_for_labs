@@ -7,8 +7,9 @@
  * @version 1.0.0
  */
 const config = require('./config');
-const log = require('./libs/shared/logger')
-const LisServer = require('./simulators/lis/lis-server')
+const createEquipmentClientHL7 = require('./mocks/hl-7/equipment-client-hl7')
+const LisServer = require('./mocks/lis/lis-server')
+const log = require('./shared/logger')
 // const createEquipmentClientHL7 = require('./simulators/hl-7/equipment-client-hl7')
 
 
@@ -30,10 +31,10 @@ const startSimulators = () => {
     try {
       const lisServer = LisServer().listen(config.lisPort, () => {
 
-        log.info(`LIS simulator started on port ${config.lisPort}`);
-        log.info('Initializing equipment client...');
+        log.debug(`LIS simulator started on port ${config.lisPort}`);
+        log.debug('Initializing equipment client...');
 
-        // createEquipmentClientHL7();
+        createEquipmentClientHL7();
       });
 
       lisServer.on('error', (err) => {
