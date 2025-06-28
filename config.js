@@ -21,6 +21,7 @@ require('dotenv').config()
  * @property {boolean} isReverseProxy - Whether to run in reverse proxy mode
  * @property {boolean} isForwardProxy - Whether to run in forward proxy mode
  * @property {string} logLevel - Logging level (debug, info, warn, error)
+ * @property {boolean} logToFile - Whether to enable file logging
  * @property {number} connectionTimeout - Connection timeout in milliseconds
  * @property {number} shutdownTimeout - Graceful shutdown timeout in milliseconds
  * @property {number} reconnectDelay - Delay in milliseconds before reconnection attempts
@@ -47,6 +48,7 @@ const config = {
 
   // Logging
   logLevel: process.env.LOG_LEVEL || 'info',
+  logToFile: process.env.LOG_TO_FILE === 'true' || true,
 
   // Timeouts
   connectionTimeout: 30000,
