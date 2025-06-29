@@ -7,9 +7,9 @@
  * @version 1.0.0
  */
 
-const net = require('node:net')
-const log = require('../../helpers/logging/logger')
-const { ASTM } = require('../../proxy/utils')
+const net = require('node:net');
+const log = require('../../helpers/logging/logger');
+const { ASTM } = require('../../proxy/utils');
 
 /**
  * Creates a laboratory equipment simulator server
@@ -21,43 +21,39 @@ const { ASTM } = require('../../proxy/utils')
  */
 const createEquipmentServerASTM = () => {
   return net.createServer((socket) => {
-    log.debug(`New client connected: ${socket.remoteAddress}`)
+    log.debug(`New client connected: ${socket.remoteAddress}`);
 
     // Send initial ENQ to start communication
     setTimeout(() => {
-      log.debug('Sending ENQ to start communication')
-      socket.write(Buffer.from([ASTM.ENQ]))
-    }, 1000)
+      log.debug('Sending ENQ to start communication');
+      socket.write(Buffer.from([ASTM.ENQ]));
+    }, 1000);
 
     socket.on('data', (data) => {
-      log.debug(`Received data: ${data.toString('latin1')}`)
+      log.debug(`Received data: ${data.toString('latin1')}`);
 
       if (data[0] === ASTM.ENQ) {
+        log.debug('Received ENQ, sending ACK');
 
-        log.debug('Received ENQ, sending ACK')
-
-        socket.write(Buffer.from([ASTM.ACK]))
+        socket.write(Buffer.from([ASTM.ACK]));
       }
 
       if (data[0] === ASTM.ACK) {
-        log.debug('Received ACK, ready for data transmission')
+        log.debug('Received ACK, ready for data transmission');
+      } else {
+        log.debug('Echoing data back');
+        socket.write(Buffer.from([ASTM.ACK]));
       }
-
-      else {
-        log.debug('Echoing data back')
-        socket.write(Buffer.from([ASTM.ACK]))
-      }
-
-    })
+    });
 
     socket.on('error', (err) => {
-      log.error('Socket error:', err.message)
-    })
+      log.error('Socket error:', err.message);
+    });
 
     socket.on('close', () => {
-      log.debug('Client disconnected')
-    })
-  })
-}
+      log.debug('Client disconnected');
+    });
+  });
+};
 
-module.exports = createEquipmentServerASTM
+module.exports = createEquipmentServerASTM;

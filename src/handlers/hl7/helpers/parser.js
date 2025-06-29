@@ -1,5 +1,5 @@
-const log = require("../../../../configs/logger")
-const { HL7_FRAMING, MLLP_START, MLLP_END } = require("../../utils/buffers")
+const log = require('../../../../configs/logger');
+const { HL7_FRAMING, MLLP_START, MLLP_END } = require('../../utils/buffers');
 
 /**
  * @fileoverview Core utilities for HL7 message processing and parsing.
@@ -12,7 +12,6 @@ const { HL7_FRAMING, MLLP_START, MLLP_END } = require("../../utils/buffers")
  * @version 1.0.0
  */
 
-
 /**
  * Remove MLLP (Minimal Lower Layer Protocol) framing characters from HL7 message.
  * Removes the start block character and end block characters to extract the pure HL7 message content.
@@ -24,20 +23,21 @@ const { HL7_FRAMING, MLLP_START, MLLP_END } = require("../../utils/buffers")
  * const cleaned = removeMllpFraming(buffer);
  */
 const removeMllpFraming = (rawMessage) => {
+  if (!isValidMessage(rawMessage)) {
+    return '';
+  }
 
-    if (!isValidMessage(rawMessage)) {
-        return ""
-    }
+  const cleaned =
+    rawMessage[0] === HL7_FRAMING.START_BLOCK[0]
+      ? rawMessage.subarray(1)
+      : rawMessage;
 
-    const cleaned = rawMessage[0] === HL7_FRAMING.START_BLOCK[0]
-        ? rawMessage.subarray(1)
-        : rawMessage
+  const stringMessage = cleaned
+    .subarray(0, -HL7_FRAMING.END_BLOCK.length)
+    .toString('utf8');
 
-    const stringMessage = cleaned.subarray(0, -HL7_FRAMING.END_BLOCK.length)
-        .toString('utf8')
-
-    return stringMessage
-}
+  return stringMessage;
+};
 
 /**
  * Unescape HL7 special characters according to HL7 encoding rules.
@@ -55,23 +55,19 @@ const removeMllpFraming = (rawMessage) => {
  * const unescaped = unescapeHL7("MSH\\F\\\\S\\\\R\\\\T\\\\E\\");
  */
 const unescapeHL7 = (text) => {
-    if (!text) return ''
+  if (!text) return '';
 
-    return text
-        .replace(/\\F\\/g, '|')
-        .replace(/\\S\\/g, '^')
-        .replace(/\\T\\/g, '&')
-        .replace(/\\R\\/g, '~')
-        .replace(/\\E\\/g, '\\')
-}
+  return text
+    .replace(/\\F\\/g, '|')
+    .replace(/\\S\\/g, '^')
+    .replace(/\\T\\/g, '&')
+    .replace(/\\R\\/g, '~')
+    .replace(/\\E\\/g, '\\');
+};
 
 const parseRawStringToHL7Buffer = (rawMessage) => {
-
-    return Buffer.from(
-        MLLP_START + rawMessage + MLLP_END,
-        'utf-8'
-    )
-}
+  return Buffer.from(MLLP_START + rawMessage + MLLP_END, 'utf-8');
+};
 
 /**
  * Parse raw HL7 message into individual segments.
@@ -85,11 +81,10 @@ const parseRawStringToHL7Buffer = (rawMessage) => {
  * const segments = parseRawHL7ToString(buffer);
  */
 const parseRawHL7ToString = (rawMessage) => {
-
-    return removeMllpFraming(rawMessage)
-        .split((String.fromCharCode(HL7_FRAMING.SEGMENT_SEPARATOR[0])))
-        .filter(segment => segment.trim().length > 0)
-}
+  return removeMllpFraming(rawMessage)
+    .split(String.fromCharCode(HL7_FRAMING.SEGMENT_SEPARATOR[0]))
+    .filter((segment) => segment.trim().length > 0);
+};
 
 /**
  * Validate HL7 message structure by checking MLLP framing.
@@ -103,80 +98,83 @@ const parseRawHL7ToString = (rawMessage) => {
  * const isValid = isValidMessage(buffer);
  */
 const isValidMessage = (rawMessage) => {
+  const hasStartBlock = rawMessage[0] === HL7_FRAMING.START_BLOCK[0];
 
-    const hasStartBlock = rawMessage[0] === HL7_FRAMING.START_BLOCK[0]
+  // Get last 2 bytes to compare with END_BLOCK
+  const endBytes = rawMessage.subarray(-2);
+  const hasEndBlock = Buffer.compare(endBytes, HL7_FRAMING.END_BLOCK) === 0;
 
-    // Get last 2 bytes to compare with END_BLOCK
-    const endBytes = rawMessage.subarray(-2)
-    const hasEndBlock = Buffer.compare(endBytes, HL7_FRAMING.END_BLOCK) === 0
-
-    return hasStartBlock && hasEndBlock
-}
+  return hasStartBlock && hasEndBlock;
+};
 
 /**
  * Convert HL7 message to JSON structure
  */
 const HL7toJson = (rawMessage) => {
-    const segments = parseRawHL7ToString(rawMessage)
-    const json = {}
+  const segments = parseRawHL7ToString(rawMessage);
+  const json = {};
 
-    segments.forEach(segment => {
-        const fields = segment.split('|')
-        const segmentType = fields[0]
+  segments.forEach((segment) => {
+    const fields = segment.split('|');
+    const segmentType = fields[0];
 
-        if (!json[segmentType]) {
-            json[segmentType] = []
-        }
+    if (!json[segmentType]) {
+      json[segmentType] = [];
+    }
 
-        json[segmentType].push(segment.substring(segmentType.length))
-    })
+    json[segmentType].push(segment.substring(segmentType.length));
+  });
 
-    return json
-}
+  return json;
+};
 
 /**
  * Get specific segment data by type
  */
 const getSegmentData = (rawMessage, segmentType) => {
-    const jsonData = HL7toJson(rawMessage)
-    return jsonData[segmentType]?.[0] || null
-}
+  const jsonData = HL7toJson(rawMessage);
+  return jsonData[segmentType]?.[0] || null;
+};
 
 /**
  * Get field value by segment type and field index
  */
-const getInformationBySegmentTypeAndIndex = (message, segmentType, fieldIndex) => {
-    const segmentData = getSegmentData(message, segmentType)
-    if (!segmentData) return null
+const getInformationBySegmentTypeAndIndex = (
+  message,
+  segmentType,
+  fieldIndex
+) => {
+  const segmentData = getSegmentData(message, segmentType);
+  if (!segmentData) return null;
 
-    const fields = segmentData.split('|')
-    return fields[fieldIndex] || null
-}
+  const fields = segmentData.split('|');
+  return fields[fieldIndex] || null;
+};
 
 /**
  * Parse MSH segment for control information
  */
 const parseMshSegment = (cleanMessage) => {
-    const mshSegment = cleanMessage.split('\r')[0]
-    const mshFields = mshSegment.split('|')
+  const mshSegment = cleanMessage.split('\r')[0];
+  const mshFields = mshSegment.split('|');
 
-    const messageControlId = mshFields[9] || 'DEFAULT'
-    const msh9 = mshFields[8] || 'ORU^R01^ORU_R01'
-    const triggerEvent = msh9.split('^')[1] || 'R01'
+  const messageControlId = mshFields[9] || 'DEFAULT';
+  const msh9 = mshFields[8] || 'ORU^R01^ORU_R01';
+  const triggerEvent = msh9.split('^')[1] || 'R01';
 
-    log.debug('Extracted MSH fields:', { messageControlId, msh9, triggerEvent })
+  log.debug('Extracted MSH fields:', { messageControlId, msh9, triggerEvent });
 
-    return { messageControlId, triggerEvent }
-}
+  return { messageControlId, triggerEvent };
+};
 
 module.exports = {
-    HL7toJson,
-    getSegmentData,
-    getInformationBySegmentTypeAndIndex,
-    parseMshSegment,
-    removeMllpFraming,
-    unescapeHL7,
-    parseRawHL7ToString,
-    parseRawStringToHL7Buffer,
-    isValidMessage
-}
+  HL7toJson,
+  getSegmentData,
+  getInformationBySegmentTypeAndIndex,
+  parseMshSegment,
+  removeMllpFraming,
+  unescapeHL7,
+  parseRawHL7ToString,
+  parseRawStringToHL7Buffer,
+  isValidMessage
+};

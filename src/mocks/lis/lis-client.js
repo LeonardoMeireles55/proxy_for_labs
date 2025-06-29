@@ -7,12 +7,10 @@
  * @version 1.0.0
  */
 
-const net = require('node:net')
-const { parseRawHL7ToString } = require('../../handlers/hl7')
-const { parseAstmMessage } = require('../../handlers/astm')
-const log = require('../../../configs/logger')
-
-
+const net = require('node:net');
+const { parseRawHL7ToString } = require('../../handlers/hl7');
+const { parseAstmMessage } = require('../../handlers/astm');
+const log = require('../../../configs/logger');
 
 /**
  * Configuration object for LIS simulator
@@ -35,31 +33,31 @@ const log = require('../../../configs/logger')
  * @param {LISConfig} config - Configuration object for proxy connection
  */
 const createLisClientSimulator = (config) => {
+  const client = net.createConnection(
+    { host: config.proxyHost, port: config.proxyPort },
+    () => {
+      log.debug(
+        `Lis Client -> connected to proxy server at ${config.proxyHost}:${config.proxyPort}`
+      );
+    }
+  );
 
-    const client = net.createConnection({ host: config.proxyHost, port: config.proxyPort }, () => {
-      log.debug(`Lis Client -> connected to proxy server at ${config.proxyHost}:${config.proxyPort}`
-      )
-    })
+  client.on('data', (data) => {
+    const message = parseAstmMessage(data) || parseRawHL7ToString(data);
 
-    client.on('data', (data) => {
+    log.debug(`Lis Client -> received message ASTM: ${message}`) ||
+      log.debug(`Lis Client -> received message HL7: ${message}`);
+  });
 
-      const message = parseAstmMessage(data) || parseRawHL7ToString(data)
+  client.on('error', (err) => {
+    log.error(`Lis Client -> ${err}`);
+  });
 
-      log.debug(`Lis Client -> received message ASTM: ${message}`) ||
-      log.debug(`Lis Client -> received message HL7: ${message}`)
+  client.on('close', () => {
+    log.debug('Lis Client -> connection closed');
+  });
 
-    })
+  return client;
+};
 
-    client.on('error', (err) => {
-      log.error(`Lis Client -> ${err}`)
-    })
-
-    client.on('close', () => {
-      log.debug('Lis Client -> connection closed')
-    })
-
-    return client
-  }
-
-
-module.exports = createLisClientSimulator
+module.exports = createLisClientSimulator;

@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-require('dotenv').config()
+require('dotenv').config();
 /**
  * Main configuration object containing all server settings
  * @typedef {Object} ProxyConfig
@@ -36,13 +36,11 @@ require('dotenv').config()
  * @type {ProxyConfig}
  */
 const config = {
-
   // Emulation environment
   equipmentServerEmu: process.env.EQUIPMENT_SERVER_EMU === 'true',
   equipmentClientEmu: process.env.EQUIPMENT_CLIENT_EMU === 'true',
   lisServerEmu: process.env.LIS_SERVER_EMU === 'true',
   lisClientEmu: process.env.LIS_CLIENT_EMU === 'true',
-
 
   nodeEnv: process.env.NODE_ENV || 'development',
 
@@ -67,16 +65,18 @@ const config = {
   // Timeouts
   connectionTimeout: 30000,
   shutdownTimeout: 10000,
-  reconnectDelay: parseInt(process.env.RECONNECT_DELAY || '5000'),
-}
+  reconnectDelay: parseInt(process.env.RECONNECT_DELAY || '5000')
+};
 
 // Validate configuration
 if (!config.isReverseProxy && !config.isForwardProxy) {
-  throw new Error('Must set either IS_REVERSE_PROXY=true or IS_FORWARD_PROXY=true')
+  throw new Error(
+    'Must set either IS_REVERSE_PROXY=true or IS_FORWARD_PROXY=true'
+  );
 }
 
 if (config.isReverseProxy && config.isForwardProxy) {
-  throw new Error('Cannot enable both reverse and forward proxy modes')
+  throw new Error('Cannot enable both reverse and forward proxy modes');
 }
 
-module.exports = config
+module.exports = config;

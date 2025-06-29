@@ -5,6 +5,9 @@
     "winston": "^3.17.0"
   },
   "description": "TCP Proxy for Laboratory Equipment Communication with ASTM/HL7 Support",
+  "devDependencies": {
+    "prettier": "^2.8.8"
+  },
   "keywords": [
     "laboratory",
     "proxy",
@@ -18,6 +21,9 @@
   "name": "proxy_for_labs",
   "scripts": {
     "emu:env": "node start-emu-environment.js",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "format:staged": "prettier --write",
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

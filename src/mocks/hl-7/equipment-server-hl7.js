@@ -6,9 +6,8 @@
  * @version 1.0.0
  */
 
-const net = require('node:net')
-const log = require('../../../configs/logger')
-
+const net = require('node:net');
+const log = require('../../../configs/logger');
 
 /**
  * Creates a laboratory equipment simulator server
@@ -18,25 +17,25 @@ const log = require('../../../configs/logger')
  * @returns {import('net').Server} TCP server instance that simulates laboratory equipment
  */
 const createEquipmentServerHL7 = () => {
+  return net.createServer((socket) => {
+    log.debug(
+      `Equipment server -> new client connected: ${socket.remoteAddress}`
+    );
 
-    return net.createServer((socket) => {
+    socket.write(Buffer.from('\r\n'));
 
-        log.debug(`Equipment server -> new client connected: ${socket.remoteAddress}`)
+    socket.on('data', (data) => {
+      log.debug(`Equipment server -> received data: ${data.toString('utf8')}`);
+    });
 
-        socket.write(Buffer.from('\r\n'))
+    socket.on('error', (err) => {
+      log.error(err);
+    });
 
-        socket.on('data', (data) => {
-            log.debug(`Equipment server -> received data: ${data.toString('utf8')}`)
-        })
+    socket.on('close', () => {
+      log.warn('Equipment server -> client disconnected');
+    });
+  });
+};
 
-        socket.on('error', (err) => {
-            log.error(err)
-        })
-
-        socket.on('close', () => {
-            log.warn('Equipment server -> client disconnected')
-        })
-    })
-}
-
-module.exports = createEquipmentServerHL7
+module.exports = createEquipmentServerHL7;

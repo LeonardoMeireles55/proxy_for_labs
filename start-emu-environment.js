@@ -6,10 +6,10 @@
  * @author Leonardo Meireles
  * @version 1.0.0
  */
-const config = require("./configs/config")
-const log = require("./configs/logger")
-const LisServer = require('./src/mocks/lis/lis-server')
-const createEquipmentClientHL7 = require('./src/mocks/hl-7/equipment-client-hl7')
+const config = require('./configs/config');
+const log = require('./configs/logger');
+const LisServer = require('./src/mocks/lis/lis-server');
+const createEquipmentClientHL7 = require('./src/mocks/hl-7/equipment-client-hl7');
 
 /**
  * Validates configuration to prevent conflicts
@@ -18,76 +18,84 @@ const createEquipmentClientHL7 = require('./src/mocks/hl-7/equipment-client-hl7'
 const validateConfiguration = () => {
   // Check for conflicting client/server configurations
   if (config.lisServerEmu && config.lisClientEmu) {
-    throw new Error('Cannot enable both LIS server and LIS client emulation simultaneously')
+    throw new Error(
+      'Cannot enable both LIS server and LIS client emulation simultaneously'
+    );
   }
 
   if (config.equipmentServerEmu && config.equipmentClientEmu) {
-    throw new Error('Cannot enable both equipment server and equipment client emulation simultaneously')
+    throw new Error(
+      'Cannot enable both equipment server and equipment client emulation simultaneously'
+    );
   }
 
   // Ensure at least one emulator is enabled
-  const hasAnyEmulator = config.lisServerEmu || config.lisClientEmu ||
-                        config.equipmentServerEmu || config.equipmentClientEmu
+  const hasAnyEmulator =
+    config.lisServerEmu ||
+    config.lisClientEmu ||
+    config.equipmentServerEmu ||
+    config.equipmentClientEmu;
 
   if (!hasAnyEmulator) {
-    throw new Error('At least one emulator must be enabled')
+    throw new Error('At least one emulator must be enabled');
   }
-}
+};
 
 /**
  * Starts LIS server emulator
  */
 const startLisServer = () => {
   const lisServer = LisServer().listen(config.lisPort, () => {
-    log.debug(`LIS server emu started on port ${config.lisPort}`)
-  })
+    log.debug(`LIS server emu started on port ${config.lisPort}`);
+  });
 
   lisServer.on('error', (err) => {
-    log.error(`LIS server error: ${err.message}`)
-    throw err
-  })
+    log.error(`LIS server error: ${err.message}`);
+    throw err;
+  });
 
-  return lisServer
-}
+  return lisServer;
+};
 
 /**
  * Starts equipment client emulator
  */
 const startEquipmentClient = () => {
-  log.debug('Initializing equipment client emu...')
-  return createEquipmentClientHL7()
-}
+  log.debug('Initializing equipment client emu...');
+  return createEquipmentClientHL7();
+};
 
 /**
  * Gets list of enabled emulators for logging
  */
 const getEnabledEmulators = () => {
-  const emulators = []
+  const emulators = [];
   const emulatorMap = {
     lisServerEmu: 'LIS Server',
     lisClientEmu: 'LIS Client',
     equipmentServerEmu: 'Equipment Server',
     equipmentClientEmu: 'Equipment Client'
-  }
+  };
 
   Object.entries(emulatorMap).forEach(([configKey, name]) => {
-    config[configKey] && emulators.push(name)
-  })
+    config[configKey] && emulators.push(name);
+  });
 
-  return emulators
-}
+  return emulators;
+};
 
 /**
  * Starts enabled emulators based on configuration
  */
 const startEmulators = () => {
-  const results = {}
+  const results = {};
 
-  config.lisServerEmu && (results.lisServer = startLisServer())
-  config.equipmentClientEmu && (results.equipmentClient = startEquipmentClient())
+  config.lisServerEmu && (results.lisServer = startLisServer());
+  config.equipmentClientEmu &&
+    (results.equipmentClient = startEquipmentClient());
 
-  return results
-}
+  return results;
+};
 
 /**
  * Starts both equipment and LIS simulators based on configuration
@@ -95,21 +103,21 @@ const startEmulators = () => {
  */
 const initializeMockEnvironment = () => {
   try {
-    validateConfiguration()
+    validateConfiguration();
 
-    const results = startEmulators()
+    const results = startEmulators();
 
-    const enabledEmulators = getEnabledEmulators()
-    log.debug(`Enabled emulators: ${enabledEmulators.join(', ')}`)
+    const enabledEmulators = getEnabledEmulators();
+    log.debug(`Enabled emulators: ${enabledEmulators.join(', ')}`);
 
-    return results
+    return results;
   } catch (error) {
-    log.error(`Failed to start simulators: ${error.message}`)
-    throw error
+    log.error(`Failed to start simulators: ${error.message}`);
+    throw error;
   }
-}
+};
 
 // Auto-start simulators when module is run directly
-initializeMockEnvironment()
+initializeMockEnvironment();
 
-module.exports = initializeMockEnvironment
+module.exports = initializeMockEnvironment;

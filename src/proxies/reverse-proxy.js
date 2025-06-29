@@ -7,8 +7,8 @@
  * @version 1.0.0
  */
 
-const net = require('node:net')
-const log = require('../../configs/logger')
+const net = require('node:net');
+const log = require('../../configs/logger');
 
 /**
  * Creates a TCP reverse proxy server
@@ -23,54 +23,59 @@ const log = require('../../configs/logger')
  */
 const reverseProxy = (config) => {
   const server = net.createServer((lisSocket) => {
-    log.debug(`ReverseProxy -> LIS connected: ${lisSocket.remoteAddress}`)
+    log.debug(`ReverseProxy -> LIS connected: ${lisSocket.remoteAddress}`);
 
     // Connect to equipment server
-    const equipmentSocket = net.createConnection({
-      host: config.equipmentHost,
-      port: config.equipmentPort
-    }, () => {
-      log.debug(`ReverseProxy -> Connected to equipment at ${config.equipmentHost}:${config.equipmentPort}`)
-    })
+    const equipmentSocket = net.createConnection(
+      {
+        host: config.equipmentHost,
+        port: config.equipmentPort
+      },
+      () => {
+        log.debug(
+          `ReverseProxy -> Connected to equipment at ${config.equipmentHost}:${config.equipmentPort}`
+        );
+      }
+    );
 
     // Forward data from equipment to LIS
     equipmentSocket.on('data', (data) => {
-      log.debug('ReverseProxy -> Forwarding data from equipment to LIS')
-        lisSocket.write(data)
-    })
+      log.debug('ReverseProxy -> Forwarding data from equipment to LIS');
+      lisSocket.write(data);
+    });
 
     // Forward data from LIS to equipment
     lisSocket.on('data', (data) => {
-      log.debug('ReverseProxy -> Forwarding data from LIS to equipment')
-      equipmentSocket.write(data)
-    })
+      log.debug('ReverseProxy -> Forwarding data from LIS to equipment');
+      equipmentSocket.write(data);
+    });
 
     // Handle LIS disconnect
     lisSocket.on('close', () => {
-      log.debug('ReverseProxy -> LIS disconnected')
-      equipmentSocket.end()
-    })
+      log.debug('ReverseProxy -> LIS disconnected');
+      equipmentSocket.end();
+    });
 
     // Handle equipment disconnect
     equipmentSocket.on('close', () => {
-      log.debug('ReverseProxy -> Equipment disconnected')
-      lisSocket.end()
-    })
+      log.debug('ReverseProxy -> Equipment disconnected');
+      lisSocket.end();
+    });
 
     // Handle errors
     lisSocket.on('error', (err) => {
-      log.error('ReverseProxy -> LIS socket error:', err)
-      equipmentSocket.destroy()
-    })
+      log.error('ReverseProxy -> LIS socket error:', err);
+      equipmentSocket.destroy();
+    });
 
     equipmentSocket.on('error', (err) => {
-      log.error('ReverseProxy -> Equipment socket error:', err)
-      lisSocket.destroy()
-    })
-  })
+      log.error('ReverseProxy -> Equipment socket error:', err);
+      lisSocket.destroy();
+    });
+  });
 
-  return server
-}
+  return server;
+};
 
 /**
  * Starts the reverse proxy server and binds it to the configured port
@@ -86,23 +91,25 @@ const reverseProxy = (config) => {
  */
 const startReverseProxy = (config) => {
   return new Promise((resolve, reject) => {
-    const server = reverseProxy(config)
+    const server = reverseProxy(config);
 
     server.listen(config.proxyPort, (err) => {
       if (err) {
-        reject(err)
+        reject(err);
       } else {
-        log.debug(`ReverseProxy -> Listening on port ${config.proxyPort}`)
-        log.debug(`ReverseProxy -> Forwarding LIS connections to ${config.equipmentHost}:${config.equipmentPort}`)
-        resolve(server)
+        log.debug(`ReverseProxy -> Listening on port ${config.proxyPort}`);
+        log.debug(
+          `ReverseProxy -> Forwarding LIS connections to ${config.equipmentHost}:${config.equipmentPort}`
+        );
+        resolve(server);
       }
-    })
+    });
 
     server.on('error', (err) => {
-      log.error('ReverseProxy -> Server error:', err.message)
-      reject(err)
-    })
-  })
-}
+      log.error('ReverseProxy -> Server error:', err.message);
+      reject(err);
+    });
+  });
+};
 
-module.exports = { startReverseProxy }
+module.exports = { startReverseProxy };

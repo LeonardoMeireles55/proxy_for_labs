@@ -1,7 +1,7 @@
-const log = require("../../../../configs/logger")
-const net = require("node:net")
-const { writeDebugFile } = require("../../../shared/save-data-to-file")
-const { extractHl7Data } = require("./hl7-data-extract")
+const log = require('../../../../configs/logger');
+const net = require('node:net');
+const { writeDebugFile } = require('../../../shared/save-data-to-file');
+const { extractHl7Data } = require('./hl7-data-extract');
 
 /**
  * Process complete HL7 message and send acknowledgment
@@ -9,16 +9,14 @@ const { extractHl7Data } = require("./hl7-data-extract")
  * @param {net.Socket} socket - Client socket for sending acknowledgment
  */
 const processHL7Message = (message, socket) => {
+  log.debug('Processing HL7 message...');
 
-    log.debug('Processing HL7 message...')
+  const data = extractHl7Data(message);
+  writeDebugFile(JSON.stringify(data, null, 2));
 
-    const data = extractHl7Data(message)
-    writeDebugFile(JSON.stringify(data, null, 2))
+  socket.write(message);
 
-    socket.write(message)
+  log.debug('HL7 message processed successfully');
+};
 
-    log.debug('HL7 message processed successfully')
-  }
-
-
-module.exports = { processHL7Message }
+module.exports = { processHL7Message };
