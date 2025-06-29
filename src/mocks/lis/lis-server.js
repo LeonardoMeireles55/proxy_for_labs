@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * @fileoverview Laboratory Equipment Simulator
  * This module simulates a laboratory equipment device that communicates using ASTM protocol.
@@ -9,10 +8,11 @@
  */
 
 const net = require('node:net')
-const { ASCII_BUFFERS } = require('../../shared/buffers')
-const log = require('../../shared/logger')
+const { ASCII_BUFFERS } = require('../../handlers/utils/buffers')
 const { handleBuffer } = require('../../handlers/hl7/helpers/handle-buffer')
-const { HL7_MOCK_BUFFER, sendHL7Acknowledgment } = require('../../handlers/hl7/helpers/hl7-acknowledgment')
+const { sendHL7Acknowledgment } = require('../../handlers/hl7/helpers/hl7-acknowledgment')
+const { parseMessage } = require('../../handlers/hl7')
+const log = require('../../../configs/logger')
 
 /**
  * ASTM message handlers for LIS server
@@ -66,14 +66,12 @@ const handleData = (socket, data) => {
  */
 const LisServer = () => {
   const server = net.createServer((socket) => {
-    // @ts-ignore
 
     log.debug(`Lis Server -> Client connected: ${socket.remoteAddress}:${socket.remotePort}`)
 
-
     socket.on('data', (data) => {
+      log.debug('Lis Server -> Received data from client:', parseMessage(data))
       sendHL7Acknowledgment(data, socket)
-      socket.write(Buffer.from(data))
     })
 
     socket.on('error', (err) => {

@@ -7,13 +7,8 @@
  */
 
 const net = require('node:net')
-const log = require('../../shared/logger')
+const log = require('../../../configs/logger')
 
-const mockCobasMessage = `MSH|^~\\&|COBAS|COBAS|LIS|LIS|20231010120000||ORU^R01|1234567890|P|2.5
-PID|1||123456^^^LIS^MR||DOE^JOHN^A||19800101|M|||123 MAIN ST^^CITY^ST^12345||(555)555-5555|||EN|S||123456789|987654321
-ORC|RE|1234567890|987654321||||20231010120000|||F
-OBR|1|1234567890|987654321||TEST^TEST DESCRIPTION^L|||20231010120000|||||||||||||||||||F
-OBX|1|NM|TEST_CODE^TEST NAME^L||42.0|mg/dL|0-100|N|||F`
 
 /**
  * Creates a laboratory equipment simulator server
@@ -28,7 +23,7 @@ const createEquipmentServerHL7 = () => {
 
         log.debug(`Equipment server -> new client connected: ${socket.remoteAddress}`)
 
-        socket.write(Buffer.from(mockCobasMessage + '\r\n'))
+        socket.write(Buffer.from('\r\n'))
 
         socket.on('data', (data) => {
             log.debug(`Equipment server -> received data: ${data.toString('utf8')}`)

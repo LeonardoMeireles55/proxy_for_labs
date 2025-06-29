@@ -1,22 +1,19 @@
-const { extractPatientInfo } = require('./segments/patient')
-const { extractOrderInfo } = require('./segments/order')
-const { extractEquipmentInfo, extractEquipmentCommandInfo } = require('./segments/equipment')
-const { extractMessageHeaderInfo } = require('./segments/header')
-const { extractInventoryInfo } = require('./segments/inventory')
-const { extractSpecimenInfo } = require('./segments/specimen')
-const { extractObxSegments } = require('./segments/results')
-const { parseMessage } = require('./helpers/core')
-const { cleanObject } = require('./helpers/mappers')
-const log = require('../../shared/logger')
+const log = require('../../../../configs/logger')
+const { extractEquipmentInfo, extractEquipmentCommandInfo } = require('../segments/equipment')
+const { extractMessageHeaderInfo } = require('../segments/header')
+const { extractInventoryInfo } = require('../segments/inventory')
+const { extractOrderInfo } = require('../segments/order')
+const { extractPatientInfo } = require('../segments/patient')
+const { extractObxSegments } = require('../segments/results')
+const { extractSpecimenInfo } = require('../segments/specimen')
+const { extractQcValuesAndConvertToJson } = require('./convert-to-qc-json')
+const { cleanObject } = require('./mappers')
+const { parseMessage } = require('./parser')
 
 /**
  * Comprehensive HL7 message extraction
  */
-const extractCompleteHL7Data = (message) => {
-
-    const parsedMessage = parseMessage(message)
-
-    log.debug('Extracting complete HL7 data...', parsedMessage)
+const hl7DataExtract = (message) => {
 
     try {
         const messageHeader = extractMessageHeaderInfo(message)
@@ -28,7 +25,7 @@ const extractCompleteHL7Data = (message) => {
         const inventoryInfo = extractInventoryInfo(message)
         const labResults = extractObxSegments(parseMessage(message))
 
-        return cleanObject({
+        const data = cleanObject({
             ...(Object.keys(messageHeader).length && { messageHeader }),
             ...(Object.keys(patientInfo).length && { patient: patientInfo }),
             ...(Object.keys(orderInfo).length && { order: orderInfo }),
@@ -39,6 +36,12 @@ const extractCompleteHL7Data = (message) => {
             ...(labResults.length && { results: labResults })
         })
 
+        extractQcValuesAndConvertToJson(data)
+
+        log.debug('Complete HL7 data extracted successfully')
+
+        return data
+
     } catch (error) {
 
         log.error('Error extracting complete HL7 data:', error)
@@ -48,7 +51,5 @@ const extractCompleteHL7Data = (message) => {
 }
 
 module.exports = {
-    extractCompleteHL7Data,
-    ...require('./helpers/core'),
-    ...require('./helpers/parser')
+    hl7DataExtract
 }

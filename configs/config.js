@@ -8,7 +8,6 @@
  */
 
 require('dotenv').config()
-
 /**
  * Main configuration object containing all server settings
  * @typedef {Object} ProxyConfig

@@ -1,10 +1,9 @@
-const { HL7_FRAMING } = require('../../../shared/buffers')
+const { HL7_FRAMING } = require('../../utils/buffers')
 const { processHL7Message } = require('./hl7-message-handle')
 
 let allocatedBuffer = Buffer.alloc(0);
 
-const handleBuffer = (buffer, clientSocket) => {
-
+const handleBuffer = (buffer, socket) => {
 
     if (buffer && buffer.length > 0) {
         allocatedBuffer = Buffer.concat([allocatedBuffer, buffer]);
@@ -19,8 +18,10 @@ const handleBuffer = (buffer, clientSocket) => {
         allocatedBuffer = allocatedBuffer.subarray(endIndex + HL7_FRAMING.END_BLOCK.length)
 
 
-        processHL7Message(completeMessage, clientSocket)
+        processHL7Message(completeMessage, socket)
     }
 }
 
 module.exports = { handleBuffer }
+
+

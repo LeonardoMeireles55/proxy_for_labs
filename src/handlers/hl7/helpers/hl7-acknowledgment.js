@@ -1,6 +1,6 @@
-const { removeMllpFraming, parseMshSegment } = require("..")
-const log = require("../../../shared/logger")
+const log = require("../../../../configs/logger")
 const net = require("node:net")
+const { removeMllpFraming, parseMshSegment, parseMessage } = require("./parser")
 
 
 const hl7Message = [
@@ -108,9 +108,10 @@ const sendHL7Acknowledgment = (originalMessage, clientSocket) => {
         // Create and send acknowledgment (AA = Application Accept)
         const ack = createAcknowledgment('AA', messageControlId, 'P', '2.5.1', triggerEvent)
 
+        log.debug('Sending HL7 acknowledgment:', parseMessage(ack))
+
         clientSocket.write(ack)
 
-        log.debug('Sent HL7 acknowledgment with trigger event:', triggerEvent)
     } catch (error) {
         log.error('Error sending acknowledgment:', error.message)
     }

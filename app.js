@@ -7,10 +7,11 @@
  * @version 1.0.0
  */
 
-const config = require('./config')
-const log = require('./shared/logger')
-const { startForwardProxy } = require('./proxies/forward-proxy')
-const { startReverseProxy } = require('./proxies/reverse-proxy')
+const log = require("./configs/logger")
+const config = require("./configs/config")
+const { startForwardProxy } = require("./src/proxies/forward-proxy")
+const { startReverseProxy } = require("./src/proxies/reverse-proxy")
+
 
 
 /**

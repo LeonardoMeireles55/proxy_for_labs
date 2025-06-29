@@ -7,7 +7,7 @@
  * @version 1.0.0
  */
 
-const { ASCII_BUFFERS } = require('../../shared/buffers')
+const { ASCII_BUFFERS } = require('../utils/buffers')
 
 
 /**

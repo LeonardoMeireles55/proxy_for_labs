@@ -1,7 +1,7 @@
 const net = require('node:net')
-const config = require('../../config')
-const log = require('../../shared/logger')
-const { HL7_MOCK_BUFFER, sendHL7Acknowledgment, createAcknowledgment } = require('../../handlers/hl7/helpers/hl7-acknowledgment')
+const { sendHL7Acknowledgment, createAcknowledgment } = require('../../handlers/hl7/helpers/hl7-acknowledgment')
+const config = require('../../../configs/config')
+const log = require('../../../configs/logger')
 
 /**
  * Creates connection to proxy server
@@ -13,18 +13,19 @@ const createConnection = () => {
   }, () => {
     log.debug(`Equipment client HL7 -> connected to proxy at ${config.proxyHost}:${config.proxyPort}`)
 
-    // log.debug('Equipment client HL7 -> sent HL7 Example to proxy')
-
-    // client.write(HL7_MOCK_BUFFER)
+    log.debug('Equipment client HL7 -> sent HL7 Example to proxy')
 
     log.debug('Equipment client HL7 -> sent HL7 acknowledgment to proxy')
+
     const ack = createAcknowledgment()
 
     sendHL7Acknowledgment(ack, client)
+
   })
 
   client.on('data', (data) => {
     log.debug('Equipment client HL7 -> received data from proxy')
+
     log.debug(`Equipment client HL7 -> data length: ${data.length} bytes`)
 
     setTimeout(() => {
@@ -41,7 +42,6 @@ const createConnection = () => {
 
   client.on('close', () => {
     log.debug('Equipment client HL7 -> disconnected')
-    client.off // Ensure the connection is closed
     scheduleReconnect()
   })
 

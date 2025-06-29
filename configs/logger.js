@@ -8,7 +8,7 @@
 
 // @ts-nocheck
 const winston = require('winston');
-const env = require('../config');
+const env = require('./config');
 
 // Configurar cores customizadas
 winston.addColors({
@@ -93,29 +93,6 @@ const createLogger = () => {
  * @type {winston.Logger}
  */
 const log = createLogger();
-
-/**
- * Helper methods for common logging patterns
- */
-log.connection = (message, metadata = {}) => {
-    log.info(`🔗 ${message}`, { type: 'connection', ...metadata });
-};
-
-log.data = (message, metadata = {}) => {
-    log.debug(`📦 ${message}`, { type: 'data', ...metadata });
-};
-
-log.proxy = (message, metadata = {}) => {
-    log.info(`🚀 ${message}`, { type: 'proxy', ...metadata });
-};
-
-log.protocol = (message, metadata = {}) => {
-    log.debug(`📋 ${message}`, { type: 'protocol', ...metadata });
-};
-
-log.performance = (message, metadata = {}) => {
-    log.debug(`⚡ ${message}`, { type: 'performance', ...metadata });
-};
 
 // Create logs directory if it doesn't exist and file logging is enabled
 if (env.logToFile || process.env.NODE_ENV === 'production') {

@@ -7,9 +7,8 @@
  * @version 1.0.0
  */
 
-const { ASTM_FRAMING } = require("../../../shared/buffers")
-const log = require("../../../shared/logger")
-
+const log = require("../../../../configs/logger")
+const { ASTM_FRAMING } = require("../../utils/buffers")
 
 
 /**

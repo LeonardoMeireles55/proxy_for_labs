@@ -1,9 +1,11 @@
-const log = require("../../../shared/logger")
-
+const log = require("../../../../configs/logger")
+const { postQualityControlData } = require("../../../api/send-cq-data")
+const { writeDebugFile } = require("../../../shared/save-data-to-file")
 /**
  * Parses HL7 date format to required date format
  */
 const parseHL7Date = (hl7DateString) => {
+
     if (!hl7DateString) return new Date().toISOString().slice(0, 19).replace('T', ' ')
 
     const year = hl7DateString.substring(0, 4)
@@ -20,6 +22,7 @@ const parseHL7Date = (hl7DateString) => {
  * Extracts QC level from results array
  */
 const extractQcLevel = (results) => {
+
     const qcLevelResult = results.find(r => r.observationName == 'Qc Level')
 
     return parseLevel(qcLevelResult?.value) || 'unknown'
@@ -54,6 +57,7 @@ const calculateStatistics = (value, referenceRange) => {
     if (!referenceRange) return { mean: value, sd: value }
 
     const rangeParts = referenceRange.split('-')
+
     if (rangeParts.length === 2) {
         const min = parseFloat(rangeParts[0])
         const max = parseFloat(rangeParts[1])
@@ -72,12 +76,16 @@ const calculateStatistics = (value, referenceRange) => {
  * Transforms single result to AnalyticsDTO format
  */
 const transformResult = (result, hl7Data, qcLevel) => {
-    const value = parseFloat(result.value)
-    const { mean, sd } = calculateStatistics(value, result.referenceRange)
+
     const date = parseHL7Date(hl7Data.order?.observationDateTime)
 
-    return {
+    const value = parseFloat(result.value)
+
+    const { mean, sd } = calculateStatistics(value, result.referenceRange)
+
+    const qualityControlObject = {
         date,
+        test_lot: '-',
         level_lot: hl7Data.patient?.patientIdentifierList || 'DEFAULT_LOT',
         name: result.observationName,
         level: qcLevel,
@@ -86,37 +94,47 @@ const transformResult = (result, hl7Data, qcLevel) => {
         sd,
         unit_value: result.unit
     }
+
+    return qualityControlObject
+
 }
 
 /**
- * Converts HL7 lab data to Analytics DTO format
+ * Converts HL7 lab data to Json format
  */
-const extractAndConvertToJsonObject = (hl7Data) => {
+const extractQcValuesAndConvertToJson = (hl7Data) => {
 
-    if (hl7Data.messageControlId !== 'Q') {
+
+    if (hl7Data.messageHeader.messageControlId !== 'Q') {
         log.warn('Is not a control quality message, skipping conversion')
         return null
     }
 
     try {
         if (!hl7Data.results || !Array.isArray(hl7Data.results)) {
-            log.warn('No results found in HL7 data')
             return null
         }
 
         const qcLevel = extractQcLevel(hl7Data.results)
+
         const numericResults = filterNumericResults(hl7Data.results)
 
-        return numericResults.map(result => transformResult(result, hl7Data, qcLevel))
+        const qualityControlObject = numericResults.map(result => transformResult(result, hl7Data, qcLevel))
+
+        postQualityControlData(qualityControlObject)
+
+        writeDebugFile(JSON.stringify(qualityControlObject, null, 2))
+
+        return qualityControlObject
 
     } catch (error) {
-        log.error('Error converting to Analytics DTO:', error)
+        log.error('Error converting to Qc Json:', error)
         return null
     }
 }
 
 module.exports = {
-    extractAndConvertToJsonObject,
+    extractQcValuesAndConvertToJson,
     parseHL7Date,
     extractQcLevel
 }
