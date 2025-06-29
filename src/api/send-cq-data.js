@@ -1,6 +1,8 @@
 const log = require('../../configs/logger')
 
 
+
+
 const API_BASE_URL = 'http://lab-spec.systems/backend'
 
 const AUTH_CREDENTIALS = JSON.stringify({
@@ -49,7 +51,7 @@ const postQualityControlData = async (transformedData) => {
         const result = await response.json()
 
         if(response.ok) {
-            log.info('Data sent successfully:', result)
+            log.debug('Data sent successfully:', result)
         }
 
         return result

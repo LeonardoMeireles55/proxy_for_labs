@@ -8,7 +8,7 @@
  */
 
 const net = require('node:net')
-const { parseMessage } = require('../../handlers/hl7')
+const { parseRawHL7ToString } = require('../../handlers/hl7')
 const { parseAstmMessage } = require('../../handlers/astm')
 const log = require('../../../configs/logger')
 
@@ -43,7 +43,7 @@ const createLisClientSimulator = (config) => {
 
     client.on('data', (data) => {
 
-      const message = parseAstmMessage(data) || parseMessage(data)
+      const message = parseAstmMessage(data) || parseRawHL7ToString(data)
 
       log.debug(`Lis Client -> received message ASTM: ${message}`) ||
       log.debug(`Lis Client -> received message HL7: ${message}`)

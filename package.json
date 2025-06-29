@@ -14,10 +14,10 @@
     "medical"
   ],
   "license": "ISC",
-  "main": "index.js",
+  "main": "app.js",
   "name": "proxy_for_labs",
   "scripts": {
-    "mock-env": "node start-mock-environment.js",
+    "emu:env": "node start-emu-environment.js",
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

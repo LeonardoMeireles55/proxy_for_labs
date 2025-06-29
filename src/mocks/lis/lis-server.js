@@ -11,7 +11,7 @@ const net = require('node:net')
 const { ASCII_BUFFERS } = require('../../handlers/utils/buffers')
 const { handleBuffer } = require('../../handlers/hl7/helpers/handle-buffer')
 const { sendHL7Acknowledgment } = require('../../handlers/hl7/helpers/hl7-acknowledgment')
-const { parseMessage } = require('../../handlers/hl7')
+const { parseRawHL7ToString } = require('../../handlers/hl7')
 const log = require('../../../configs/logger')
 
 /**
@@ -70,7 +70,7 @@ const LisServer = () => {
     log.debug(`Lis Server -> Client connected: ${socket.remoteAddress}:${socket.remotePort}`)
 
     socket.on('data', (data) => {
-      log.debug('Lis Server -> Received data from client:', parseMessage(data))
+      log.debug('Lis Server -> Received data from client:', parseRawHL7ToString(data))
       sendHL7Acknowledgment(data, socket)
     })
 

@@ -1,4 +1,5 @@
 const log = require("../../../../configs/logger")
+const config = require("../../../../configs/config")
 const { postQualityControlData } = require("../../../api/send-cq-data")
 const { writeDebugFile } = require("../../../shared/save-data-to-file")
 /**
@@ -121,7 +122,13 @@ const extractQcValuesAndConvertToJson = (hl7Data) => {
 
         const qualityControlObject = numericResults.map(result => transformResult(result, hl7Data, qcLevel))
 
-        postQualityControlData(qualityControlObject)
+        if(config.nodeEnv === 'development') {
+            log.debug('Quality Control Object:', JSON.stringify(qualityControlObject, null, 2))
+        }
+
+        if(config.nodeEnv === 'production') {
+            postQualityControlData(qualityControlObject)
+        }
 
         writeDebugFile(JSON.stringify(qualityControlObject, null, 2))
 

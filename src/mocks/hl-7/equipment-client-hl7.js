@@ -27,11 +27,6 @@ const createConnection = () => {
     log.debug('Equipment client HL7 -> received data from proxy')
 
     log.debug(`Equipment client HL7 -> data length: ${data.length} bytes`)
-
-    setTimeout(() => {
-      log.debug('Equipment client HL7 -> sending HL7 Example to proxy')
-      client.write(data)
-    }, 5000);
   })
 
   client.on('error', (err) => {
@@ -51,7 +46,7 @@ const createConnection = () => {
 /**
  * Schedules reconnection after 5 seconds
  */
-const scheduleReconnect = (client) => {
+const scheduleReconnect = () => {
   setTimeout(() => {
     log.debug('Equipment client HL7 -> reconnecting...')
     createEquipmentClientHL7()

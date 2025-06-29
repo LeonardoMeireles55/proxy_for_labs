@@ -15,7 +15,7 @@ winston.addColors({
     error: 'red',
     warn: 'yellow',
     info: 'green',
-    debug: 'cyan',
+    debug: 'white',
     verbose: 'magenta'
 });
 
@@ -30,12 +30,17 @@ const customConsoleFormat = winston.format.combine(
         const metaStr = Object.keys(meta).length ?
             `\n${JSON.stringify(meta, null, 2)}` : '';
 
+        // Convert message to string if it's an object
+        const formattedMessage = typeof message === 'object' && message !== null
+            ? JSON.stringify(message, null, 2)
+            : message;
+
         // Hide level for debug messages to reduce visual noise
         if (level.includes('debug')) {
-            return `[${timestamp}] ${message}${metaStr}`;
+            return `[${timestamp}] ${formattedMessage}${metaStr}`;
         }
 
-        return `[${timestamp}] ${level}: ${message}${metaStr}`;
+        return `[${timestamp}] ${level}: ${formattedMessage}${metaStr}`;
     })
 );
 

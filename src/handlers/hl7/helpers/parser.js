@@ -1,5 +1,5 @@
 const log = require("../../../../configs/logger")
-const { HL7_FRAMING } = require("../../utils/buffers")
+const { HL7_FRAMING, MLLP_START, MLLP_END } = require("../../utils/buffers")
 
 /**
  * @fileoverview Core utilities for HL7 message processing and parsing.
@@ -65,6 +65,14 @@ const unescapeHL7 = (text) => {
         .replace(/\\E\\/g, '\\')
 }
 
+const parseRawStringToHL7Buffer = (rawMessage) => {
+
+    return Buffer.from(
+        MLLP_START + rawMessage + MLLP_END,
+        'utf-8'
+    )
+}
+
 /**
  * Parse raw HL7 message into individual segments.
  * Removes MLLP framing and splits the message by segment separators (carriage return).
@@ -74,9 +82,9 @@ const unescapeHL7 = (text) => {
  * @returns {string[]} Array of HL7 segments (MSH, PID, OBR, etc.)
  * @example
  * // Returns ["MSH|^~\&|...", "PID|1||...", "OBR|1|..."]
- * const segments = parseMessage(buffer);
+ * const segments = parseRawHL7ToString(buffer);
  */
-const parseMessage = (rawMessage) => {
+const parseRawHL7ToString = (rawMessage) => {
 
     return removeMllpFraming(rawMessage)
         .split((String.fromCharCode(HL7_FRAMING.SEGMENT_SEPARATOR[0])))
@@ -109,7 +117,7 @@ const isValidMessage = (rawMessage) => {
  * Convert HL7 message to JSON structure
  */
 const HL7toJson = (rawMessage) => {
-    const segments = parseMessage(rawMessage)
+    const segments = parseRawHL7ToString(rawMessage)
     const json = {}
 
     segments.forEach(segment => {
@@ -168,6 +176,7 @@ module.exports = {
     parseMshSegment,
     removeMllpFraming,
     unescapeHL7,
-    parseMessage,
+    parseRawHL7ToString,
+    parseRawStringToHL7Buffer,
     isValidMessage
 }

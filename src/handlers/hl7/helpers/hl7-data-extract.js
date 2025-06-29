@@ -8,12 +8,12 @@ const { extractObxSegments } = require('../segments/results')
 const { extractSpecimenInfo } = require('../segments/specimen')
 const { extractQcValuesAndConvertToJson } = require('./convert-to-qc-json')
 const { cleanObject } = require('./mappers')
-const { parseMessage } = require('./parser')
+const { parseRawHL7ToString } = require('./parser')
 
 /**
  * Comprehensive HL7 message extraction
  */
-const hl7DataExtract = (message) => {
+const extractHl7Data = (message) => {
 
     try {
         const messageHeader = extractMessageHeaderInfo(message)
@@ -23,7 +23,7 @@ const hl7DataExtract = (message) => {
         const equipmentInfo = extractEquipmentInfo(message)
         const equipmentCommandInfo = extractEquipmentCommandInfo(message)
         const inventoryInfo = extractInventoryInfo(message)
-        const labResults = extractObxSegments(parseMessage(message))
+        const labResults = extractObxSegments(parseRawHL7ToString(message))
 
         const data = cleanObject({
             ...(Object.keys(messageHeader).length && { messageHeader }),
@@ -51,5 +51,5 @@ const hl7DataExtract = (message) => {
 }
 
 module.exports = {
-    hl7DataExtract
+    extractHl7Data
 }

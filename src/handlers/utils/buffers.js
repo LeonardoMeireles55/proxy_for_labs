@@ -112,6 +112,15 @@ const HL7_FRAMING = {
 
 }
 
+/** * MLLP framing constants for HL7 messages
+ * Used to encapsulate HL7 messages in MLLP framing
+ * MLLP (Minimal Lower Layer Protocol) is a simple framing protocol for HL7 messages
+ *
+ */
+const MLLP_START = String.fromCharCode(ASCII_BUFFERS.VT) // <VT>
+
+const MLLP_END = String.fromCharCode(ASCII_BUFFERS.FS) + String.fromCharCode(ASCII_BUFFERS.CR)//<FS><CR>
+
 /**
  * Message structure as string constants
  * Used to represent HL7 message structure in a human-readable format
@@ -184,6 +193,9 @@ const ASTM_FRAMING = {
 
 module.exports = {
         ASCII_BUFFERS, HL7_FRAMING,
-         ASTM_FRAMING, MESSAGE_STRUCTURE_AS_STRING,
-         HL7_SEPARATORS, convertMessageStructureToASCII
-        }
+        ASTM_FRAMING, MESSAGE_STRUCTURE_AS_STRING,
+        HL7_SEPARATORS,
+        MLLP_START,
+        MLLP_END,
+        convertMessageStructureToASCII
+}

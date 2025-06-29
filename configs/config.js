@@ -11,6 +11,7 @@ require('dotenv').config()
 /**
  * Main configuration object containing all server settings
  * @typedef {Object} ProxyConfig
+ * @property {string} nodeEnv - Node.js environment (development, production, etc.)
  * @property {number} proxyPort - Port number for the proxy server
  * @property {number} equipmentPort - Port number for equipment connections
  * @property {number} lisPort - Port number for LIS (Laboratory Information System) connections
@@ -24,6 +25,10 @@ require('dotenv').config()
  * @property {number} connectionTimeout - Connection timeout in milliseconds
  * @property {number} shutdownTimeout - Graceful shutdown timeout in milliseconds
  * @property {number} reconnectDelay - Delay in milliseconds before reconnection attempts
+ * @property {boolean} equipmentServerEmu - Whether to enable equipment server emulation
+ * @property {boolean} equipmentClientEmu - Whether to enable equipment client emulation
+ * @property {boolean} lisServerEmu - Whether to enable LIS server emulation
+ * @property {boolean} lisClientEmu - Whether to enable LIS client emulation
  */
 
 /**
@@ -31,6 +36,16 @@ require('dotenv').config()
  * @type {ProxyConfig}
  */
 const config = {
+
+  // Emulation environment
+  equipmentServerEmu: process.env.EQUIPMENT_SERVER_EMU === 'true',
+  equipmentClientEmu: process.env.EQUIPMENT_CLIENT_EMU === 'true',
+  lisServerEmu: process.env.LIS_SERVER_EMU === 'true',
+  lisClientEmu: process.env.LIS_CLIENT_EMU === 'true',
+
+
+  nodeEnv: process.env.NODE_ENV || 'development',
+
   // Server ports
   proxyPort: parseInt(process.env.PROXY_PORT || '5400'),
   equipmentPort: parseInt(process.env.EQUIPMENT_PORT || '7006'),
