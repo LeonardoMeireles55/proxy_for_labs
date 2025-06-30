@@ -111,7 +111,7 @@ NK1|1|JONES^BARBARA^K|SPO^Spouse^HL70063||||NK^NEXT OF KIN
 PV1|1|I|2000^2012^01||||004777^ATTEND^AARON^A|||SUR||||7|A0|`
 
 const rawHL7MessageBuffer = parseRawStringToHL7Buffer(hl7Message2);
-log.debug(rawHL7MessageBuffer.toJSON());
+log.debug(rawHL7MessageBuffer);
 
 const rawHL7MessageString = parseRawHL7ToString(rawHL7MessageBuffer);
 log.debug('HL7 Message text', rawHL7MessageString);

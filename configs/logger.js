@@ -9,13 +9,18 @@
 // @ts-nocheck
 const winston = require('winston');
 const env = require('./config');
+const { timeStamp } = require('console')
 
-// Configurar cores customizadas
+const colorizer = winston.format.colorize();
+
+
 winston.addColors({
   error: 'red',
   warn: 'yellow',
   info: 'green',
+  metaStr: 'white',
   debug: 'white',
+  timeStamp: 'gray',
   verbose: 'magenta'
 });
 
@@ -24,11 +29,11 @@ winston.addColors({
  * Hides level label for debug messages to reduce noise
  */
 const customConsoleFormat = winston.format.combine(
-  winston.format.timestamp({ format: 'HH:mm:ss' }),
-  winston.format.colorize({ all: true }),
+  winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss'}),
+  winston.format.colorize({  all: true }),
   winston.format.printf(({ level, message, timestamp, ...meta }) => {
     const metaStr = Object.keys(meta).length
-      ? `\n${JSON.stringify(meta, null, 2)}`
+      ? ` ${JSON.stringify(meta, null, 2)}`
       : '';
 
     // Convert message to string if it's an object
@@ -37,12 +42,15 @@ const customConsoleFormat = winston.format.combine(
         ? JSON.stringify(message, null, 2)
         : message;
 
-    // Hide level for debug messages to reduce visual noise
-    if (level.includes('debug')) {
-      return `[${timestamp}] ${formattedMessage}${metaStr}`;
-    }
+    const cleanedMessage = formattedMessage.replace(/\n/g, ' ');
 
-    return `[${timestamp}] ${level}: ${formattedMessage}${metaStr}`;
+    const coloredTimestamp = colorizer.colorize('timeStamp', `[${timestamp}] ->`);
+    const coloredMetaStr = colorizer.colorize('debug', metaStr);
+    const coloredMessage = colorizer.colorize('debug', cleanedMessage);
+
+    // Hide level messages to reduce visual noise
+    return `${coloredTimestamp} ${coloredMessage}${coloredMetaStr}`;
+
   })
 );
 
@@ -54,7 +62,7 @@ const customFileFormat = winston.format.combine(
   winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
   winston.format.printf(({ level, message, timestamp, ...meta }) => {
     const metaStr = Object.keys(meta).length
-      ? `\n${JSON.stringify(meta, null, 2)}`
+      ? ` ${JSON.stringify(meta, null, 2)}`
       : '';
 
     // Convert message to string if it's an object
@@ -63,12 +71,11 @@ const customFileFormat = winston.format.combine(
         ? JSON.stringify(message, null, 2)
         : message;
 
-    // Hide level for debug messages to reduce visual noise
-    if (level === 'debug') {
-      return `[${timestamp}] ${formattedMessage}${metaStr}`;
-    }
+    const cleanedMessage = formattedMessage.replace(/\n/g, ' ');
 
-    return `[${timestamp}] ${level}: ${formattedMessage}${metaStr}`;
+    // Hide level for messages to reduce visual noise
+    return `\n[${timestamp}] -> ${cleanedMessage} ${metaStr}\n`;
+
   })
 );
 
@@ -81,7 +88,7 @@ const customFileFormat = winston.format.combine(
  */
 const createLogger = () => {
   const logFormat = winston.format.combine(
-    winston.format.errors({ verbose: false, stack: true }),
+    winston.format.errors({ verbose: false, stack: false }),
     winston.format.json()
   );
 
