@@ -15,6 +15,8 @@ const { parseRawHL7ToString } = require('./parser');
 
 /**
  * Comprehensive HL7 message extraction
+ * @param {Buffer} message - The raw HL7 message buffer
+ * @returns {Object} Extracted HL7 data as a structured object
  */
 const extractHl7Data = (message) => {
   try {
@@ -46,6 +48,7 @@ const extractHl7Data = (message) => {
 
     return data;
   } catch (error) {
+
     log.error('Error extracting complete HL7 data:', error);
 
     return {};

@@ -20,7 +20,7 @@ winston.addColors({
 });
 
 /**
- * Custom formatter for better console readability
+ * Custom formatter for console output with colors
  * Hides level label for debug messages to reduce noise
  */
 const customConsoleFormat = winston.format.combine(
@@ -47,6 +47,32 @@ const customConsoleFormat = winston.format.combine(
 );
 
 /**
+ * Custom formatter for file output without colors
+ * Clean format for log files without ANSI escape codes
+ */
+const customFileFormat = winston.format.combine(
+  winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+  winston.format.printf(({ level, message, timestamp, ...meta }) => {
+    const metaStr = Object.keys(meta).length
+      ? `\n${JSON.stringify(meta, null, 2)}`
+      : '';
+
+    // Convert message to string if it's an object
+    const formattedMessage =
+      typeof message === 'object' && message !== null
+        ? JSON.stringify(message, null, 2)
+        : message;
+
+    // Hide level for debug messages to reduce visual noise
+    if (level === 'debug') {
+      return `[${timestamp}] ${formattedMessage}${metaStr}`;
+    }
+
+    return `[${timestamp}] ${level}: ${formattedMessage}${metaStr}`;
+  })
+);
+
+/**
  * Creates and configures a Winston logger instance
  * Sets up console transport with enhanced formatting and optional file logging
  *
@@ -55,7 +81,7 @@ const customConsoleFormat = winston.format.combine(
  */
 const createLogger = () => {
   const logFormat = winston.format.combine(
-    winston.format.errors({ verbose: true, stack: true }),
+    winston.format.errors({ verbose: false, stack: true }),
     winston.format.json()
   );
 
@@ -72,13 +98,13 @@ const createLogger = () => {
       new winston.transports.File({
         filename: 'logs/error.log',
         level: 'error',
-        format: logFormat,
+        format: customFileFormat,
         maxsize: 5242880, // 5MB
         maxFiles: 5
       }),
       new winston.transports.File({
         filename: 'logs/combined.log',
-        format: logFormat,
+        format: customFileFormat,
         maxsize: 5242880, // 5MB
         maxFiles: 5
       })

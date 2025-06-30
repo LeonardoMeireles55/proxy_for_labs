@@ -1,5 +1,5 @@
 {
-  "author": "",
+  "author": "Leonardo Meireles",
   "dependencies": {
     "dotenv": "^16.5.0",
     "winston": "^3.17.0"
@@ -20,11 +20,14 @@
   "main": "app.js",
   "name": "proxy_for_labs",
   "scripts": {
-    "emu:env": "node start-emu-environment.js",
+    "emu:env": "node app.js & node start-emu-environment.js",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "format:staged": "prettier --write",
     "start": "node app.js",
+    "stop": "pkill -f 'node app.js|node start-emu-environment.js'",
+    "stop:all": "pkill node",
+    "check:ports": "lsof -i :54000 && lsof -i :7006 && lsof -i :8000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "type": "commonjs",

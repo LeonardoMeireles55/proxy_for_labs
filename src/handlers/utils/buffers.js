@@ -91,6 +91,14 @@ const HL7_SEPARATORS = {
   ESCAPE: '\\'
 };
 
+const HL7_SEPARATORS_BUFFERS = {
+  FIELD: Buffer.from(HL7_SEPARATORS.FIELD, 'utf8'),
+  COMPONENT: Buffer.from(HL7_SEPARATORS.COMPONENT, 'utf8'),
+  SUBCOMPONENT: Buffer.from(HL7_SEPARATORS.SUBCOMPONENT, 'utf8'),
+  REPEAT: Buffer.from(HL7_SEPARATORS.REPEAT, 'utf8'),
+  ESCAPE: Buffer.from(HL7_SEPARATORS.ESCAPE, 'utf8')
+};
+
 /**
  * HL7 protocol framing constants
  * Used for HL7 message structure and block delimitation
@@ -105,9 +113,11 @@ const HL7_FRAMING = {
 
   SEGMENT_SEPARATOR: Buffer.from([ASCII_BUFFERS.CR]),
 
+  FIELD_SEPARATOR: HL7_SEPARATORS_BUFFERS.FIELD,
+
   FILE_SEPARATOR: Buffer.from([ASCII_BUFFERS.FS]),
 
-  END_BLOCK: Buffer.from([ASCII_BUFFERS.FS, ASCII_BUFFERS.CR]) // HL7 block end: <FS><CR>
+  END_BLOCK: Buffer.from([ASCII_BUFFERS.FS, ASCII_BUFFERS.CR])
 };
 
 /** * MLLP framing constants for HL7 messages
@@ -115,10 +125,10 @@ const HL7_FRAMING = {
  * MLLP (Minimal Lower Layer Protocol) is a simple framing protocol for HL7 messages
  *
  */
-const MLLP_START = String.fromCharCode(ASCII_BUFFERS.VT); // <VT>
+const MLLP_START = String.fromCharCode(ASCII_BUFFERS.VT);
 
 const MLLP_END =
-  String.fromCharCode(ASCII_BUFFERS.FS) + String.fromCharCode(ASCII_BUFFERS.CR); //<FS><CR>
+  String.fromCharCode(ASCII_BUFFERS.FS) + String.fromCharCode(ASCII_BUFFERS.CR);
 
 /**
  * Message structure as string constants
@@ -192,5 +202,6 @@ module.exports = {
   HL7_SEPARATORS,
   MLLP_START,
   MLLP_END,
+  HL7_SEPARATORS_BUFFERS,
   convertMessageStructureToASCII
 };

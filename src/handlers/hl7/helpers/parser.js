@@ -17,14 +17,14 @@ const { HL7_FRAMING, MLLP_START, MLLP_END } = require('../../utils/buffers');
  * Removes the start block character and end block characters to extract the pure HL7 message content.
  *
  * @param {Buffer} rawMessage - The raw HL7 message buffer with MLLP framing
- * @returns {string} The cleaned HL7 message as a UTF-8 string, or empty string if invalid
+ * @returns {Buffer} The cleaned HL7 message
  * @example
  * // Returns cleaned HL7 message string
  * const cleaned = removeMllpFraming(buffer);
  */
 const removeMllpFraming = (rawMessage) => {
-  if (!isValidMessage(rawMessage)) {
-    return '';
+  if (!isValidHL7Message(rawMessage)) {
+    return Buffer.from('');
   }
 
   const cleaned =
@@ -32,11 +32,10 @@ const removeMllpFraming = (rawMessage) => {
       ? rawMessage.subarray(1)
       : rawMessage;
 
-  const stringMessage = cleaned
+  const cleanMessage = cleaned
     .subarray(0, -HL7_FRAMING.END_BLOCK.length)
-    .toString('utf8');
 
-  return stringMessage;
+  return cleanMessage;
 };
 
 /**
@@ -77,7 +76,9 @@ const formatHL7LineBreaks = (text) => {
 };
 
 const parseRawStringToHL7Buffer = (/** @type {string} */ rawMessage) => {
+
   rawMessage = formatHL7LineBreaks(rawMessage);
+
   return Buffer.from(MLLP_START + rawMessage + MLLP_END, 'utf-8');
 };
 
@@ -96,7 +97,8 @@ const parseRawHL7ToString = (rawMessage) => {
 
   rawMessage = Buffer.from(unescapeHL7(rawMessage.toString('utf8')), 'utf8');
 
-  return removeMllpFraming(rawMessage)
+
+  return removeMllpFraming(rawMessage).toString('utf8')
     .split(String.fromCharCode(HL7_FRAMING.SEGMENT_SEPARATOR[0]))
     .filter((segment) => segment.trim().length > 0);
 };
@@ -112,7 +114,7 @@ const parseRawHL7ToString = (rawMessage) => {
  * // Returns true for properly framed HL7 message
  * const isValid = isValidMessage(buffer);
  */
-const isValidMessage = (rawMessage) => {
+const isValidHL7Message = (rawMessage) => {
   const hasStartBlock = rawMessage[0] === HL7_FRAMING.START_BLOCK[0];
 
   // Get last 2 bytes to compare with END_BLOCK
@@ -128,6 +130,7 @@ const isValidMessage = (rawMessage) => {
  * @returns {Object} JSON representation of the HL7 message, with segments as keys
  */
 const HL7toJson = (rawMessage) => {
+
   const segments = parseRawHL7ToString(rawMessage);
   const json = {};
 
@@ -145,6 +148,60 @@ const HL7toJson = (rawMessage) => {
   return json;
 };
 
+
+/**
+ * Convert HL7 message to JSON structure working directly with Buffer
+ * @param {Buffer} rawMessage - The raw HL7 message buffer
+ * @returns {Object} JSON representation of the HL7 message, with segments as keys
+ */
+const HL7BufferToJson = (rawMessage) => {
+
+  if (!isValidHL7Message(rawMessage)) {
+    return {}
+  }
+
+  // Remove MLLP framing without string conversion
+  const cleaned = rawMessage[0] === HL7_FRAMING.START_BLOCK[0]
+    ? rawMessage.subarray(1, -HL7_FRAMING.END_BLOCK.length)
+    : rawMessage.subarray(0, -HL7_FRAMING.END_BLOCK.length)
+
+  const json = {}
+
+  const segmentSeparator = HL7_FRAMING.SEGMENT_SEPARATOR[0] // 0x0D (carriage return)
+
+  const fieldSeparator = HL7_FRAMING.FIELD_SEPARATOR[0] // '|' character
+
+  let segmentStart = 0
+
+  for (let i = 0;i <= cleaned.length;i++) {
+    // Process segment when we hit separator or end of buffer
+    if (i === cleaned.length || cleaned[i] === segmentSeparator) {
+      if (i > segmentStart) {
+        const segmentBuffer = cleaned.subarray(segmentStart, i)
+
+        // Find first field separator to get segment type
+        const firstPipeIndex = segmentBuffer.indexOf(fieldSeparator)
+
+        if (firstPipeIndex > 0) {
+          const segmentType = segmentBuffer.subarray(0, firstPipeIndex).toString('utf8')
+          const segmentData = segmentBuffer.subarray(firstPipeIndex).toString('utf8')
+
+          if (!json[segmentType]) {
+            json[segmentType] = []
+          }
+
+          json[segmentType].push(segmentData)
+        }
+      }
+      segmentStart = i + 1
+    }
+  }
+
+  return json
+};
+
+
+
 /**
  * Get specific segment data by type
  * @param {Buffer} rawMessage - The raw HL7 message buffer
@@ -152,7 +209,9 @@ const HL7toJson = (rawMessage) => {
  * @returns {string|null} The segment data as a string, or null if not found
  */
 const getSegmentData = (rawMessage, segmentType) => {
-  const jsonData = HL7toJson(rawMessage);
+
+  const jsonData = HL7BufferToJson(rawMessage);
+
   return jsonData[segmentType]?.[0] || null;
 };
 
@@ -217,8 +276,20 @@ const getHL7ValueBySegmentTypeFieldComponentAndSubcomponent = (
 
 /**
  * Parse MSH segment for control information
+ * @param {Buffer|string} cleanMessage - The HL7 message buffer or string to parse
+ * @returns {Object} An object containing messageControlId and triggerEvent
  */
 const parseMshSegment = (cleanMessage) => {
+
+  if (!cleanMessage || cleanMessage.length === 0) {
+    log.warn('Empty or invalid HL7 message provided for MSH parsing');
+    return '';
+  }
+
+  if(Buffer.isBuffer(cleanMessage)) {
+    cleanMessage = cleanMessage.toString('utf8');
+  }
+
   const mshSegment = cleanMessage.split('\r')[0];
   const mshFields = mshSegment.split('|');
 
@@ -241,5 +312,5 @@ module.exports = {
   unescapeHL7,
   parseRawHL7ToString,
   parseRawStringToHL7Buffer,
-  isValidMessage
+  isValidMessage: isValidHL7Message
 };

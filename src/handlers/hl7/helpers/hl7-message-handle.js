@@ -9,9 +9,9 @@ const { extractHl7Data } = require('./hl7-data-extract');
  * @param {net.Socket} socket - Client socket for sending acknowledgment
  */
 const processHL7Message = (message, socket) => {
-  log.debug('Processing HL7 message...');
 
   const data = extractHl7Data(message);
+
   writeDebugFile(JSON.stringify(data, null, 2));
 
   socket.write(message);

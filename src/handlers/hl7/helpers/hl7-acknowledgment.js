@@ -135,7 +135,7 @@ const sendHL7Acknowledgment = (originalMessage, clientSocket) => {
 
     clientSocket.write(ack);
   } catch (error) {
-    log.error('Error sending acknowledgment:', error.message);
+    log.error('Error sending acknowledgment:', error);
   }
 };
 
