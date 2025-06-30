@@ -3,7 +3,8 @@ const {
   parseRawHL7ToString,
   extractHl7Data,
   HL7toJson,
-  getInformationBySegmentTypeAndIndex
+  getInformationBySegmentTypeAndIndex,
+  getHL7ValueBySegmentTypeFieldComponentAndSubcomponent
 } = require('./src/handlers/hl7');
 const log = require('./configs/logger');
 const { writeDebugFile } = require('./src/shared/save-data-to-file');
@@ -102,7 +103,14 @@ const hl7Message = [
   'SAC|1|||LAV^Lavender top tube^HL70376||||||||||||'
 ].join('\r');
 
-const rawHL7MessageBuffer = parseRawStringToHL7Buffer(hl7Message);
+const hl7Message2 = `
+MSH|^~|ADT1|GOOD HEALTH HOSPITAL|GHH LAB, INC.|GOOD HEALTH HOSPITAL|198808181126|SECURITY|ADT^A01^ADT_A01|MSG00001|T|2.5.1
+EVN||200708181123||
+PID|1||PATID1234^5^M11^ADT1^MR^GOOD HEALTH HOSPITAL~123456789^^^USSSA^SS||EVERYMAN^ADAM^A^III||19610615|M||2106-3|2222 HOME STREET^^GREENSBORO^NC^27401-1020
+NK1|1|JONES^BARBARA^K|SPO^Spouse^HL70063||||NK^NEXT OF KIN
+PV1|1|I|2000^2012^01||||004777^ATTEND^AARON^A|||SUR||||7|A0|`
+
+const rawHL7MessageBuffer = parseRawStringToHL7Buffer(hl7Message2);
 log.debug(rawHL7MessageBuffer.toJSON());
 
 const rawHL7MessageString = parseRawHL7ToString(rawHL7MessageBuffer);
@@ -118,10 +126,21 @@ log.debug('HL7 PID:', jsonData.PID);
 
 const segment = getInformationBySegmentTypeAndIndex(
   rawHL7MessageBuffer,
-  'MSH',
+  'PID',
   5
 );
 
-log.debug(`Segment MSH.5 -> ${segment}`);
+log.debug(`Segment PID.5 -> ${segment}`);
+
+
+const componentValue = getHL7ValueBySegmentTypeFieldComponentAndSubcomponent(
+  rawHL7MessageBuffer,
+  'PID',
+  5, // Field index for PID.5
+  1, // Component index for the first component
+  0 // Subcomponent index (not used here)
+);
+
+log.debug(`Component for PID.5.1: ${componentValue}`);
 
 writeDebugFile(JSON.stringify(jsonData, null, 2), 'parsing-example');

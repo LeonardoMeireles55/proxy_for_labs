@@ -1,6 +1,25 @@
 const log = require('../../configs/logger');
+const config = require('../../configs/config');
 
-const API_BASE_URL = 'http://lab-spec.systems/backend';
+const API_BASE_URL = config.baseUrl
+const API_BASE_HEMATOLOGY_URL = `${API_BASE_URL}/hematology-analytics`;
+const API_BASE_BIOCHEMISTRY_URL = `${API_BASE_URL}/biochemistry-analytics`;
+const API_BASE_COAGULATION_URL = `${API_BASE_URL}/coagulation-analytics`;
+
+
+const API_CQ_URL = (() => {
+  switch (config.qcForSector) {
+    case 'hematology':
+      return API_BASE_HEMATOLOGY_URL;
+    case 'biochemistry':
+      return API_BASE_BIOCHEMISTRY_URL;
+    case 'coagulation':
+      return API_BASE_COAGULATION_URL;
+    default:
+      log.error(`Invalid QC sector: ${config.qcForSector}. Defaulting to hematology.`);
+      return API_BASE_HEMATOLOGY_URL;
+  }
+});
 
 const AUTH_CREDENTIALS = JSON.stringify({
   identifier: 'Automacao',
@@ -9,7 +28,7 @@ const AUTH_CREDENTIALS = JSON.stringify({
 
 const retrieveToken = async () => {
   const responseToken = await fetch(
-    'https://lab-spec.systems/backend/users/sign-in',
+    `${API_BASE_URL}/users/sign-in`,
     {
       method: 'POST',
       headers: {
@@ -35,7 +54,7 @@ const postQualityControlData = async (transformedData) => {
 
   try {
     const response = await fetch(
-      'https://lab-spec.systems/backend/hematology-analytics',
+      `${API_CQ_URL}`,
       {
         method: 'POST',
         headers: {

@@ -58,14 +58,26 @@ const unescapeHL7 = (text) => {
   if (!text) return '';
 
   return text
-    .replace(/\\F\\/g, '|')
-    .replace(/\\S\\/g, '^')
-    .replace(/\\T\\/g, '&')
-    .replace(/\\R\\/g, '~')
-    .replace(/\\E\\/g, '\\');
+    .replaceAll(/\\F\\/g, '|')
+    .replaceAll(/\\S\\/g, '^')
+    .replaceAll(/\\T\\/g, '&')
+    .replaceAll(/\\R\\/g, '~')
+    .replaceAll(/\\E\\/g, '\\');
 };
 
-const parseRawStringToHL7Buffer = (rawMessage) => {
+/**
+ * Format HL7 text by replacing line breaks
+ * @param {string} text - The raw HL7 string with line breaks
+ * @returns {string} The formatted HL7 string with line breaks replaced by carriage returns
+ */
+const formatHL7LineBreaks = (text) => {
+  if (!text) return '';
+
+  return text.replaceAll('\n', HL7_FRAMING.SEGMENT_SEPARATOR.toString('utf8'))
+};
+
+const parseRawStringToHL7Buffer = (/** @type {string} */ rawMessage) => {
+  rawMessage = formatHL7LineBreaks(rawMessage);
   return Buffer.from(MLLP_START + rawMessage + MLLP_END, 'utf-8');
 };
 
@@ -81,6 +93,9 @@ const parseRawStringToHL7Buffer = (rawMessage) => {
  * const segments = parseRawHL7ToString(buffer);
  */
 const parseRawHL7ToString = (rawMessage) => {
+
+  rawMessage = Buffer.from(unescapeHL7(rawMessage.toString('utf8')), 'utf8');
+
   return removeMllpFraming(rawMessage)
     .split(String.fromCharCode(HL7_FRAMING.SEGMENT_SEPARATOR[0]))
     .filter((segment) => segment.trim().length > 0);
@@ -109,6 +124,8 @@ const isValidMessage = (rawMessage) => {
 
 /**
  * Convert HL7 message to JSON structure
+ * @param {Buffer} rawMessage - The raw HL7 message buffer
+ * @returns {Object} JSON representation of the HL7 message, with segments as keys
  */
 const HL7toJson = (rawMessage) => {
   const segments = parseRawHL7ToString(rawMessage);
@@ -130,6 +147,9 @@ const HL7toJson = (rawMessage) => {
 
 /**
  * Get specific segment data by type
+ * @param {Buffer} rawMessage - The raw HL7 message buffer
+ * @param {string} segmentType - The type of HL7 segment to retrieve (e.g., 'PID', 'OBR')
+ * @returns {string|null} The segment data as a string, or null if not found
  */
 const getSegmentData = (rawMessage, segmentType) => {
   const jsonData = HL7toJson(rawMessage);
@@ -138,6 +158,10 @@ const getSegmentData = (rawMessage, segmentType) => {
 
 /**
  * Get field value by segment type and field index
+ * @param {Buffer} message - The HL7 message buffer
+ * @param {string} segmentType - The type of HL7 segment (e.g., 'PID', 'OBR')
+ * @param {number} fieldIndex - The index of the field within the segment(0-based)
+ * @returns {string|null} The value of the specified field, or null if not found
  */
 const getInformationBySegmentTypeAndIndex = (
   message,
@@ -150,6 +174,46 @@ const getInformationBySegmentTypeAndIndex = (
   const fields = segmentData.split('|');
   return fields[fieldIndex] || null;
 };
+
+/**
+ * Get value from HL7 message by segment type, field, component, and subcomponent indices
+ * @param {Buffer} message - The HL7 message buffer
+ * @param {string} segmentType - The type of HL7 segment (e.g., 'PID', 'OBR')
+ * @param {number} fieldIndex - The index of the field within the segment (0-based)
+ * @param {number|null} componentIndex - The index of the component within the field (0-based, or null for whole field)
+ * @param {number|null} subcomponentIndex - The index of the subcomponent within the component (0-based, or null for whole component)
+ * @returns {string|null} The value of the specified field/component/subcomponent, or null if not found
+ */
+const getHL7ValueBySegmentTypeFieldComponentAndSubcomponent = (
+  message,
+  segmentType,
+  fieldIndex,
+  componentIndex,
+  subcomponentIndex
+) => {
+
+  const field = getInformationBySegmentTypeAndIndex(
+    message,
+    segmentType,
+    fieldIndex);
+
+  if (!field) return null
+
+  if (componentIndex === null) return field
+
+  const components = field.split('^')
+
+  const component = components[componentIndex]
+
+  if (!component) return null
+
+  if (subcomponentIndex === null) return component
+
+  const subcomponents = component.split('&')
+  return subcomponents[subcomponentIndex] || null
+};
+
+
 
 /**
  * Parse MSH segment for control information
@@ -171,6 +235,7 @@ module.exports = {
   HL7toJson,
   getSegmentData,
   getInformationBySegmentTypeAndIndex,
+  getHL7ValueBySegmentTypeFieldComponentAndSubcomponent,
   parseMshSegment,
   removeMllpFraming,
   unescapeHL7,
