@@ -6579,3 +6579,231 @@
 
 [2025-07-01 19:35:24] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
 
+
+[2025-07-01 19:35:27] -> ForwardProxy -> Attempting to connect to LIS 
+
+
+[2025-07-01 19:35:27] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:27] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:27] -> ForwardProxy -> LIS server disconnected 
+
+
+[2025-07-01 19:35:27] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:29] -> ForwardProxy -> Attempting to connect to LIS 
+
+
+[2025-07-01 19:35:29] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:29] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:29] -> ForwardProxy -> LIS server disconnected 
+
+
+[2025-07-01 19:35:29] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:32] -> ForwardProxy -> Attempting to connect to LIS 
+
+
+[2025-07-01 19:35:32] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:32] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:32] -> ForwardProxy -> LIS server disconnected 
+
+
+[2025-07-01 19:35:32] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:34] -> ForwardProxy -> Attempting to connect to LIS 
+
+
+[2025-07-01 19:35:34] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:34] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:34] -> ForwardProxy -> LIS server disconnected 
+
+
+[2025-07-01 19:35:34] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:37] -> ForwardProxy -> Attempting to connect to LIS 
+
+
+[2025-07-01 19:35:37] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:37] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:37] -> ForwardProxy -> LIS server disconnected 
+
+
+[2025-07-01 19:35:37] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:39] -> ForwardProxy -> Attempting to connect to LIS 
+
+
+[2025-07-01 19:35:39] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:39] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:39] -> ForwardProxy -> LIS server disconnected 
+
+
+[2025-07-01 19:35:39] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:39] -> ForwardProxy -> Client disconnected 
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> Client connected: ::ffff:10.111.2.151 
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> Attempting to connect to LIS 
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> LIS server disconnected 
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> Received data from Client ::ffff:10.111.2.151, forwarding to LIS localhost 
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> Cannot forward data: target socket unavailable 
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> Attempting to connect to LIS 
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> LIS server disconnected 
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:45] -> ForwardProxy -> Attempting to connect to LIS 
+
+
+[2025-07-01 19:35:45] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:45] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:45] -> ForwardProxy -> LIS server disconnected 
+
+
+[2025-07-01 19:35:45] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:45] -> ForwardProxy -> Attempting to connect to LIS 
+
+
+[2025-07-01 19:35:45] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:45] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:45] -> ForwardProxy -> LIS server disconnected 
+
+
+[2025-07-01 19:35:45] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:50] -> ForwardProxy -> Attempting to connect to LIS 
+
+
+[2025-07-01 19:35:50] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:50] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:50] -> ForwardProxy -> LIS server disconnected 
+
+
+[2025-07-01 19:35:50] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:50] -> ForwardProxy -> Attempting to connect to LIS 
+
+
+[2025-07-01 19:35:50] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:50] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+
+
+[2025-07-01 19:35:50] -> ForwardProxy -> LIS server disconnected 
+
+
+[2025-07-01 19:35:50] -> ForwardProxy -> Scheduling LIS reconnection in 5 seconds 
+

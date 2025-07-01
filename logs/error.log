@@ -995,3 +995,75 @@
   "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
 }
 
+
+[2025-07-01 19:35:27] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:29] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:32] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:34] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:37] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:39] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:40] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:45] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:45] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:50] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:50] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
