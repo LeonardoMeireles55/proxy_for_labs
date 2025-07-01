@@ -1,10 +1,12 @@
 const net = require('node:net');
+
 const {
   sendHL7Acknowledgment,
   createAcknowledgment
 } = require('../../handlers/hl7/helpers/hl7-acknowledgment');
 const config = require('../../../configs/config');
 const log = require('../../../configs/logger');
+const parser = require('../../handlers/hl7/helpers/parser')
 
 /**
  * Creates connection to proxy server
@@ -34,6 +36,8 @@ const createConnection = () => {
     log.debug('Equipment client HL7 -> received data from proxy');
 
     log.debug(`Equipment client HL7 -> data length: ${data.length} bytes`);
+
+    data.length > 127 ? log.debug(`Equipment client HL7 -> Blood Test OBX: ${parser.getSegmentData(parser.parseRawStringToHL7Buffer(data.toString()), 'OBX')}`) : ''
   });
 
   client.on('error', (err) => {

@@ -265,11 +265,10 @@ const transformResult = (result, hl7Data, qcLevel) => {
  * @throws {Error} Logs error and returns null if conversion fails
  */
 const extractQcValuesAndConvertToJson = (hl7Data) => {
-
-  if (hl7Data.messageHeader.messageControlId !== 'Q') {
-    log.warn('Is not a control quality message, skipping conversion');
-    return null;
-  }
+  // if (hl7Data.messageHeader.messageControlId !== 'Q') {
+  //   log.warn('Is not a control quality message, skipping conversion');
+  //   return null;
+  // }
 
   try {
     if (!hl7Data.results || !Array.isArray(hl7Data.results)) {
@@ -284,16 +283,16 @@ const extractQcValuesAndConvertToJson = (hl7Data) => {
       transformResult(result, hl7Data, qcLevel)
     );
 
-    if (config.nodeEnv === 'development') {
-      log.debug(
-        'Quality Control Object:',
-        JSON.stringify(qualityControlObject, null, 2)
-      );
-    }
+    // if (config.nodeEnv === 'development') {
+    //   log.debug(
+    //     'Quality Control Object:',
+    //     JSON.stringify(qualityControlObject, null, 2)
+    //   );
+    // }
 
-    if (config.nodeEnv === 'production') {
-      postQualityControlData(qualityControlObject);
-    }
+    // if (config.nodeEnv === 'production') {
+    //   postQualityControlData(qualityControlObject);
+    // }
 
     writeDebugFile(JSON.stringify(qualityControlObject, null, 2));
 

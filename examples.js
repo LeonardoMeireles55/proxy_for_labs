@@ -110,37 +110,43 @@ PID|1||PATID1234^5^M11^ADT1^MR^GOOD HEALTH HOSPITAL~123456789^^^USSSA^SS||EVERYM
 NK1|1|JONES^BARBARA^K|SPO^Spouse^HL70063||||NK^NEXT OF KIN
 PV1|1|I|2000^2012^01||||004777^ATTEND^AARON^A|||SUR||||7|A0|`
 
-const rawHL7MessageBuffer = parseRawStringToHL7Buffer(hl7Message2);
-log.debug(rawHL7MessageBuffer);
+const rawHL7MessageBuffer = parseRawStringToHL7Buffer(hl7Message);
+
+// log.debug(rawHL7MessageBuffer);
 
 const rawHL7MessageString = parseRawHL7ToString(rawHL7MessageBuffer);
-log.debug('HL7 Message text', rawHL7MessageString);
+// log.debug('HL7 Message text', rawHL7MessageString);
 
-const extractedHL7Data = extractHl7Data(rawHL7MessageBuffer);
-log.debug('Extracted HL7 Data:', extractedHL7Data);
+// const extractedHL7Data = extractHl7Data(rawHL7MessageBuffer);
+// log.debug('Extracted HL7 Data:', extractedHL7Data);
 
-const jsonData = HL7toJson(rawHL7MessageBuffer);
+// const jsonData = HL7toJson(rawHL7MessageBuffer);
 
-log.debug('HL7 Data as JSON:', jsonData);
-log.debug('HL7 PID:', jsonData.PID);
+// log.debug('HL7 Data as JSON:', jsonData);
+// log.debug('HL7 PID:', jsonData.PID);
 
-const segment = getInformationBySegmentTypeAndIndex(
-  rawHL7MessageBuffer,
-  'PID',
-  5
-);
+// const segment = getInformationBySegmentTypeAndIndex(
+//   rawHL7MessageBuffer,
+//   'PID',
+//   5
+// );
 
-log.debug(`Segment PID.5 -> ${segment}`);
+// log.debug(`Segment PID.5 -> ${segment}`);
 
 
-const componentValue = getHL7ValueBySegmentTypeFieldComponentAndSubcomponent(
-  rawHL7MessageBuffer,
-  'PID',
-  5, // Field index for PID.5
-  1, // Component index for the first component
-  0 // Subcomponent index (not used here)
-);
+// const componentValue = getHL7ValueBySegmentTypeFieldComponentAndSubcomponent(
+//   rawHL7MessageBuffer,
+//   'PID',
+//   5, // Field index for PID.5
+//   1, // Component index for the first component
+//   0 // Subcomponent index (not used here)
+// );
 
-log.debug(`Component for PID.5.1: ${componentValue}`);
+// log.debug(`Component for PID.5.1: ${componentValue}`);
 
-writeDebugFile(JSON.stringify(jsonData, null, 2), 'parsing-example');
+// writeDebugFile(JSON.stringify(jsonData, null, 2), 'parsing-example');
+
+
+module.exports = {
+  rawHL7MessageBuffer
+}

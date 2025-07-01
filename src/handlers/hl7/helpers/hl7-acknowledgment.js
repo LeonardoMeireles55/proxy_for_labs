@@ -5,28 +5,8 @@ const {
   parseMshSegment,
   parseRawHL7ToString
 } = require('./parser');
+const { MLLP_START, MLLP_END } = require('../../utils/buffers')
 
-const hl7Message = [
-  'MSH|^~\\&|Informatics|161387862^Quest Diagnostics^L||LABGATEWAY^UnitedHealth Group^L|20190917010635-0600||ORU^R01^ORU_R01|M1926001063500000963|P|2.5||||||||',
-  'PID|1||820154899^^^^HC||BEIGHE^DENISE^I^^^^L||19600415|F|||3174 E DESERT BROOM WAY^^PHOENIX^AZ^85048^^M||(623)252-1760',
-  'OBR|1||PHO2019081541408081|83036^^C4^9230^Hemoglobin A1c With eAG^L|||20190815000000-0600|||||||||1225300882^ZAMANI^SAMIRA^^^^^^NPI||||||20190815215000-0600|||F',
-  'OBX|1|NM|4548-4^Hemoglobin A1c^LN^10009230^Hemoglobin A1c^L||5.2|%^^ISO+|||||F',
-  "NTE|1|L|The American Diabetes Association (ADA) guidelines for interpreting Hemoglobin A1c are as follows: Non-Diabetic patient: <=5.6% ~ Increased risk for future Diabetes: 5.7-6.4% ~ ADA diagnostic criteria for Diabetes: >=6.5% ~ Values for patients with Diabetes: Meets ADA's recommended goal for therapy: <7.0% ~ Exceeds ADA's recommended goal: 7.0-8.0% ~ ADA recommends reevaluation of therapy: >8.0%",
-  'OBX|2|NM|27353-2^Estimated Average Glucose (eAG)^LN^12009230^Estimated Average Glucose (eAG)^L||103|^^ISO+|Not Established||||F',
-  'FT1|1|||20190815||CG|83036^^C4^9230^Hemoglobin A1c With eAG^L|||||||705963^United Healthcare^HC|||||||||||83036^^C4^9230^Hemoglobin A1c With eAG^L'
-].join('\r');
-
-const MLLP_START = String.fromCharCode(0x0b); // <VT>
-
-const MLLP_END = String.fromCharCode(0x1c) + String.fromCharCode(0x0d); //<FS><CR>
-
-const FULL_MESSAGE_MOCK = MLLP_START + hl7Message + MLLP_END;
-
-// Mock HL7 message buffer with MLLP framing
-
-const BUFFER_MOCK = Buffer.from(FULL_MESSAGE_MOCK, 'utf-8');
-
-const HL7_MOCK_BUFFER = BUFFER_MOCK;
 
 /**
  * Creates MSH segment for acknowledgment messages
@@ -140,7 +120,6 @@ const sendHL7Acknowledgment = (originalMessage, clientSocket) => {
 };
 
 module.exports = {
-  HL7_MOCK_BUFFER,
   createAcknowledgment,
   sendHL7Acknowledgment
 };

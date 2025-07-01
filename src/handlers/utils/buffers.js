@@ -106,6 +106,7 @@ const HL7_SEPARATORS_BUFFERS = {
  * @typedef {Object} HL7Framing
  * @property {number} START_BLOCK - Vertical Tab (0x0B) - beginnings of block
  * @property {number} END_BLOCK - File Separator (0x1C) + Carriage Return (0x0D) - end of block
+ * @property {Buffer} FIELD_SEPARATOR - Field separator buffer (|)
  * @property {number} SEGMENT_SEPARATOR - Carriage Return (0x0D) - end of segment
  */
 const HL7_FRAMING = {

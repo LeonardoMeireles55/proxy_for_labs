@@ -15,6 +15,7 @@ const {
 } = require('../../handlers/hl7/helpers/hl7-acknowledgment');
 const { parseRawHL7ToString } = require('../../handlers/hl7');
 const log = require('../../../configs/logger');
+const { rawHL7MessageBuffer } = require('../../../examples')
 
 /**
  * ASTM message handlers for LIS server
@@ -76,7 +77,10 @@ const LisServer = () => {
         'Lis Server -> Received data from client:',
         parseRawHL7ToString(data)
       );
-      sendHL7Acknowledgment(data, socket);
+
+      // sendHL7Acknowledgment(data, socket);
+
+      socket.write(rawHL7MessageBuffer);
     });
 
     socket.on('error', (err) => {

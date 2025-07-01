@@ -106,7 +106,7 @@ const forwardToTarget = (data, targetSocket, clientSocket) => {
   }
   try {
     log.debug(
-      `ForwardProxy -> Received data from LIS ${targetSocket.remoteAddress}, forwarding to Client ${clientSocket.remoteAddress}`
+      `ForwardProxy -> Received data from LIS ${targetSocket.remoteAddress || config.lisHost}, forwarding to Client ${clientSocket.remoteAddress}`
     );
     handleBuffer(data, targetSocket);
   } catch (error) {
@@ -128,7 +128,7 @@ const handleClientConnection = (clientSocket) => {
 
   clientSocket.on('data', (data) => {
     log.debug(
-      `ForwardProxy -> Received data from Client ${clientIP}, forwarding to LIS ${targetSocket.remoteAddress}`
+      `ForwardProxy -> Received data from Client ${clientIP}, forwarding to LIS ${targetSocket.remoteAddress || config.lisHost}`
     );
     targetSocket = forwardToTarget(data, targetSocket, clientSocket);
   });
