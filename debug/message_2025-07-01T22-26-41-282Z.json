@@ -1,0 +1,84 @@
+{
+  "messageHeader": {
+    "fieldSeparator": "^~\\&",
+    "encodingCharacters": "cobas pure",
+    "sendingFacility": "Host",
+    "receivingFacility": "20250701192502+0900",
+    "security": "OUL^R22^OUL_R22",
+    "messageType": "140",
+    "messageControlId": "P",
+    "processingId": "2.5.1",
+    "continuationPointer": "NE",
+    "acceptAcknowledgmentType": "AL",
+    "countryCode": "UNICODE UTF-8",
+    "alternateCharacterSetHandlingScheme": "LAB-29^IHE"
+  },
+  "order": {
+    "setId": "1",
+    "placerOrderNumber": "\"\"",
+    "universalServiceIdentifier": "20420^^99ROC"
+  },
+  "specimen": {
+    "setId": "1",
+    "specimenId": "20391&CONTROL",
+    "specimenType": "\"\"",
+    "specimenRole": "Q^^HL70369",
+    "specimenDescription": "~~~~",
+    "specimenExpirationDateTime": "20260430",
+    "specimenCondition": "PSCO^^99ROC",
+    "containerType": "SC^^99ROC"
+  },
+  "inventory": {
+    "substanceIdentifier": "20391^PCCC1^99ROC",
+    "substanceStatus": "OK^^HL703843",
+    "substanceType": "CO^^HL70384",
+    "inventoryContainerIdentifier": "^^99ROC"
+  },
+  "results": [
+    {
+      "sequenceId": "1",
+      "observationName": "20420",
+      "value": "151",
+      "unit": "U/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192502"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "20420",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192502"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191442",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192502"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "56",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192502"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "151",
+      "unit": "U/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192502"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "9.00",
+      "unit": "U/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192502"
+    }
+  ]
+}

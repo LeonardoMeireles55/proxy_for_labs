@@ -1,0 +1,81 @@
+{
+  "messageHeader": {
+    "fieldSeparator": "^~\\&",
+    "encodingCharacters": "cobas pure",
+    "sendingFacility": "Host",
+    "receivingFacility": "20250701191110+0900",
+    "security": "OUL^R23^OUL_R23",
+    "messageType": "118",
+    "messageControlId": "P",
+    "processingId": "2.5.1",
+    "continuationPointer": "NE",
+    "acceptAcknowledgmentType": "AL",
+    "countryCode": "UNICODE UTF-8",
+    "alternateCharacterSetHandlingScheme": "LAB-29C^ROCHE"
+  },
+  "order": {
+    "setId": "1",
+    "placerOrderNumber": "\"\"",
+    "universalServiceIdentifier": "20990^^99ROC"
+  },
+  "specimen": {
+    "specimenId": "20901&CALIBRATOR",
+    "specimenType": "ORH^^HL70487",
+    "specimenRole": "C^^HL70369",
+    "specimenExpirationDateTime": "20301231"
+  },
+  "inventory": {
+    "substanceIdentifier": "2099001",
+    "substanceStatus": "OK^^HL70383~CURRENT^^99ROC",
+    "substanceType": "R1",
+    "inventoryContainerIdentifier": "9205",
+    "containerCarrierIdentifier": "1",
+    "positionOnCarrier": "38",
+    "expirationDateTime": "20260531",
+    "manufacturerLotNumber": "861343"
+  },
+  "results": [
+    {
+      "sequenceId": "1",
+      "observationName": "20990",
+      "abnormalFlags": "ContainerCalib^^99ROC",
+      "observationTimestamp": "20250701191107"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "20990",
+      "value": "0.0000~0.19926417^0.19933780^0.2004^0.19919056^0.2002~0.58137202^0.58530474^0.6362^0.57743937^0.6279~^^^^~^^^^~^^^^~^^^^~^^^^^^^^^^^^^^~0.000000^5.30^^^^",
+      "unit": "mg/dL",
+      "abnormalFlags": "\"\"",
+      "observationTimestamp": "20250701191107"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "Pipetting_Time",
+      "value": "20250701190042~20250701190050",
+      "abnormalFlags": "\"\"",
+      "observationTimestamp": "20250701191107"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "20990",
+      "abnormalFlags": "ContainerCalib^^99ROC",
+      "observationTimestamp": "20250701191107"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "20990",
+      "value": "0.0000~0.19926417^0.19933780^0.2004^0.19919056^0.2002~0.58137202^0.58530474^0.6362^0.57743937^0.6279~^^^^~^^^^~^^^^~^^^^~^^^^^^^^^^^^^^~0.000000^5.30^^^^",
+      "unit": "mg/dL",
+      "abnormalFlags": "\"\"",
+      "observationTimestamp": "20250701191107"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "Pipetting_Time",
+      "value": "20250701185834~20250701185842",
+      "abnormalFlags": "\"\"",
+      "observationTimestamp": "20250701191107"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "date": "2025-07-01 22:17:41",
+    "test_lot": "-",
+    "level_lot": "DEFAULT_LOT",
+    "name": "29090",
+    "level": "unknown",
+    "value": 99.6,
+    "mean": 99.6,
+    "sd": 99.6,
+    "unit_value": "mmol/L"
+  },
+  {
+    "date": "2025-07-01 22:17:41",
+    "test_lot": "-",
+    "level_lot": "DEFAULT_LOT",
+    "name": "QC_TARGET",
+    "level": "unknown",
+    "value": 103,
+    "mean": 103,
+    "sd": 103,
+    "unit_value": "mmol/L"
+  },
+  {
+    "date": "2025-07-01 22:17:41",
+    "test_lot": "-",
+    "level_lot": "DEFAULT_LOT",
+    "name": "QC_SD_RANGE",
+    "level": "unknown",
+    "value": 3,
+    "mean": 3,
+    "sd": 3,
+    "unit_value": "mmol/L"
+  }
+]

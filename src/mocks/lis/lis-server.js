@@ -78,9 +78,9 @@ const LisServer = () => {
         parseRawHL7ToString(data)
       );
 
-      // sendHL7Acknowledgment(data, socket);
+      sendHL7Acknowledgment(data, socket);
 
-      socket.write(rawHL7MessageBuffer);
+      // socket.write(rawHL7MessageBuffer);
     });
 
     socket.on('error', (err) => {

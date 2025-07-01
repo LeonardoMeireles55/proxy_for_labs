@@ -91,8 +91,8 @@ const startEmulators = () => {
   const results = {};
 
   config.lisServerEmu && (results.lisServer = startLisServer());
-  config.equipmentClientEmu &&
-    (results.equipmentClient = startEquipmentClient());
+  // config.equipmentClientEmu &&
+  //   (results.equipmentClient = startEquipmentClient());
 
   return results;
 };

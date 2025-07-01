@@ -1,0 +1,102 @@
+{
+  "messageHeader": {
+    "fieldSeparator": "^~\\&",
+    "encodingCharacters": "cobas pure",
+    "sendingFacility": "Host",
+    "receivingFacility": "20250701185900+0900",
+    "security": "OUL^R23^OUL_R23",
+    "messageType": "116",
+    "messageControlId": "P",
+    "processingId": "2.5.1",
+    "continuationPointer": "NE",
+    "acceptAcknowledgmentType": "AL",
+    "countryCode": "UNICODE UTF-8",
+    "alternateCharacterSetHandlingScheme": "LAB-29C^ROCHE"
+  },
+  "order": {
+    "setId": "1",
+    "placerOrderNumber": "\"\"",
+    "universalServiceIdentifier": "29090^^99ROC"
+  },
+  "specimen": {
+    "specimenId": "20502&CALIBRATOR",
+    "specimenType": "ORH^^HL70487",
+    "specimenRole": "C^^HL70369",
+    "specimenExpirationDateTime": "20311031"
+  },
+  "inventory": {
+    "substanceIdentifier": "2999002",
+    "substanceStatus": "OK^^HL70383~CURRENT^^99ROC",
+    "substanceType": "IS",
+    "inventoryContainerIdentifier": "15335",
+    "containerCarrierIdentifier": "1",
+    "positionOnCarrier": "1",
+    "expirationDateTime": "20260930",
+    "manufacturerLotNumber": "850896"
+  },
+  "results": [
+    {
+      "sequenceId": "1",
+      "observationName": "29090",
+      "abnormalFlags": "ContainerCalib^^99ROC",
+      "observationTimestamp": "20250701185854"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "29090",
+      "value": "134.0^137.8^129.1^129.1^-49.4^95.4^119.7^0.0^-49.1^0.3~0^0^0^0^0^0^0^0^0^0",
+      "unit": "mmol/L",
+      "abnormalFlags": "\"\"",
+      "observationTimestamp": "20250701185854"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "Pipetting_Time",
+      "value": "20250701185514~20250701185538~20250701185602",
+      "abnormalFlags": "\"\"",
+      "observationTimestamp": "20250701185854"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "29090",
+      "abnormalFlags": "ContainerCalib^^99ROC",
+      "observationTimestamp": "20250701185854"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "29090",
+      "value": "134.0^137.8^129.1^129.1^-49.4^95.4^119.7^0.0^-49.1^0.3~0^0^0^0^0^0^0^0^0^0",
+      "unit": "mmol/L",
+      "abnormalFlags": "\"\"",
+      "observationTimestamp": "20250701185854"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "Pipetting_Time",
+      "value": "20250701185626~20250701185650~20250701185714",
+      "abnormalFlags": "\"\"",
+      "observationTimestamp": "20250701185854"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "29090",
+      "abnormalFlags": "ContainerCalib^^99ROC",
+      "observationTimestamp": "20250701185854"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "29090",
+      "value": "134.0^137.8^129.1^129.1^-49.4^95.4^119.7^0.0^-49.1^0.3~0^0^0^0^0^0^0^0^0^0",
+      "unit": "mmol/L",
+      "abnormalFlags": "\"\"",
+      "observationTimestamp": "20250701185854"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "Pipetting_Time",
+      "value": "20250701185738~20250701185802~20250701185826",
+      "abnormalFlags": "\"\"",
+      "observationTimestamp": "20250701185854"
+    }
+  ]
+}

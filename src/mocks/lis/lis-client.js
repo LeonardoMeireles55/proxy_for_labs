@@ -43,6 +43,7 @@ const createLisClientSimulator = (config) => {
   );
 
   client.on('data', (data) => {
+
     const message = parseAstmMessage(data) || parseRawHL7ToString(data);
 
     log.debug(`Lis Client -> received message ASTM: ${message}`) ||

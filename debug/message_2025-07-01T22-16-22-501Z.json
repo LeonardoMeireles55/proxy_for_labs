@@ -1,0 +1,13 @@
+{
+  "messageHeader": {
+    "fieldSeparator": "^~\\&",
+    "encodingCharacters": "HOST",
+    "sendingFacility": "cobaspure",
+    "receivingFacility": "20250701221622",
+    "security": "ACK^R22^ACK",
+    "messageType": "ACK1751408182498",
+    "messageControlId": "P",
+    "processingId": "2.5.1",
+    "countryCode": "UNICODE UTF-8"
+  }
+}

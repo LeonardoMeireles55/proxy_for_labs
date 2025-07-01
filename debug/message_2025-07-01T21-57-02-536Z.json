@@ -1,0 +1,21 @@
+{
+  "messageHeader": {
+    "fieldSeparator": "^~\\&",
+    "encodingCharacters": "cobas pure",
+    "sendingFacility": "Host",
+    "receivingFacility": "20250701185523+0900",
+    "security": "ESU^U01^ESU_U01",
+    "messageType": "113",
+    "messageControlId": "P",
+    "processingId": "2.5.1",
+    "continuationPointer": "NE",
+    "acceptAcknowledgmentType": "AL",
+    "countryCode": "UNICODE UTF-8",
+    "alternateCharacterSetHandlingScheme": "ROC-02^ROCHE"
+  },
+  "equipment": {
+    "equipmentInstanceIdentifier": "0^ROCHE~24F3-03^ROCHE~0^ROCHE",
+    "eventDateTime": "20250701185523",
+    "equipmentState": "OP^NORMAL_OPERATION^99LECIS^8^Rack supply complete^99HITACHI"
+  }
+}

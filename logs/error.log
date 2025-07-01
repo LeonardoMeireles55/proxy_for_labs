@@ -1,0 +1,997 @@
+{"code":"ECONNREFUSED","level":"error","message":"LIS connection error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNREFUSED","level":"error","message":"LIS connection error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNREFUSED","level":"error","message":"Equipment client HL7 -> error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNREFUSED","level":"error","message":"LIS connection error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNREFUSED","level":"error","message":"LIS connection error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Lis Server -> Socket error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Lis Server -> Socket error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Lis Server -> Socket error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Lis Server -> Socket error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Lis Server -> Socket error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"level":"error","message":"Client error:"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Equipment client HL7 -> error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Lis Server -> Socket error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7006","port":7006,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7006","port":7006,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7006","port":7006,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Equipment client HL7 -> error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNREFUSED","level":"error","message":"Equipment client HL7 -> error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNREFUSED","level":"error","message":"Equipment client HL7 -> error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNREFUSED","level":"error","message":"Equipment client HL7 -> error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNREFUSED","level":"error","message":"Equipment client HL7 -> error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7003","port":7003,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7003\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Equipment client HL7 -> error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7004","port":7004,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7004\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7004","port":7004,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7004\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7004","port":7004,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7004\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7004","port":7004,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7004\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7004","port":7004,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7004\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7004","port":7004,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7004\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"address":"10.111.0.15","code":"ECONNREFUSED","errno":-4078,"level":"error","message":"ForwardProxy -> LIS connection error: connect ECONNREFUSED 10.111.0.15:7004","port":7004,"stack":"Error: connect ECONNREFUSED 10.111.0.15:7004\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)","syscall":"connect"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"level":"error","message":"ForwardProxy -> Error forwarding client data: targetSocket.address is not a function","stack":"TypeError: targetSocket.address is not a function\n    at forwardToTarget (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:109:111)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+{"level":"error","message":"ForwardProxy -> Error forwarding client data: targetSocket.address is not a function","stack":"TypeError: targetSocket.address is not a function\n    at forwardToTarget (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:109:111)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
+{"code":"ENOENT","errno":-4058,"level":"error","message":"ForwardProxy -> Error forwarding client data: ENOENT: no such file or directory, open 'C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\debug\\message_2025-06-29T16:27:18.907Z.json'","path":"C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\debug\\message_2025-06-29T16:27:18.907Z.json","stack":"Error: ENOENT: no such file or directory, open 'C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\debug\\message_2025-06-29T16:27:18.907Z.json'\n    at Object.writeFileSync (node:fs:2368:20)\n    at saveDataToFile (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\shared\\save-data-to-file.js:37:8)\n    at processHL7Message (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-message-handle.js:23:9)\n    at handleBuffer (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\handle-buffer.js:21:9)\n    at forwardToTarget (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:104:5)\n    at Socket.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:124:20)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)\n    at Readable.push (node:internal/streams/readable:390:5)","syscall":"open"}
+{"level":"error","message":"Converting HL7 data to Qc Json:"}
+{"level":"error","message":"Converting HL7 data to Qc Json:"}
+{"level":"error","message":"Converting HL7 data to Qc Json:"}
+{"level":"error","message":"Converting HL7 data to Qc Json:"}
+{"level":"error","message":"Converting HL7 data to Qc Json:"}
+{"level":"error","message":"Converting HL7 data to Qc Json:"}
+{"level":"error","message":"ForwardProxy -> Error forwarding client data: Cannot read properties of undefined (reading 'toString')","stack":"TypeError: Cannot read properties of undefined (reading 'toString')\n    at extractQcValuesAndConvertToJson (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\convert-to-qc-json.js:99:44)\n    at processHL7Message (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-message-handle.js:30:31)\n    at handleBuffer (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\handle-buffer.js:21:9)\n    at forwardToTarget (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:105:5)\n    at Socket.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:125:20)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)\n    at Readable.push (node:internal/streams/readable:390:5)\n    at TCP.onStreamRead (node:internal/stream_base_commons:191:23)"}
+{"level":"error","message":"Unhandled Rejection: Unexpected end of JSON input","stack":"SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at parseJSONFromBytes (node:internal/deps/undici/undici:5472:19)\n    at successSteps (node:internal/deps/undici/undici:5454:27)\n    at fullyReadBody (node:internal/deps/undici/undici:4381:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async consumeBody (node:internal/deps/undici/undici:5463:7)\n    at async retriveToken (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\api\\send-cq-data.js:15:16)\n    at async postQualityControlData (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\api\\send-cq-data.js:26:19)"}
+{"level":"error","message":"Unhandled Rejection: Unexpected end of JSON input","stack":"SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at parseJSONFromBytes (node:internal/deps/undici/undici:5472:19)\n    at successSteps (node:internal/deps/undici/undici:5454:27)\n    at fullyReadBody (node:internal/deps/undici/undici:4381:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async consumeBody (node:internal/deps/undici/undici:5463:7)\n    at async retriveToken (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\api\\send-cq-data.js:15:16)\n    at async postQualityControlData (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\api\\send-cq-data.js:26:19)"}
+{"level":"error","message":"Unhandled Rejection: Unexpected end of JSON input","stack":"SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at parseJSONFromBytes (node:internal/deps/undici/undici:5472:19)\n    at successSteps (node:internal/deps/undici/undici:5454:27)\n    at fullyReadBody (node:internal/deps/undici/undici:4381:9)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async consumeBody (node:internal/deps/undici/undici:5463:7)\n    at async retriveToken (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\api\\send-cq-data.js:15:16)\n    at async postQualityControlData (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\api\\send-cq-data.js:26:19)"}
+{"level":"error","message":"Token retrieval failed:"}
+{"level":"error","message":"Token retrieval failed:"}
+{"level":"error","message":"Quality control data submission failed:"}
+{"level":"error","message":"HTTP 403: "}
+{"level":"error","message":"Empty response body"}
+{"level":"error","message":"Quality control data submission failed: Unexpected end of JSON input","stack":"SyntaxError: Unexpected end of JSON input\n    at JSON.parse (<anonymous>)\n    at validateResponse (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\api\\send-cq-data.js:21:17)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async postQualityControlData (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\api\\send-cq-data.js:56:16)"}
+{"level":"error","message":"Error: 400 - An error occurred while sending the data"}
+{"code":"ECONNREFUSED","level":"error","message":"Equipment client HL7 -> error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNREFUSED","level":"error","message":"Equipment client HL7 -> error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNREFUSED","level":"error","message":"Equipment client HL7 -> error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNREFUSED","level":"error","message":"Equipment client HL7 -> error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNREFUSED","level":"error","message":"Equipment client HL7 -> error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNREFUSED","level":"error","message":"Equipment client HL7 -> error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNREFUSED","level":"error","message":"Equipment client HL7 -> error:","stack":"AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> LIS connection error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"ForwardProxy -> Client error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"level":"error","message":"Error extracting complete HL7 data: rawMessage.subarray is not a function","stack":"TypeError: rawMessage.subarray is not a function\n    at isValidMessage (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:110:33)\n    at removeMllpFraming (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:28:10)\n    at parseRawHL7ToString (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:89:12)\n    at HL7toJson (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:120:22)\n    at getSegmentData (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:141:22)\n    at getInformationBySegmentTypeAndIndex (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:149:25)\n    at extractMessageHeaderInfo (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\segments\\header.js:9:25)\n    at hl7DataExtract (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-data-extract.js:19:31)\n    at Object.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\parser-example.js:35:26)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)"}
+{"level":"error","message":"Error extracting complete HL7 data: rawMessage.subarray is not a function","stack":"TypeError: rawMessage.subarray is not a function\n    at isValidMessage (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:110:33)\n    at removeMllpFraming (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:28:10)\n    at parseRawHL7ToString (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:89:12)\n    at HL7toJson (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:120:22)\n    at getSegmentData (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:141:22)\n    at getInformationBySegmentTypeAndIndex (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:149:25)\n    at extractMessageHeaderInfo (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\segments\\header.js:9:25)\n    at hl7DataExtract (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-data-extract.js:19:31)\n    at Object.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\parser-example.js:35:26)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)"}
+{"level":"error","message":"Error extracting complete HL7 data: rawMessage.subarray is not a function","stack":"TypeError: rawMessage.subarray is not a function\n    at isValidMessage (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:110:33)\n    at removeMllpFraming (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:28:10)\n    at parseRawHL7ToString (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:89:12)\n    at HL7toJson (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:120:22)\n    at getSegmentData (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:141:22)\n    at getInformationBySegmentTypeAndIndex (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:149:25)\n    at extractMessageHeaderInfo (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\segments\\header.js:9:25)\n    at hl7DataExtract (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-data-extract.js:19:31)\n    at Object.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\parser-example.js:35:26)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)"}
+{"level":"error","message":"Error extracting complete HL7 data: rawMessage.subarray is not a function","stack":"TypeError: rawMessage.subarray is not a function\n    at isValidMessage (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:110:33)\n    at removeMllpFraming (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:28:10)\n    at parseRawHL7ToString (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:89:12)\n    at HL7toJson (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:120:22)\n    at getSegmentData (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:141:22)\n    at getInformationBySegmentTypeAndIndex (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:149:25)\n    at extractMessageHeaderInfo (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\segments\\header.js:9:25)\n    at hl7DataExtract (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-data-extract.js:19:31)\n    at Object.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\parser-example.js:35:26)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Lis Server -> Socket error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"code":"ECONNRESET","errno":-4077,"level":"error","message":"Equipment client HL7 -> error: read ECONNRESET","stack":"Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)","syscall":"read"}
+{"level":"error","message":"Error extracting complete HL7 data: rawMessage.subarray is not a function","stack":"TypeError: rawMessage.subarray is not a function\n    at isValidMessage (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:110:33)\n    at removeMllpFraming (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:28:10)\n    at parseRawHL7ToString (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:89:12)\n    at HL7toJson (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:120:22)\n    at getSegmentData (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:141:22)\n    at getInformationBySegmentTypeAndIndex (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\parser.js:149:25)\n    at extractMessageHeaderInfo (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\segments\\header.js:9:25)\n    at hl7DataExtract (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-data-extract.js:19:31)\n    at Object.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\parser-example.js:35:26)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)"}
+
+[2025-07-01 07:11:53] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:11:55] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:12:59] -> Uncaught Exception: targetSocket is not defined  {
+  "stack": "ReferenceError: targetSocket is not defined\n    at Socket.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:131:83)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)\n    at Readable.push (node:internal/streams/readable:390:5)\n    at TCP.onStreamRead (node:internal/stream_base_commons:191:23)"
+}
+
+
+[2025-07-01 07:13:52] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:13:52] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:13:57] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:13:57] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:02] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:02] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:07] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:07] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:08] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:08] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:13] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:13] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:18] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:18] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:23] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:23] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:24] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:24] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:29] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:29] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:34] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:34] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:39] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:39] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:40] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:40] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:45] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:45] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:50] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:50] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:55] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:55] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:56] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:14:56] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:01] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:01] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:06] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:06] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:11] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:11] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:12] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:12] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:17] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:17] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:22] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:22] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:27] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:27] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:28] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:28] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:33] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:33] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:38] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:38] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:43] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:43] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:44] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:44] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:49] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:49] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:15:52] -> ForwardProxy -> Proxy server error: listen EADDRINUSE: address already in use :::54000  {
+  "code": "EADDRINUSE",
+  "errno": -4091,
+  "syscall": "listen",
+  "address": "::",
+  "port": 54000,
+  "stack": "Error: listen EADDRINUSE: address already in use :::54000\n    at Server.setupListenHandle [as _listen2] (node:net:1904:16)\n    at listenInCluster (node:net:1961:12)\n    at Server.listen (node:net:2063:7)\n    at startForwardProxy (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:157:10)\n    at initializeForwardProxy (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\app.js:27:18)\n    at main (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\app.js:76:7)\n    at Object.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\app.js:131:1)\n    at Module._compile (node:internal/modules/cjs/loader:1469:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1548:10)\n    at Module.load (node:internal/modules/cjs/loader:1288:32)"
+}
+
+
+[2025-07-01 07:16:10] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-01 07:16:10] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:17:40] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:17:40] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:17:45] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:17:45] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:17:50] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:17:50] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:17:55] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:17:55] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:17:56] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:17:56] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:18:01] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:18:01] -> ForwardProxy -> LIS connection error: connect ECONNREFUSED 127.0.0.1:7006  {
+  "errno": -4078,
+  "code": "ECONNREFUSED",
+  "syscall": "connect",
+  "address": "127.0.0.1",
+  "port": 7006,
+  "stack": "Error: connect ECONNREFUSED 127.0.0.1:7006\n    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1607:16)"
+}
+
+
+[2025-07-01 07:18:23] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 07:18:24] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 07:18:28] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 07:18:29] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 07:18:33] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 07:18:34] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 07:28:18] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-01 07:28:23] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 07:30:42] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-01 07:53:43] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-01 07:53:48] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 07:54:21] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 07:54:21] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:07] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-01 19:35:12] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:17] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:22] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-01 19:35:24] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
