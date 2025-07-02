@@ -1,6 +1,7 @@
 module.exports = {
   ...require('./helpers/parser'),
   ...require('./helpers/convert-to-qc-json'),
+  ...require('./helpers/convert-to-qc-json-cobas'),
   ...require('./helpers/hl7-acknowledgment'),
   ...require('./helpers/mappers'),
   ...require('./helpers/handle-buffer'),

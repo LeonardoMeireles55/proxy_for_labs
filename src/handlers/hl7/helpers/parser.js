@@ -38,6 +38,16 @@ const removeMllpFraming = (rawMessage) => {
   return cleanMessage;
 };
 
+const escapeHL7 = (text) => {
+  if (!text) return '';
+  return text
+    .replaceAll('|', '\\F\\')
+    .replaceAll('^', '\\S\\')
+    .replaceAll('&', '\\T\\')
+    .replaceAll('~', '\\R\\')
+    .replaceAll('\\', '\\E\\');
+}
+
 /**
  * Unescape HL7 special characters according to HL7 encoding rules.
  * Converts HL7 escape sequences back to their original characters:
@@ -72,7 +82,9 @@ const unescapeHL7 = (text) => {
 const formatHL7LineBreaks = (text) => {
   if (!text) return '';
 
-  return text.replaceAll('\n', HL7_FRAMING.SEGMENT_SEPARATOR.toString('utf8'))
+  const newtext = text.replaceAll(',', '').replaceAll(/["\\]/g, "").replaceAll(/\\"{2}/g, '')
+
+  return unescapeHL7(newtext).replaceAll('\n', HL7_FRAMING.SEGMENT_SEPARATOR.toString('utf8'))
 };
 
 const parseRawStringToHL7Buffer = (/** @type {string} */ rawMessage) => {
@@ -297,13 +309,12 @@ const parseMshSegment = (cleanMessage) => {
   const msh9 = mshFields[8] || 'ORU^R01^ORU_R01';
   const triggerEvent = msh9.split('^')[1] || 'R01';
 
-  log.debug('Extracted MSH fields:', { messageControlId, msh9, triggerEvent });
-
   return { messageControlId, triggerEvent };
 };
 
 module.exports = {
   HL7toJson,
+  HL7BufferToJson,
   getSegmentData,
   getInformationBySegmentTypeAndIndex,
   getHL7ValueBySegmentTypeFieldComponentAndSubcomponent,

@@ -9,6 +9,7 @@ const { extractOrderInfo } = require('../segments/order');
 const { extractPatientInfo } = require('../segments/patient');
 const { extractObxSegments } = require('../segments/results');
 const { extractSpecimenInfo } = require('../segments/specimen');
+const { extractSpecimenContainerInfo } = require('../segments/specimen-container-detail')
 const { extractQcValuesAndConvertToJson } = require('./convert-to-qc-json');
 const { cleanObject } = require('./mappers');
 const { parseRawHL7ToString } = require('./parser');
@@ -26,6 +27,7 @@ const extractHl7Data = (message) => {
     const specimenInfo = extractSpecimenInfo(message);
     const equipmentInfo = extractEquipmentInfo(message);
     const equipmentCommandInfo = extractEquipmentCommandInfo(message);
+    const specimenContainerInfo = extractSpecimenContainerInfo(message);
     const inventoryInfo = extractInventoryInfo(message);
     const labResults = extractObxSegments(parseRawHL7ToString(message));
 
@@ -34,6 +36,9 @@ const extractHl7Data = (message) => {
       ...(Object.keys(patientInfo).length && { patient: patientInfo }),
       ...(Object.keys(orderInfo).length && { order: orderInfo }),
       ...(Object.keys(specimenInfo).length && { specimen: specimenInfo }),
+      ...(Object.keys(specimenContainerInfo).length && {
+        specimenContainer: specimenContainerInfo
+      }),
       ...(Object.keys(equipmentInfo).length && { equipment: equipmentInfo }),
       ...(Object.keys(equipmentCommandInfo).length && {
         equipmentCommand: equipmentCommandInfo
