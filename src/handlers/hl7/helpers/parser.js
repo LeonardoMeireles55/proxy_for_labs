@@ -202,7 +202,7 @@ const HL7BufferToJson = (rawMessage) => {
             json[segmentType] = []
           }
 
-          json[segmentType].push(segmentData)
+          json[segmentType].push(segmentBuffer)
         }
       }
       segmentStart = i + 1
@@ -231,7 +231,7 @@ const getSegmentData = (rawMessage, segmentType) => {
  * Get field value by segment type and field index
  * @param {Buffer} message - The HL7 message buffer
  * @param {string} segmentType - The type of HL7 segment (e.g., 'PID', 'OBR')
- * @param {number} fieldIndex - The index of the field within the segment(0-based)
+ * @param {number} fieldIndex - The index of the field within the segment (1-based for HL7 standard)
  * @returns {string|null} The value of the specified field, or null if not found
  */
 const getInformationBySegmentTypeAndIndex = (
@@ -239,12 +239,42 @@ const getInformationBySegmentTypeAndIndex = (
   segmentType,
   fieldIndex
 ) => {
-  const segmentData = getSegmentData(message, segmentType);
+  const segmentData = getSegmentData(message, segmentType)
 
-  if (!segmentData) return null;
+  if (!segmentData) return null
 
-  const fields = segmentData.split('|');
-  return fields[fieldIndex] || null;
+  if(segmentType === 'MSH' && fieldIndex < 1) {
+    return segmentData.toString().split('|')[0] || null
+  }
+
+  // For MSH segment, field 1 is the field separator character
+  if (segmentType === 'MSH' && fieldIndex === 1) {
+    return '|'
+  }
+
+  const segmentString = segmentData.toString()
+  const fields = segmentString.split('|')
+
+  // For MSH segment, field 2 is the encoding characters (after the first |)
+  if (segmentType === 'MSH' && fieldIndex === 2) {
+    // Extract encoding characters from the segment string directly
+    const pipeIndex = segmentString.indexOf('|')
+    if (pipeIndex >= 0 && pipeIndex + 1 < segmentString.length) {
+      const afterPipe = segmentString.substring(pipeIndex + 1)
+      const nextPipeIndex = afterPipe.indexOf('|')
+      return nextPipeIndex >= 0 ? afterPipe.substring(0, nextPipeIndex) : afterPipe
+    }
+    return null
+  }
+
+  // For other fields in MSH and all fields in other segments
+  if (segmentType === 'MSH') {
+    // MSH fields are offset by 1 because field 1 and 2 are handled specially
+    return fields[fieldIndex - 1] || null
+  }
+
+  // For non-MSH segments, use standard indexing
+  return fields[fieldIndex] || null
 };
 
 /**
@@ -300,7 +330,7 @@ const parseMshSegment = (cleanMessage) => {
   }
 
   if(Buffer.isBuffer(cleanMessage)) {
-    cleanMessage = parseRawHL7ToString(cleanMessage).toString();
+    cleanMessage = cleanMessage.toString('utf8');
   }
 
   const mshSegment = cleanMessage.split('\r')[0];

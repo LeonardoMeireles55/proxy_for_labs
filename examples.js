@@ -174,37 +174,37 @@ const msh = parseMshSegment(cobasMock)
 
 log.info('MSH Segment:', msh)
 
-// const rawHL7MessageString = parseRawHL7ToString(rawHL7MessageBuffer)
-// // log.debug('HL7 Message text', rawHL7MessageString)
+const rawHL7MessageString = parseRawHL7ToString(rawHL7MessageBuffer)
+// log.debug('HL7 Message text', rawHL7MessageString)
 
-// const extractedHL7Data = extractHl7Data(rawHL7MessageBuffer)
-// log.debug('Extracted HL7 Data:', extractedHL7Data)
+const extractedHL7Data = extractHl7Data(rawHL7MessageBuffer)
+log.debug('Extracted HL7 Data:', extractedHL7Data)
 
-// const jsonData = HL7BufferToJson(rawHL7MessageBuffer)
+const jsonData = HL7BufferToJson(rawHL7MessageBuffer)
 
 // log.debug('HL7 Data as JSON:', jsonData)
 // log.debug('HL7 SAC:', jsonData.SAC)
 
-// const segment = getInformationBySegmentTypeAndIndex(
-//   rawHL7MessageBuffer,
-//   'SAC',
-//   1
-// )
+const segment = getInformationBySegmentTypeAndIndex(
+  rawHL7MessageBuffer,
+  'MSH',
+  0
+)
 
-// log.debug(`Segment SAC.12 -> ${segment}`)
+log.debug(`Segment MSH.1 -> ${segment}`)
 
 
-// const componentValue = getHL7ValueBySegmentTypeFieldComponentAndSubcomponent(
-//   rawHL7MessageBuffer,
-//   'SAC',
-//   12, // Field index for PID.5
-//   1, // Component index for the first component
-//   0 // Subcomponent index (not used here)
-// )
+const componentValue = getHL7ValueBySegmentTypeFieldComponentAndSubcomponent(
+  rawHL7MessageBuffer,
+  'SAC',
+  12, // Field index for PID.5
+  2, // Component index for the first component
+  0 // Subcomponent index (not used here)
+)
 
 // log.debug(`Component for PID.5.1: ${componentValue}`)
 
-// // writeDebugFile(JSON.stringify(jsonData, null, 2), 'parsing-example')
+// writeDebugFile(JSON.stringify(jsonData, null, 2), 'parsing-example')
 
 // extractQcValuesAndConvertToJsonCobas(extractedHL7Data)
 
