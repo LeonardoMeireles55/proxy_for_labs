@@ -1363,3 +1363,11 @@
 
 [2025-07-03 16:53:40] -> Error: 409 - An error occurred while sending the data 
 
+
+[2025-07-03 18:38:47] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
