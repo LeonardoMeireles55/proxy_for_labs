@@ -1072,3 +1072,276 @@
   "stack": "TypeError: Cannot read properties of undefined (reading 'substanceIdentifier')\n    at transformResultCobas (/home/leonardo/proxy_for_labs/src/handlers/hl7/helpers/convert-to-qc-json-cobas.js:356:34)\n    at /home/leonardo/proxy_for_labs/src/handlers/hl7/helpers/convert-to-qc-json-cobas.js:455:7\n    at Array.map (<anonymous>)\n    at extractQcValuesAndConvertToJsonCobas (/home/leonardo/proxy_for_labs/src/handlers/hl7/helpers/convert-to-qc-json-cobas.js:454:49)\n    at Object.<anonymous> (/home/leonardo/proxy_for_labs/examples.js:304:12)\n    at Module._compile (node:internal/modules/cjs/loader:1358:14)\n    at Module._extensions..js (node:internal/modules/cjs/loader:1416:10)\n    at Module.load (node:internal/modules/cjs/loader:1208:32)\n    at Module._load (node:internal/modules/cjs/loader:1024:12)\n    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:174:12)"
 }
 
+
+[2025-07-03 07:43:39] -> Error converting to Qc Json: Cannot read properties of undefined (reading 'specimenRole')  {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'specimenRole')\n    at extractQcValuesAndConvertToJsonCobas (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\convert-to-qc-json-cobas.js:358:26)\n    at extractHl7Data (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-data-extract.js:52:5)\n    at processHL7Message (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-message-handle.js:13:16)\n    at handleBuffer (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\handle-buffer.js:24:5)\n    at forwardToTarget (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:111:5)\n    at Socket.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:133:20)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)\n    at Readable.push (node:internal/streams/readable:390:5)"
+}
+
+
+[2025-07-03 07:43:39] -> Error converting to Qc Json: Cannot read properties of undefined (reading 'specimenRole')  {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'specimenRole')\n    at extractQcValuesAndConvertToJsonCobas (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\convert-to-qc-json-cobas.js:358:26)\n    at extractHl7Data (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-data-extract.js:52:5)\n    at processHL7Message (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-message-handle.js:13:16)\n    at handleBuffer (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\handle-buffer.js:24:5)\n    at Socket.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:58:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)\n    at Readable.push (node:internal/streams/readable:390:5)\n    at TCP.onStreamRead (node:internal/stream_base_commons:191:23)"
+}
+
+
+[2025-07-03 07:43:40] -> Error converting to Qc Json: Cannot read properties of undefined (reading 'specimenRole')  {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'specimenRole')\n    at extractQcValuesAndConvertToJsonCobas (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\convert-to-qc-json-cobas.js:358:26)\n    at extractHl7Data (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-data-extract.js:52:5)\n    at processHL7Message (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-message-handle.js:13:16)\n    at handleBuffer (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\handle-buffer.js:24:5)\n    at forwardToTarget (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:111:5)\n    at Socket.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:133:20)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)\n    at Readable.push (node:internal/streams/readable:390:5)"
+}
+
+
+[2025-07-03 07:43:40] -> Error converting to Qc Json: Cannot read properties of undefined (reading 'specimenRole')  {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'specimenRole')\n    at extractQcValuesAndConvertToJsonCobas (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\convert-to-qc-json-cobas.js:358:26)\n    at extractHl7Data (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-data-extract.js:52:5)\n    at processHL7Message (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-message-handle.js:13:16)\n    at handleBuffer (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\handle-buffer.js:24:5)\n    at Socket.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:58:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)\n    at Readable.push (node:internal/streams/readable:390:5)\n    at TCP.onStreamRead (node:internal/stream_base_commons:191:23)"
+}
+
+
+[2025-07-03 07:44:42] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 07:44:51] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-03 07:44:51] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-03 07:45:07] -> Error converting to Qc Json: Cannot read properties of undefined (reading 'specimenRole')  {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'specimenRole')\n    at extractQcValuesAndConvertToJsonCobas (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\convert-to-qc-json-cobas.js:358:26)\n    at extractHl7Data (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-data-extract.js:52:5)\n    at processHL7Message (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-message-handle.js:13:16)\n    at handleBuffer (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\handle-buffer.js:24:5)\n    at forwardToTarget (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:111:5)\n    at Socket.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:133:20)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)\n    at Readable.push (node:internal/streams/readable:390:5)"
+}
+
+
+[2025-07-03 07:45:07] -> Error converting to Qc Json: Cannot read properties of undefined (reading 'specimenRole')  {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'specimenRole')\n    at extractQcValuesAndConvertToJsonCobas (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\convert-to-qc-json-cobas.js:358:26)\n    at extractHl7Data (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-data-extract.js:52:5)\n    at processHL7Message (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-message-handle.js:13:16)\n    at handleBuffer (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\handle-buffer.js:24:5)\n    at Socket.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:58:7)\n    at Socket.emit (node:events:519:28)\n    at addChunk (node:internal/streams/readable:559:12)\n    at readableAddChunkPushByteMode (node:internal/streams/readable:510:3)\n    at Readable.push (node:internal/streams/readable:390:5)\n    at TCP.onStreamRead (node:internal/stream_base_commons:191:23)"
+}
+
+
+[2025-07-03 07:45:46] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 09:55:06] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 09:56:32] -> Error converting to Qc Json: Cannot read properties of undefined (reading 'testCode')  {
+  "stack": "TypeError: Cannot read properties of undefined (reading 'testCode')\n    at transformResultCobas (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\convert-to-qc-json-cobas.js:335:38)\n    at C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\convert-to-qc-json-cobas.js:392:7\n    at Array.map (<anonymous>)\n    at extractQcValuesAndConvertToJsonCobas (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\convert-to-qc-json-cobas.js:391:49)\n    at extractHl7Data (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-data-extract.js:52:5)\n    at processHL7Message (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\hl7-message-handle.js:13:16)\n    at handleBuffer (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\handlers\\hl7\\helpers\\handle-buffer.js:24:5)\n    at forwardToTarget (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:111:5)\n    at Socket.<anonymous> (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\proxies\\forward-proxy.js:133:20)\n    at Socket.emit (node:events:519:28)"
+}
+
+
+[2025-07-03 09:58:27] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 10:01:45] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 10:01:50] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-03 10:01:55] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-03 10:02:00] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-03 10:02:06] -> Lis Server -> Socket error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 10:02:42] -> Error: 403 - An error occurred while retrieving the token 
+
+
+[2025-07-03 10:02:42] -> Lis Server -> Socket error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 10:07:16] -> Error: 403 - An error occurred while retrieving the token 
+
+
+[2025-07-03 10:07:16] -> Lis Server -> Socket error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 10:12:40] -> Error: 403 - An error occurred while retrieving the token 
+
+
+[2025-07-03 10:12:41] -> Lis Server -> Socket error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 10:20:30] -> Error: 403 - An error occurred while retrieving the token 
+
+
+[2025-07-03 10:20:30] -> Lis Server -> Socket error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 10:23:36] -> Error: 403 - An error occurred while retrieving the token 
+
+
+[2025-07-03 10:23:36] -> Lis Server -> Socket error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 10:24:56] -> Error: 403 - An error occurred while retrieving the token 
+
+
+[2025-07-03 10:24:56] -> Lis Server -> Socket error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 10:26:57] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-03 10:26:58] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-03 10:27:29] -> An error occurred while sending the data: Failed to parse URL from () => {   switch (config.qcForSector) {     case 'hematology':       return API_BASE_HEMATOLOGY_URL;     case 'biochemistry':       return API_BASE_BIOCHEMISTRY_URL;     case 'coagulation':       return API_BASE_COAGULATION_URL;     default:       log.error(`Invalid QC sector: ${config.qcForSector}. Defaulting to hematology.`);       return API_BASE_HEMATOLOGY_URL;   } }  {
+  "stack": "TypeError: Failed to parse URL from () => {\r\n  switch (config.qcForSector) {\r\n    case 'hematology':\r\n      return API_BASE_HEMATOLOGY_URL;\r\n    case 'biochemistry':\r\n      return API_BASE_BIOCHEMISTRY_URL;\r\n    case 'coagulation':\r\n      return API_BASE_COAGULATION_URL;\r\n    default:\r\n      log.error(`Invalid QC sector: ${config.qcForSector}. Defaulting to hematology.`);\r\n      return API_BASE_HEMATOLOGY_URL;\r\n  }\r\n}\n    at node:internal/deps/undici/undici:13178:13\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async postQualityControlData (C:\\Users\\leonardo.meireles\\Documents\\proxy_for_lab_2\\src\\api\\send-cq-data.js:62:22)",
+  "cause": {
+    "code": "ERR_INVALID_URL",
+    "input": "() => {\r\n  switch (config.qcForSector) {\r\n    case 'hematology':\r\n      return API_BASE_HEMATOLOGY_URL;\r\n    case 'biochemistry':\r\n      return API_BASE_BIOCHEMISTRY_URL;\r\n    case 'coagulation':\r\n      return API_BASE_COAGULATION_URL;\r\n    default:\r\n      log.error(`Invalid QC sector: ${config.qcForSector}. Defaulting to hematology.`);\r\n      return API_BASE_HEMATOLOGY_URL;\r\n  }\r\n}"
+  }
+}
+
+
+[2025-07-03 10:29:12] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 10:29:17] -> Lis Server -> Socket error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 10:40:55] -> Error: 409 - An error occurred while sending the data 
+
+
+[2025-07-03 10:41:07] -> Error: 409 - An error occurred while sending the data 
+
+
+[2025-07-03 10:53:12] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 10:56:31] -> Error: 409 - An error occurred while sending the data 
+
+
+[2025-07-03 10:56:41] -> Error: 409 - An error occurred while sending the data 
+
+
+[2025-07-03 10:56:55] -> Error: 409 - An error occurred while sending the data 
+
+
+[2025-07-03 13:01:04] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 13:33:38] -> ForwardProxy -> LIS connection error: read ECONNRESET  {
+  "errno": -4077,
+  "code": "ECONNRESET",
+  "syscall": "read",
+  "stack": "Error: read ECONNRESET\n    at TCP.onStreamRead (node:internal/stream_base_commons:218:20)"
+}
+
+
+[2025-07-03 13:33:44] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-03 13:33:44] -> ForwardProxy -> LIS connection error:  {
+  "code": "ECONNREFUSED",
+  "stack": "AggregateError [ECONNREFUSED]: \n    at internalConnectMultiple (node:net:1118:18)\n    at afterConnectMultiple (node:net:1685:7)"
+}
+
+
+[2025-07-03 13:38:15] -> Error: 409 - An error occurred while sending the data 
+
+
+[2025-07-03 13:38:36] -> Error: 409 - An error occurred while sending the data 
+

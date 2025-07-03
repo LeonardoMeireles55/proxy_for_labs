@@ -6,7 +6,8 @@ const {
   getInformationBySegmentTypeAndIndex,
   getHL7ValueBySegmentTypeFieldComponentAndSubcomponent,
   HL7BufferToJson,
-  extractQcValuesAndConvertToJsonCobas
+  extractQcValuesAndConvertToJsonCobas,
+  parseMshSegment
 } = require('./src/handlers/hl7')
 const log = require('./configs/logger')
 const { writeDebugFile } = require('./src/shared/save-data-to-file')
@@ -168,11 +169,16 @@ const cobasMock = [`
 "OBX|6|NM|QC_SD_RANGE^QC_SD_RANGE^99ROC^S_OTHER^Other Supplemental^IHELAW|1|2.6|mmol/L^^99ROC||N^^HL70078|||F|||||HELV~BATCH||ISE^ROCHE~24V5-03^ROCHE~1^ROCHE|20250701191441||3||||||||RSLT"`].join('\r')
 
 const rawHL7MessageBuffer = parseRawStringToHL7Buffer(cobasMock)
-const rawHL7MessageString = parseRawHL7ToString(rawHL7MessageBuffer)
-log.debug('HL7 Message text', rawHL7MessageString)
 
-const extractedHL7Data = extractHl7Data(rawHL7MessageBuffer)
-log.debug('Extracted HL7 Data:', extractedHL7Data)
+const msh = parseMshSegment(cobasMock)
+
+log.info('MSH Segment:', msh)
+
+// const rawHL7MessageString = parseRawHL7ToString(rawHL7MessageBuffer)
+// // log.debug('HL7 Message text', rawHL7MessageString)
+
+// const extractedHL7Data = extractHl7Data(rawHL7MessageBuffer)
+// log.debug('Extracted HL7 Data:', extractedHL7Data)
 
 // const jsonData = HL7BufferToJson(rawHL7MessageBuffer)
 
@@ -198,9 +204,9 @@ log.debug('Extracted HL7 Data:', extractedHL7Data)
 
 // log.debug(`Component for PID.5.1: ${componentValue}`)
 
-// writeDebugFile(JSON.stringify(jsonData, null, 2), 'parsing-example')
+// // writeDebugFile(JSON.stringify(jsonData, null, 2), 'parsing-example')
 
-extractQcValuesAndConvertToJsonCobas(extractedHL7Data)
+// extractQcValuesAndConvertToJsonCobas(extractedHL7Data)
 
 module.exports = {
   rawHL7MessageBuffer

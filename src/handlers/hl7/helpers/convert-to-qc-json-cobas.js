@@ -189,21 +189,35 @@ const groupResultsByTestCode = (results) => {
  */
 const getTestNameMapping = () => {
   return {
-    '20340': 'Total Protein',
-    '20411': 'Glucose',
-    '20420': 'ALT (Alanine Aminotransferase)',
-    '20600': 'AST (Aspartate Aminotransferase)',
-    '20710': 'Albumin',
-    '20810': 'Alkaline Phosphatase',
-    '20990': 'Creatinine',
-    '21130': 'Cholesterol',
-    '21191': 'Triglycerides',
-    '29070': 'Sodium',
-    '29080': 'Potassium',
-    '29090': 'Chloride',
-    // Add more mappings as needed
+    '20090': 'ALB2',
+    '20110': 'ALP2S',
+    '20140': 'ALTL',
+    '20230': 'ASTL',
+    '20170': 'AMYL2',
+    '20300': 'BILD2',
+    '20310': 'BILT3',
+    '20340': 'CA2',
+    '20411': 'CHOL2',
+    '21130': 'TRIGL',
+    '21170': 'UA2',
+    '21191': 'UREAL',
+    '20420': 'CK2',
+    '20430': 'CKMB2',
+    '20470': 'CREJ2',
+    '20500': 'CRP4',
+    '20600': 'GGTI2',
+    '20630': 'GLUC3',
+    '20710': 'HDLC4',
+    '29090': 'CL-I',
+    '29080': 'K-I',
+    '29070': 'NA-I',
+    '20990': 'PHOS2',
+    '20810': 'LDHI2',
+    '20850': 'LIP',
+    '20890': 'MG-2',
   };
 };
+
 
 
 /**
@@ -316,14 +330,15 @@ const transformResultCobas = (result, hl7Data, qcLevel) => {
 
   const qualityControlObject = {
     date,
-    // test_lot: '-',
+    test_lot: '-',
     level_lot: hl7Data.specimenContainer?.carrierIdentifier || 'DEFAULT_LOT',
-    name: result.testCode,
+    name: getTestNameMapping()[result.testCode] || result.testCode,
     level: hl7Data.inventory?.substanceIdentifier.split('^')[1],
     value: result.value,
     mean,
     sd,
     unit_value: result.unit,
+    equipment: 11
   };
 
   return qualityControlObject;
@@ -354,6 +369,12 @@ const transformResultCobas = (result, hl7Data, qcLevel) => {
  */
 const extractQcValuesAndConvertToJsonCobas = (hl7Data) => {
   try {
+
+    if (hl7Data.specimen?.specimenRole[0] != 'Q' || hl7Data.specimen == undefined) {
+      log.warn('HL7 message is not a quality control message, skipping conversion');
+      return null;
+    }
+
     if (!hl7Data.results || !Array.isArray(hl7Data.results)) {
       return null;
     }

@@ -2,6 +2,9 @@ const log = require('../../configs/logger');
 const config = require('../../configs/config');
 
 const API_BASE_URL = config.baseUrl
+
+const API_BASE_LOGIN = `${API_BASE_URL}/users/sign-in`;
+
 const API_BASE_HEMATOLOGY_URL = `${API_BASE_URL}/hematology-analytics`;
 const API_BASE_BIOCHEMISTRY_URL = `${API_BASE_URL}/biochemistry-analytics`;
 const API_BASE_COAGULATION_URL = `${API_BASE_URL}/coagulation-analytics`;
@@ -28,7 +31,8 @@ const AUTH_CREDENTIALS = JSON.stringify({
 
 const retrieveToken = async () => {
   const responseToken = await fetch(
-    `${API_BASE_URL}/users/sign-in`,
+    `${API_BASE_LOGIN}`
+    ,
     {
       method: 'POST',
       headers: {
@@ -50,11 +54,12 @@ const retrieveToken = async () => {
 };
 
 const postQualityControlData = async (transformedData) => {
+
   const token = await retrieveToken();
 
   try {
     const response = await fetch(
-      `${API_CQ_URL}`,
+      `${API_CQ_URL()}`,
       {
         method: 'POST',
         headers: {

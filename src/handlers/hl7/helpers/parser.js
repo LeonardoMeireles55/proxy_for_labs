@@ -240,6 +240,7 @@ const getInformationBySegmentTypeAndIndex = (
   fieldIndex
 ) => {
   const segmentData = getSegmentData(message, segmentType);
+
   if (!segmentData) return null;
 
   const fields = segmentData.split('|');
@@ -299,7 +300,7 @@ const parseMshSegment = (cleanMessage) => {
   }
 
   if(Buffer.isBuffer(cleanMessage)) {
-    cleanMessage = cleanMessage.toString('utf8');
+    cleanMessage = parseRawHL7ToString(cleanMessage).toString();
   }
 
   const mshSegment = cleanMessage.split('\r')[0];
