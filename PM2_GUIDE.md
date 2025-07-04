@@ -56,12 +56,10 @@ O arquivo `ecosystem.config.js` define dois processos:
 1. **lab-emulator** (`start-emu-environment.js`)
    - Inicia primeiro
    - Simula equipamentos de laboratório
-   - Logs: `./logs/emulator*.log`
 
 2. **lab-proxy** (`app.js`)
    - Inicia depois do emulador
    - Proxy TCP para comunicação
-   - Logs: `./logs/proxy*.log`
 
 ## Configuração Automática no Boot
 
