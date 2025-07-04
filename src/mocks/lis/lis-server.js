@@ -75,12 +75,10 @@ const LisServer = () => {
     socket.on('data', (data) => {
       log.debug(
         'Lis Server -> Received data from client:',
-        extractHl7Data(data);
+        parseRawHL7ToString(data)
       );
 
       sendHL7Acknowledgment(data, socket);
-
-      // socket.write(rawHL7MessageBuffer);
     });
 
     socket.on('error', (err) => {

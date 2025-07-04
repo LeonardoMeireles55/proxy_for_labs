@@ -8,8 +8,8 @@
  */
 
 const net = require('node:net');
-const log = require('../../helpers/logging/logger');
-const { ASTM } = require('../../proxy/utils');
+const { ASCII_BUFFERS } = require('../../handlers/utils/buffers')
+const log = require('../../../configs/logger')
 
 /**
  * Creates a laboratory equipment simulator server
@@ -26,23 +26,23 @@ const createEquipmentServerASTM = () => {
     // Send initial ENQ to start communication
     setTimeout(() => {
       log.debug('Sending ENQ to start communication');
-      socket.write(Buffer.from([ASTM.ENQ]));
+      socket.write(Buffer.from([ASCII_BUFFERS.ENQ]));
     }, 1000);
 
     socket.on('data', (data) => {
       log.debug(`Received data: ${data.toString('latin1')}`);
 
-      if (data[0] === ASTM.ENQ) {
+      if (data[0] === ASCII_BUFFERS.ENQ) {
         log.debug('Received ENQ, sending ACK');
 
-        socket.write(Buffer.from([ASTM.ACK]));
+        socket.write(Buffer.from([ASCII_BUFFERS.ACK]));
       }
 
-      if (data[0] === ASTM.ACK) {
+      if (data[0] === ASCII_BUFFERS.ACK) {
         log.debug('Received ACK, ready for data transmission');
       } else {
         log.debug('Echoing data back');
-        socket.write(Buffer.from([ASTM.ACK]));
+        socket.write(Buffer.from([ASCII_BUFFERS.ACK]));
       }
     });
 

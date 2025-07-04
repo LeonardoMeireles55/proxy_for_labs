@@ -21,12 +21,7 @@ module.exports = {
       },
       env_production: {
         NODE_ENV: 'production'
-      },
-      log_file: './logs/emulator.log',
-      out_file: './logs/emulator-out.log',
-      error_file: './logs/emulator-error.log',
-      time: true,
-      merge_logs: true
+      }
     },
     {
       name: 'lab-proxy',
@@ -41,11 +36,6 @@ module.exports = {
       env_production: {
         NODE_ENV: 'production'
       },
-      log_file: './logs/proxy.log',
-      out_file: './logs/proxy-out.log',
-      error_file: './logs/proxy-error.log',
-      time: true,
-      merge_logs: true,
       // Start delay to ensure emulator starts first
       wait_ready: true,
       listen_timeout: 10000,

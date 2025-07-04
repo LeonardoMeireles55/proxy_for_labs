@@ -1,22 +1,22 @@
 const net = require('node:net');
-const log = require('../../helpers/logging/logger');
-const { ASTM } = require('../../proxy/utils');
-const config = require('../../config');
+const { ASCII_BUFFERS } = require('../../handlers/utils/buffers');
+const log = require('../../../configs/logger')
+const config = require('../../../configs/config')
 
 /**
  * ASTM message handlers
  */
 const messageHandlers = {
-  [ASTM.ENQ]: (equipment) => {
+  [ASCII_BUFFERS.ENQ]: (equipment) => {
     log.debug('Equipment client -> received ENQ, sending ACK');
-    equipment.write(Buffer.from([ASTM.ACK]));
+    equipment.write(Buffer.from([ASCII_BUFFERS.ACK]));
   },
 
-  [ASTM.ACK]: () => {
+  [ASCII_BUFFERS.ACK]: () => {
     log.debug('Equipment client -> received ACK, ready for data transmission');
   },
 
-  [ASTM.EOT]: (equipment) => {
+  [ASCII_BUFFERS.EOT]: (equipment) => {
     log.debug('Equipment client -> received EOT, closing connection');
     equipment.end();
   }
@@ -31,7 +31,7 @@ const handleData = (equipment, data) => {
   if (messageType === null || messageType === undefined) {
     log.warn('Equipment client -> received empty data, sending NAK');
 
-    return equipment.write(Buffer.from([ASTM.NAK]));
+    return equipment.write(Buffer.from([ASCII_BUFFERS.NAK]));
   }
 
   const handler = messageHandlers[messageType];
@@ -42,7 +42,7 @@ const handleData = (equipment, data) => {
 
   log.debug('Equipment client -> echoing data back');
 
-  equipment.write(Buffer.from([ASTM.ACK]));
+  equipment.write(Buffer.from([ASCII_BUFFERS.ACK]));
 };
 
 /**
@@ -58,7 +58,7 @@ const createConnection = () => {
       log.debug(
         'Equipment client -> connected, sending ENQ to start communication'
       );
-      equipment.write(Buffer.from([ASTM.ENQ]));
+      equipment.write(Buffer.from([ASCII_BUFFERS.ENQ]));
     }
   );
 
