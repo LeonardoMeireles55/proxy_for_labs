@@ -178,6 +178,7 @@ const rawHL7MessageString = parseRawHL7ToString(rawHL7MessageBuffer)
 // log.debug('HL7 Message text', rawHL7MessageString)
 
 const extractedHL7Data = extractHl7Data(rawHL7MessageBuffer)
+
 log.debug('Extracted HL7 Data:', extractedHL7Data)
 
 const jsonData = HL7BufferToJson(rawHL7MessageBuffer)
@@ -201,6 +202,12 @@ const componentValue = getHL7ValueBySegmentTypeFieldComponentAndSubcomponent(
   2, // Component index for the first component
   0 // Subcomponent index (not used here)
 )
+
+const extractQcValuesAndConvertToJson = extractQcValuesAndConvertToJsonCobas(
+  extractedHL7Data
+)
+
+log.debug('Extracted QC Values:', extractQcValuesAndConvertToJson)
 
 // log.debug(`Component for PID.5.1: ${componentValue}`)
 
