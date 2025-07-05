@@ -114,75 +114,6 @@ const parseLevel = (value) => {
   return null;
 };
 
-/**
- * Groups results by test code and extracts QC parameters for cobas®pure equipment
- *
- * This function processes cobas®pure HL7 results and groups them by test code,
- * extracting the test value, QC_TARGET, and QC_SD_RANGE for each test.
- * It filters out non-test observations like Pipetting_Time and CalibrationID.
- *
- * @function groupResultsByTestCode
- * @param {Object[]} results - Array of laboratory result objects from cobas®pure
- * @param {string} results[].observationName - Test code or parameter name
- * @param {string} results[].value - The result value
- * @param {string} results[].unit - The measurement unit (mg/dL, U/L, mmol/L, etc.)
- * @param {string} results[].observationTimestamp - Timestamp of the observation
- * @returns {Object[]} Array of grouped test results with QC parameters
- *
- * @example
- * const results = [
- *   { observationName: '20340', value: '9.02', unit: 'mg/dL', observationTimestamp: '20250701192446' },
- *   { observationName: 'QC_TARGET', value: '8.78', unit: 'mg/dL' },
- *   { observationName: 'QC_SD_RANGE', value: '0.361', unit: 'mg/dL' }
- * ];
- * const grouped = groupResultsByTestCode(results);
- * // Returns grouped test results with QC parameters
- */
-const groupResultsByTestCode = (results) => {
-  const testGroups = {};
-  const resultsByTimestamp = {};
-
-  results.forEach((result) => {
-    const timestamp = result.observationTimestamp;
-    if (!resultsByTimestamp[timestamp]) {
-      resultsByTimestamp[timestamp] = [];
-    }
-    resultsByTimestamp[timestamp].push(result);
-  });
-
-  Object.values(resultsByTimestamp).forEach((timestampResults) => {
-    // Find ALL test results (not just the first one)
-    const testResults = timestampResults.filter(r =>
-      /^\d{5}$/.test(r.observationName) &&
-      r.unit &&
-      !isNaN(parseFloat(r.value)) &&
-      !r.value.includes('^')
-    );
-
-    // Process each test result separately
-    testResults.forEach(testResult => {
-      const qcTarget = timestampResults.find(r =>
-        r.observationName === 'QC_TARGET' &&
-        r.observationTimestamp === testResult.observationTimestamp
-      );
-      const qcSdRange = timestampResults.find(r =>
-        r.observationName === 'QC_SD_RANGE' &&
-        r.observationTimestamp === testResult.observationTimestamp
-      );
-
-      testGroups[testResult.observationName] = {
-        testCode: testResult.observationName,
-        value: parseFloat(testResult.value),
-        unit: testResult.unit,
-        observationTimestamp: testResult.observationTimestamp,
-        qcTarget: qcTarget ? parseFloat(qcTarget.value) : null,
-        qcSdRange: qcSdRange ? parseFloat(qcSdRange.value) : null
-      };
-    });
-  });
-
-  return Object.values(testGroups);
-};
 
 /**
  * Creates a test code to name mapping for cobas®pure equipment
@@ -222,33 +153,6 @@ const getTestNameMapping = () => {
   };
 };
 
-
-
-/**
- * Calculates statistical measures using QC_TARGET and QC_SD_RANGE from cobas®pure
- *
- * This function uses the QC target value and standard deviation range provided
- * by the cobas®pure equipment instead of calculating from reference ranges.
- * This provides more accurate QC statistics based on the equipment's calibration.
- *
- * @function calculateStatisticsFromQC
- * @param {number} value - The measured numeric value
- * @param {number} qcTarget - QC target value from the equipment
- * @param {number} qcSdRange - QC standard deviation range from the equipment
- * @returns {Object} Object containing calculated statistics
- *
- * @example
- * const stats = calculateStatisticsFromQC(9.02, 8.78, 0.361);
- * console.log(stats); // { mean: 8.78, sd: 0.361 }
- */
-const calculateStatisticsFromQC = (value, qcTarget, qcSdRange) => {
-  if (qcTarget !== null && qcSdRange !== null && !isNaN(qcTarget) && !isNaN(qcSdRange)) {
-    return { mean: qcTarget, sd: qcSdRange };
-  }
-
-  // Fallback to original calculation if QC values are not available
-  return { mean: value, sd: value };
-};
 
 /**
  * Calculates statistical measures (mean and standard deviation) from a reference range
@@ -305,9 +209,7 @@ const calculateStatistics = (value, referenceRange) => {
  * data with metadata from the HL7 message and uses QC statistics from the equipment.
  *
  * @function transformResultCobas
- * @param {Object} result - Individual laboratory result object with QC data
  * @param {Object} hl7Data - HL7 message data containing order and patient Information
- * @param {string} qcLevel - Quality control level (low, normal, high)
  *
  * @example
  * const result = {
@@ -325,25 +227,43 @@ const calculateStatistics = (value, referenceRange) => {
  * const transformed = transformResultCobas(result, hl7Data, 'normal');
  * // Returns quality control object with QC statistics from equipment
  */
-const transformResultCobas = (result, hl7Data, qcLevel) => {
-  const date = parseHL7Date(result.observationTimestamp || hl7Data.order?.observationDateTime);
+const transformResultCobas = (hl7Data) => {
 
-  const { mean, sd } = calculateStatisticsFromQC(result.value, result.qcTarget, result.qcSdRange);
+  let infoValues = 0
+  let infoQCTarget = 4
+  let infoQCSdRange = 5
 
-  const qualityControlObject = {
-    date,
-    test_lot: '-',
-    level_lot: hl7Data.specimenContainer?.carrierIdentifier || 'DEFAULT_LOT',
-    name: getTestNameMapping()[result.testCode] || result.testCode,
-    level: hl7Data.inventory?.substanceIdentifier.split('^')[1],
-    value: result.value,
-    mean,
-    sd,
-    unit_value: result.unit,
-    equipment: 11
-  };
+  const result = []
+  const length = hl7Data.results.length;
 
-  return qualityControlObject;
+  hl7Data.results.forEach((res) => {
+
+      if(infoValues >= length || infoQCTarget >= length || infoQCSdRange >= length) {
+        return;
+      }
+
+      const cqObject = {
+        date: parseHL7Date(res.observationTimestamp || hl7Data.order?.observationDateTime),
+        test_lot: '-',
+        level_lot: hl7Data.specimenContainer?.carrierIdentifier || 'DEFAULT_LOT',
+        name: getTestNameMapping()[hl7Data.results[infoValues].observationName],
+        level: hl7Data.inventory?.substanceIdentifier.split('^')[1],
+        value: hl7Data.results[infoValues].value,
+        mean: hl7Data.results[infoQCTarget].value,
+        sd: hl7Data.results[infoQCSdRange].value,
+        unit_value: hl7Data.results[infoValues].unit,
+        equipment: 11
+      }
+    log.info(infoValues.toString())
+      result.push(cqObject)
+
+      infoValues = infoValues + 6
+      infoQCTarget = infoQCTarget + 6
+      infoQCSdRange = infoQCSdRange + 6
+
+  });
+
+  return result;
 };
 
 
@@ -381,19 +301,8 @@ const extractQcValuesAndConvertToJsonCobas = (hl7Data) => {
       return null;
     }
 
-    // Group results by test code and extract QC parameters
-    const groupedResults = groupResultsByTestCode(hl7Data.results);
+    const qualityControlObject = transformResultCobas(hl7Data)
 
-    if (groupedResults.length === 0) {
-      log.warn('No valid test results found for QC conversion');
-      return null;
-    }
-
-    const qcLevel = extractQcLevel(hl7Data.inventory);
-
-    const qualityControlObject = groupedResults.map((result) =>
-      transformResultCobas(result, hl7Data, qcLevel)
-    );
 
     if (config.nodeEnv === 'development') {
       log.debug(
@@ -405,9 +314,10 @@ const extractQcValuesAndConvertToJsonCobas = (hl7Data) => {
       postQualityControlData(qualityControlObject);
     }
 
-    // writeDebugFile(JSON.stringify(qualityControlObject, null, 2));
+    writeDebugFile(JSON.stringify(qualityControlObject, null, 2));
 
     return qualityControlObject;
+
   } catch (error) {
     log.error('Error converting to Qc Json:', error);
     return null;
@@ -428,6 +338,5 @@ module.exports = {
   extractQcValuesAndConvertToJsonCobas,
   parseHL7Date,
   extractQcLevel,
-  groupResultsByTestCode,
   getTestNameMapping
 };
