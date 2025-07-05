@@ -254,7 +254,7 @@ const transformResultCobas = (hl7Data) => {
         unit_value: hl7Data.results[infoValues].unit,
         equipment: 11
       }
-    log.info(infoValues.toString())
+
       result.push(cqObject)
 
       infoValues = infoValues + 6
