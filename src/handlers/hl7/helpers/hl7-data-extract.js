@@ -65,6 +65,7 @@ const extractHl7Data = (message) => {
     });
 
     generateValidationReportCobas(data);
+
     extractQcValuesAndConvertToJsonCobas(data);
 
     log.debug('Complete HL7 data extracted successfully');
