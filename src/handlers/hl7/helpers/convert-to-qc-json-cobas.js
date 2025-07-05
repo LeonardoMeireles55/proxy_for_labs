@@ -140,8 +140,6 @@ const parseLevel = (value) => {
  */
 const groupResultsByTestCode = (results) => {
   const testGroups = {};
-
-  // Group results by timestamp to associate QC values with test results
   const resultsByTimestamp = {};
 
   results.forEach((result) => {
@@ -152,19 +150,25 @@ const groupResultsByTestCode = (results) => {
     resultsByTimestamp[timestamp].push(result);
   });
 
-  // Process each timestamp group
   Object.values(resultsByTimestamp).forEach((timestampResults) => {
-    // Find the main test result (numeric code like 20340, 20411, etc.)
-    const testResult = timestampResults.find(r =>
+    // Find ALL test results (not just the first one)
+    const testResults = timestampResults.filter(r =>
       /^\d{5}$/.test(r.observationName) &&
       r.unit &&
       !isNaN(parseFloat(r.value)) &&
       !r.value.includes('^')
     );
 
-    if (testResult) {
-      const qcTarget = timestampResults.find(r => r.observationName === 'QC_TARGET');
-      const qcSdRange = timestampResults.find(r => r.observationName === 'QC_SD_RANGE');
+    // Process each test result separately
+    testResults.forEach(testResult => {
+      const qcTarget = timestampResults.find(r =>
+        r.observationName === 'QC_TARGET' &&
+        r.observationTimestamp === testResult.observationTimestamp
+      );
+      const qcSdRange = timestampResults.find(r =>
+        r.observationName === 'QC_SD_RANGE' &&
+        r.observationTimestamp === testResult.observationTimestamp
+      );
 
       testGroups[testResult.observationName] = {
         testCode: testResult.observationName,
@@ -174,7 +178,7 @@ const groupResultsByTestCode = (results) => {
         qcTarget: qcTarget ? parseFloat(qcTarget.value) : null,
         qcSdRange: qcSdRange ? parseFloat(qcSdRange.value) : null
       };
-    }
+    });
   });
 
   return Object.values(testGroups);
@@ -324,8 +328,6 @@ const calculateStatistics = (value, referenceRange) => {
 const transformResultCobas = (result, hl7Data, qcLevel) => {
   const date = parseHL7Date(result.observationTimestamp || hl7Data.order?.observationDateTime);
 
-    console.log(hl7Data.specimenContainer);
-
   const { mean, sd } = calculateStatisticsFromQC(result.value, result.qcTarget, result.qcSdRange);
 
   const qualityControlObject = {
@@ -387,7 +389,7 @@ const extractQcValuesAndConvertToJsonCobas = (hl7Data) => {
       return null;
     }
 
-      const qcLevel = extractQcLevel(hl7Data.inventory);
+    const qcLevel = extractQcLevel(hl7Data.inventory);
 
     const qualityControlObject = groupedResults.map((result) =>
       transformResultCobas(result, hl7Data, qcLevel)
@@ -403,7 +405,7 @@ const extractQcValuesAndConvertToJsonCobas = (hl7Data) => {
       postQualityControlData(qualityControlObject);
     }
 
-    writeDebugFile(JSON.stringify(qualityControlObject, null, 2));
+    // writeDebugFile(JSON.stringify(qualityControlObject, null, 2));
 
     return qualityControlObject;
   } catch (error) {

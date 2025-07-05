@@ -8,10 +8,15 @@ const handleBuffer = (buffer, socket) => {
     allocatedBuffer = Buffer.concat([allocatedBuffer, buffer]);
   }
 
-  const endIndex = allocatedBuffer.indexOf(HL7_FRAMING.END_BLOCK);
+  // Process all complete messages in a loop
+  while (true) {
+    const endIndex = allocatedBuffer.indexOf(HL7_FRAMING.END_BLOCK);
 
-  // Process complete messages
-  if (endIndex !== -1) {
+    if (endIndex === -1) {
+      // No complete message found, exit loop
+      break;
+    }
+
     const completeMessage = allocatedBuffer.subarray(
       0,
       endIndex + HL7_FRAMING.END_BLOCK.length

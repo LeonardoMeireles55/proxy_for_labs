@@ -12,7 +12,7 @@ const processHL7Message = (message, socket) => {
 
   const data = extractHl7Data(message);
 
-  writeDebugFile(JSON.stringify(data, null, 2));
+  // writeDebugFile(JSON.stringify(data, null, 2));
 
   socket.write(message);
 

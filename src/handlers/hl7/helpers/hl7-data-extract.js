@@ -64,7 +64,7 @@ const extractHl7Data = (message) => {
       ...(labResults.length && { results: labResults })
     });
 
-    generateValidationReportCobas(data);
+    // generateValidationReportCobas(data);
 
     extractQcValuesAndConvertToJsonCobas(data);
 

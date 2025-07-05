@@ -168,44 +168,644 @@ const cobasMock = [`
 "OBX|5|NM|QC_TARGET^QC_TARGET^99ROC^S_OTHER^Other Supplemental^IHELAW|1|85.8|mmol/L^^99ROC||N^^HL70078|||F|||||HELV~BATCH||ISE^ROCHE~24V5-03^ROCHE~1^ROCHE|20250701191441||3||||||||RSLT",
 "OBX|6|NM|QC_SD_RANGE^QC_SD_RANGE^99ROC^S_OTHER^Other Supplemental^IHELAW|1|2.6|mmol/L^^99ROC||N^^HL70078|||F|||||HELV~BATCH||ISE^ROCHE~24V5-03^ROCHE~1^ROCHE|20250701191441||3||||||||RSLT"`].join('\r')
 
+const cq01 = {
+  "messageHeader": {
+    "fieldSeparator": "|",
+    "encodingCharacters": "^~\\&",
+    "sendingApplication": "cobas pure",
+    "receivingApplication": "Host",
+    "dateTimeOfMessage": "20250705134941+0900",
+    "messageType": "OUL^R22^OUL_R22",
+    "messageControlId": "1637",
+    "processingId": "P",
+    "versionId": "2.5.1",
+    "acceptAcknowledgmentType": "NE",
+    "applicationAcknowledgmentType": "AL",
+    "characterSet": "UNICODE UTF-8",
+    "messageProfileIdentifier": "LAB-29^IHE"
+  },
+  "order": {
+    "setId": "1",
+    "placerOrderNumber": "\"\"",
+    "universalServiceIdentifier": "20340^^99ROC"
+  },
+  "commonOrder": {
+    "orderControl": "SC",
+    "orderStatus": "CM"
+  },
+  "timingQuantity": {
+    "priority": "R^^HL70485"
+  },
+  "testCodeDetail": {
+    "universalServiceIdentifier": "20340^^99ROC",
+    "autoDilutionFactor": "^1^:^1"
+  },
+  "specimen": {
+    "setId": "1",
+    "specimenId": "20391&CONTROL",
+    "specimenType": "\"\"",
+    "specimenRole": "Q^^HL70369",
+    "specimenDescription": "~~~~",
+    "specimenExpirationDateTime": "20260430",
+    "specimenCondition": "PSCO^^99ROC",
+    "containerType": "SC^^99ROC"
+  },
+  "specimenContainer": {
+    "containerIdentifier": "20391^CONTROL",
+    "carrierIdentifier": "704966"
+  },
+  "inventory": {
+    "substanceIdentifier": "20391^PCCC1^99ROC",
+    "substanceStatus": "OK^^HL703843",
+    "substanceType": "CO^^HL70384",
+    "inventoryContainerIdentifier": "^^99ROC"
+  },
+  "results": [
+    {
+      "sequenceId": "1",
+      "observationName": "20340",
+      "value": "9.02",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192446"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "20340",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192446"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191426",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192446"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "54",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192446"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "8.78",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192446"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "0.361",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192446"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "20411",
+      "value": "106",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192454"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "20411",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192454"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191434",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192454"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "55",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192454"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "106",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192454"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "5.41",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192454"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "20420",
+      "value": "151",
+      "unit": "U/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192502"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "20420",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192502"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191442",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192502"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "56",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192502"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "151",
+      "unit": "U/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192502"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "9.00",
+      "unit": "U/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192502"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "20600",
+      "value": "47.3",
+      "unit": "U/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192510"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "20600",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192510"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191450",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192510"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "57",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192510"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "47.3",
+      "unit": "U/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192510"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "2.80",
+      "unit": "U/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192510"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "20710",
+      "value": "32.9",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192518"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "20710",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192518"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191458",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192518"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "58",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192518"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "30.8",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192518"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "2.47",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192518"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "20810",
+      "value": "172",
+      "unit": "U/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192526"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "20810",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192526"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191506",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192526"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "59",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192526"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "168",
+      "unit": "U/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192526"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "10.0",
+      "unit": "U/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192526"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "20990",
+      "value": "4.08",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192438"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "20990",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192438"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191418",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192438"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "60",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192438"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "4.06",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192438"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "0.217",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192438"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "21130",
+      "value": "114",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192534"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "21130",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192534"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191514",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192534"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "61",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192534"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "113",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192534"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "5.31",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192534"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "21191",
+      "value": "40.8",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192542"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "21191",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192542"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191522",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192542"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "62",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192542"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "38.7",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192542"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "1.92",
+      "unit": "mg/dL",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701192542"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "29070",
+      "value": "108.7",
+      "unit": "mmol/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "29070",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191410",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "13",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "113.0",
+      "unit": "mmol/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "3.0",
+      "unit": "mmol/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "29080",
+      "value": "3.49",
+      "unit": "mmol/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "29080",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191410",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "14",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "3.62",
+      "unit": "mmol/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "0.11",
+      "unit": "mmol/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "1",
+      "observationName": "29090",
+      "value": "81.9",
+      "unit": "mmol/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "2",
+      "observationName": "29090",
+      "value": "^^99ROC",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "3",
+      "observationName": "Pipetting_Time",
+      "value": "20250701191410",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "4",
+      "observationName": "CalibrationID",
+      "value": "15",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "5",
+      "observationName": "QC_TARGET",
+      "value": "85.8",
+      "unit": "mmol/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    },
+    {
+      "sequenceId": "6",
+      "observationName": "QC_SD_RANGE",
+      "value": "2.6",
+      "unit": "mmol/L",
+      "abnormalFlags": "N^^HL70078",
+      "observationTimestamp": "20250701191441"
+    }
+  ]
+}
+
+
+
 const rawHL7MessageBuffer = parseRawStringToHL7Buffer(cobasMock)
 
-const msh = parseMshSegment(cobasMock)
+// const msh = parseMshSegment(cobasMock)
 
-log.info('MSH Segment:', msh)
+// log.info('MSH Segment:', msh)
 
-const rawHL7MessageString = parseRawHL7ToString(rawHL7MessageBuffer)
-// log.debug('HL7 Message text', rawHL7MessageString)
+// const rawHL7MessageString = parseRawHL7ToString(rawHL7MessageBuffer)
+// // log.debug('HL7 Message text', rawHL7MessageString)
 
-const extractedHL7Data = extractHl7Data(rawHL7MessageBuffer)
+// const extractedHL7Data = extractHl7Data(rawHL7MessageBuffer)
 
-log.debug('Extracted HL7 Data:', extractedHL7Data)
+// log.debug('Extracted HL7 Data:', extractedHL7Data)
 
-const jsonData = HL7BufferToJson(rawHL7MessageBuffer)
+// const jsonData = HL7BufferToJson(rawHL7MessageBuffer)
 
-// log.debug('HL7 Data as JSON:', jsonData)
-// log.debug('HL7 SAC:', jsonData.SAC)
+// // log.debug('HL7 Data as JSON:', jsonData)
+// // log.debug('HL7 SAC:', jsonData.SAC)
 
-const segment = getInformationBySegmentTypeAndIndex(
-  rawHL7MessageBuffer,
-  'MSH',
-  0
-)
+// const segment = getInformationBySegmentTypeAndIndex(
+//   rawHL7MessageBuffer,
+//   'MSH',
+//   0
+// )
 
-log.debug(`Segment MSH.1 -> ${segment}`)
+// log.debug(`Segment MSH.1 -> ${segment}`)
 
 
-const componentValue = getHL7ValueBySegmentTypeFieldComponentAndSubcomponent(
-  rawHL7MessageBuffer,
-  'SAC',
-  12, // Field index for PID.5
-  2, // Component index for the first component
-  0 // Subcomponent index (not used here)
-)
+// const componentValue = getHL7ValueBySegmentTypeFieldComponentAndSubcomponent(
+//   rawHL7MessageBuffer,
+//   'SAC',
+//   12, // Field index for PID.5
+//   2, // Component index for the first component
+//   0 // Subcomponent index (not used here)
+// )
 
 const extractQcValuesAndConvertToJson = extractQcValuesAndConvertToJsonCobas(
-  extractedHL7Data
+  cq01
 )
+
+
 
 log.debug('Extracted QC Values:', extractQcValuesAndConvertToJson)
 

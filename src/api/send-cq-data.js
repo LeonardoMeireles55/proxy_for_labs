@@ -5,9 +5,9 @@ const API_BASE_URL = config.baseUrl
 
 const API_BASE_LOGIN = `${API_BASE_URL}/users/sign-in`;
 
-const API_BASE_HEMATOLOGY_URL = `${API_BASE_URL}/hematology-analytics`;
-const API_BASE_BIOCHEMISTRY_URL = `${API_BASE_URL}/biochemistry-analytics`;
-const API_BASE_COAGULATION_URL = `${API_BASE_URL}/coagulation-analytics`;
+const API_BASE_HEMATOLOGY_URL = `${API_BASE_URL}/hematology-analytics/with-equipment`;
+const API_BASE_BIOCHEMISTRY_URL = `${API_BASE_URL}/biochemistry-analytics/with-equipment`;
+const API_BASE_COAGULATION_URL = `${API_BASE_URL}/coagulation-analytics/with-equipment`;
 
 
 const API_CQ_URL = (() => {
