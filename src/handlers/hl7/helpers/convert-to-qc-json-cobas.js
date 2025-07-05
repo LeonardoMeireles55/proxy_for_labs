@@ -16,7 +16,7 @@
 
 const log = require('../../../../configs/logger');
 const config = require('../../../../configs/config');
-const { postQualityControlData } = require('../../../api/send-cq-data');
+const { postQualityControlData, sendToLabSpecAPI } = require('../../../api/send-cq-data');
 const { writeDebugFile } = require('../../../shared/save-data-to-file');
 
 /**

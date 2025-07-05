@@ -34,10 +34,7 @@ const createConnection = () => {
 
   client.on('data', (data) => {
     log.debug('Equipment client HL7 -> received data from proxy');
-
     log.debug(`Equipment client HL7 -> data length: ${data.length} bytes`);
-
-    data.length > 127 ? log.debug(`Equipment client HL7 -> Blood Test OBX: ${parser.getSegmentData(parser.parseRawStringToHL7Buffer(data.toString()), 'OBX')}`) : ''
   });
 
   client.on('error', (err) => {

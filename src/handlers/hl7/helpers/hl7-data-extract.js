@@ -19,6 +19,7 @@ const { extractQcValuesAndConvertToJson } = require('./convert-to-qc-json');
 const { extractQcValuesAndConvertToJsonCobas } = require('./convert-to-qc-json-cobas')
 const { cleanObject } = require('./mappers');
 const { parseRawHL7ToString } = require('./parser');
+const { generateValidationReportCobas } = require('./generate-validation-report-cobas');
 
 /**
  * Comprehensive HL7 message extraction
@@ -63,7 +64,7 @@ const extractHl7Data = (message) => {
       ...(labResults.length && { results: labResults })
     });
 
-
+    generateValidationReportCobas(data);
     extractQcValuesAndConvertToJsonCobas(data);
 
     log.debug('Complete HL7 data extracted successfully');

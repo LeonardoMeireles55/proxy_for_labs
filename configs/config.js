@@ -31,6 +31,7 @@ require('dotenv').config();
  * @property {boolean} lisClientEmu - Whether to enable LIS client emulation
  * @property {string} [baseUrl] - Base URL for API requests (optional)
  * @property {string} [qcForSector] - Quality control sector (optional)
+ * @property {boolean} [isForValidation] - Whether the configuration is for validation purposes (optional)
  */
 
 /**
@@ -47,6 +48,7 @@ const config = {
   nodeEnv: process.env.NODE_ENV || 'development',
   baseUrl: process.env.BASE_URL || 'http://localhost:3000',
   qcForSector: process.env.QC_FOR_SECTOR || 'hematology',
+  isForValidation: process.env.IS_FOR_VALIDATION === 'true',
 
   // Server ports
   proxyPort: parseInt(process.env.PROXY_PORT || '5400'),
