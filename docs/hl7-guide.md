@@ -29,48 +29,48 @@ Below is a comprehensive list of HL7 segments used in laboratory messaging, with
 
 ### Core Message Segments
 
-| Segment | Name                     | Purpose                                                         | Usage in Lab |
-| ------- | ------------------------ | --------------------------------------------------------------- | ------------ |
-| **MSH** | Message Header           | Defines message metadata, sender, receiver, timestamp          | Required in all messages |
-| **PID** | Patient Identification   | Patient demographic data (ID, name, DOB, sex, etc.)            | Patient context |
-| **ORC** | Common Order             | General order control data (order status, date/time, placer ID) | Order management |
-| **OBR** | Observation Request      | Request details for diagnostic service or lab test             | Test ordering |
-| **OBX** | Observation Result       | Actual test results (numeric, textual, coded)                  | Results reporting |
-| **NTE** | Notes and Comments       | Free-text comments related to previous segments                | Additional info |
+| Segment | Name                   | Purpose                                                         | Usage in Lab             |
+| ------- | ---------------------- | --------------------------------------------------------------- | ------------------------ |
+| **MSH** | Message Header         | Defines message metadata, sender, receiver, timestamp           | Required in all messages |
+| **PID** | Patient Identification | Patient demographic data (ID, name, DOB, sex, etc.)             | Patient context          |
+| **ORC** | Common Order           | General order control data (order status, date/time, placer ID) | Order management         |
+| **OBR** | Observation Request    | Request details for diagnostic service or lab test              | Test ordering            |
+| **OBX** | Observation Result     | Actual test results (numeric, textual, coded)                   | Results reporting        |
+| **NTE** | Notes and Comments     | Free-text comments related to previous segments                 | Additional info          |
 
 ### Laboratory-Specific Segments
 
-| Segment | Name                     | Purpose                                                         | Lab Context |
-| ------- | ------------------------ | --------------------------------------------------------------- | ----------- |
-| **SPM** | Specimen                 | Specimen information (type, collection, handling)              | Specimen tracking |
-| **SAC** | Specimen Container       | Container details and specimen handling                         | Container management |
-| **EQU** | Equipment Detail         | Equipment status and configuration                              | Equipment monitoring |
-| **ECD** | Equipment Command        | Equipment control commands and parameters                       | Equipment control |
-| **INV** | Inventory Detail         | Reagent and supply inventory information                        | Inventory management |
-| **TCD** | Test Code Detail         | Test configuration and parameters                               | Test setup |
+| Segment | Name               | Purpose                                           | Lab Context          |
+| ------- | ------------------ | ------------------------------------------------- | -------------------- |
+| **SPM** | Specimen           | Specimen information (type, collection, handling) | Specimen tracking    |
+| **SAC** | Specimen Container | Container details and specimen handling           | Container management |
+| **EQU** | Equipment Detail   | Equipment status and configuration                | Equipment monitoring |
+| **ECD** | Equipment Command  | Equipment control commands and parameters         | Equipment control    |
+| **INV** | Inventory Detail   | Reagent and supply inventory information          | Inventory management |
+| **TCD** | Test Code Detail   | Test configuration and parameters                 | Test setup           |
 
 ### Supporting Segments
 
-| Segment | Name                     | Purpose                                                         | When Used |
-| ------- | ------------------------ | --------------------------------------------------------------- | --------- |
-| **MSA** | Message Acknowledgment   | Acknowledgment response to received messages                    | Response messages |
-| **QPD** | Query Parameter Definition | Query parameters for information requests                      | Query messages |
-| **RCP** | Response Control Parameter | Response control for query responses                          | Query responses |
-| **ERR** | Error                    | Error information and details                                   | Error reporting |
-| **TQ1** | Timing/Quantity          | Timing and quantity specifications                              | Scheduling |
+| Segment | Name                       | Purpose                                      | When Used         |
+| ------- | -------------------------- | -------------------------------------------- | ----------------- |
+| **MSA** | Message Acknowledgment     | Acknowledgment response to received messages | Response messages |
+| **QPD** | Query Parameter Definition | Query parameters for information requests    | Query messages    |
+| **RCP** | Response Control Parameter | Response control for query responses         | Query responses   |
+| **ERR** | Error                      | Error information and details                | Error reporting   |
+| **TQ1** | Timing/Quantity            | Timing and quantity specifications           | Scheduling        |
 
 ### Administrative Segments
 
-| Segment | Name                     | Purpose                                                         | Context |
-| ------- | ------------------------ | --------------------------------------------------------------- | ------- |
-| **PV1** | Patient Visit            | Visit information (location, attending physician, admission)    | Visit context |
-| **AL1** | Allergy Information      | Patient allergy data                                            | Safety info |
-| **DG1** | Diagnosis                | Clinical diagnosis information                                  | Clinical context |
-| **IN1** | Insurance                | Insurance policy and coverage details                           | Billing |
-| **GT1** | Guarantor                | Information about the person responsible for the bill           | Financial |
-| **NK1** | Next of Kin              | Contact information for next of kin or emergency contact        | Emergency contact |
-| **FT1** | Financial Transaction    | Billing or financial transaction records                        | Billing |
-| **Zxx** | Custom Segment           | Institution-defined segment (non-standard/custom)               | Custom data |
+| Segment | Name                  | Purpose                                                      | Context           |
+| ------- | --------------------- | ------------------------------------------------------------ | ----------------- |
+| **PV1** | Patient Visit         | Visit information (location, attending physician, admission) | Visit context     |
+| **AL1** | Allergy Information   | Patient allergy data                                         | Safety info       |
+| **DG1** | Diagnosis             | Clinical diagnosis information                               | Clinical context  |
+| **IN1** | Insurance             | Insurance policy and coverage details                        | Billing           |
+| **GT1** | Guarantor             | Information about the person responsible for the bill        | Financial         |
+| **NK1** | Next of Kin           | Contact information for next of kin or emergency contact     | Emergency contact |
+| **FT1** | Financial Transaction | Billing or financial transaction records                     | Billing           |
+| **Zxx** | Custom Segment        | Institution-defined segment (non-standard/custom)            | Custom data       |
 
 > 💡 **Note:** Segment availability and usage vary by message type (ADT, ORU, ORM, SIU). Always refer to the specific HL7 chapter and your laboratory system documentation.
 
@@ -98,23 +98,23 @@ OBX|1|NM|GLU^Glucose||95|mg/dL|70-105|N<CR>
 
 HL7 uses specific encoding characters for field separation and escaping:
 
-| Character | Purpose | Escape Sequence | Default |
-|-----------|---------|-----------------|---------|
-| Field separator | Separates fields within a segment | `\F\` | `\|` |
-| Component separator | Separates components within a field | `\S\` | `^` |
-| Subcomponent separator | Separates subcomponents | `\T\` | `&` |
-| Repetition separator | Separates repeated values | `\R\` | `~` |
-| Escape character | Escapes special characters | `\E\` | `\` |
+| Character              | Purpose                             | Escape Sequence | Default |
+| ---------------------- | ----------------------------------- | --------------- | ------- |
+| Field separator        | Separates fields within a segment   | `\F\`           | `\|`    |
+| Component separator    | Separates components within a field | `\S\`           | `^`     |
+| Subcomponent separator | Separates subcomponents             | `\T\`           | `&`     |
+| Repetition separator   | Separates repeated values           | `\R\`           | `~`     |
+| Escape character       | Escapes special characters          | `\E\`           | `\`     |
 
 ### Message Types in Laboratory Context
 
-| Type | Code | Purpose | Example Use Case |
-|------|------|---------|------------------|
-| **ORU** | R01 | Observation Result (Unsolicited) | Lab results reporting |
-| **ORM** | O01 | Order Message | Test ordering |
-| **QBP** | Q11 | Query by Parameter | Equipment status queries |
-| **ACK** | --- | General Acknowledgment | Message confirmation |
-| **QCK** | Q02 | Query General Acknowledgment | Query responses |
+| Type    | Code | Purpose                          | Example Use Case         |
+| ------- | ---- | -------------------------------- | ------------------------ |
+| **ORU** | R01  | Observation Result (Unsolicited) | Lab results reporting    |
+| **ORM** | O01  | Order Message                    | Test ordering            |
+| **QBP** | Q11  | Query by Parameter               | Equipment status queries |
+| **ACK** | ---  | General Acknowledgment           | Message confirmation     |
+| **QCK** | Q02  | Query General Acknowledgment     | Query responses          |
 
 ## Implementation Examples
 
@@ -144,15 +144,18 @@ log.debug(`Segment MSH.5 -> ${segment}`);
 ### 2. Creating HL7 Acknowledgments
 
 ```javascript
-const { createAcknowledgment, sendHL7Acknowledgment } = require('./src/handlers/hl7');
+const {
+  createAcknowledgment,
+  sendHL7Acknowledgment
+} = require('./src/handlers/hl7');
 
 // Create acknowledgment for received message
 const ackMessage = createAcknowledgment(
-  'AA',                    // Accept acknowledgment
-  'MSG001',               // Original message control ID
-  'P',                    // Production environment
-  '2.5.1',               // HL7 version
-  'R01'                  // Trigger event
+  'AA', // Accept acknowledgment
+  'MSG001', // Original message control ID
+  'P', // Production environment
+  '2.5.1', // HL7 version
+  'R01' // Trigger event
 );
 
 // Send acknowledgment to client
@@ -169,7 +172,9 @@ const patientName = getInformationBySegmentTypeAndIndex(message, 'PID', 5);
 const testCode = getInformationBySegmentTypeAndIndex(message, 'OBR', 4);
 const resultValue = getInformationBySegmentTypeAndIndex(message, 'OBX', 5);
 
-console.log(`Patient: ${patientName}, Test: ${testCode}, Result: ${resultValue}`);
+console.log(
+  `Patient: ${patientName}, Test: ${testCode}, Result: ${resultValue}`
+);
 ```
 
 ### 4. Quality Control Data Processing
@@ -216,7 +221,7 @@ const { cleanObject } = require('../helpers/mappers');
 const extractNewSegmentInfo = (message) => {
   return cleanObject({
     field1: getInformationBySegmentTypeAndIndex(message, 'NSG', 1),
-    field2: getInformationBySegmentTypeAndIndex(message, 'NSG', 2),
+    field2: getInformationBySegmentTypeAndIndex(message, 'NSG', 2)
     // Add more fields as needed
   });
 };
@@ -251,7 +256,6 @@ try {
 
   // Process data
   await processLabResults(parsedData);
-
 } catch (error) {
   log.error('HL7 processing failed:', error);
 
@@ -311,7 +315,8 @@ const missingData = getInformationBySegmentTypeAndIndex(message, 'SPM', 1);
 **Solution**: Add validation and defaults
 
 ```javascript
-const specimenId = getInformationBySegmentTypeAndIndex(message, 'SPM', 1) || 'UNKNOWN';
+const specimenId =
+  getInformationBySegmentTypeAndIndex(message, 'SPM', 1) || 'UNKNOWN';
 ```
 
 ### Debug Tools
@@ -368,7 +373,9 @@ describe('HL7 Parser', () => {
 
 ```javascript
 // test/integration/hl7-flow.test.js
-const { createEquipmentServerHL7 } = require('../src/mocks/hl-7/equipment-server-hl7');
+const {
+  createEquipmentServerHL7
+} = require('../src/mocks/hl-7/equipment-server-hl7');
 
 describe('HL7 Message Flow', () => {
   test('should handle complete message cycle', async () => {

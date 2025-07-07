@@ -8,7 +8,11 @@
  */
 
 const net = require('node:net');
-const { parseRawHL7ToString, parseRawStringToHL7Buffer, extractHl7Data } = require('../../handlers/hl7');
+const {
+  parseRawHL7ToString,
+  parseRawStringToHL7Buffer,
+  extractHl7Data
+} = require('../../handlers/hl7');
 const { parseAstmMessage } = require('../../handlers/astm');
 const log = require('../../../configs/logger');
 
@@ -43,7 +47,6 @@ const createLisClientSimulator = (config) => {
   );
 
   client.on('data', (data) => {
-
     const message = extractHl7Data(data);
 
     log.debug(`Lis Client -> received message ASTM: ${message}`) ||

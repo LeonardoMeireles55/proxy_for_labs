@@ -10,8 +10,16 @@ const extractMessageAcknowledmentInfo = (message) => {
     acknowledgmentCode: getInformationBySegmentTypeAndIndex(message, 'MSA', 1),
     messageControlId: getInformationBySegmentTypeAndIndex(message, 'MSA', 2),
     textMessage: getInformationBySegmentTypeAndIndex(message, 'MSA', 3),
-    expectedSequenceNumber: getInformationBySegmentTypeAndIndex(message, 'MSA', 4),
-    delayedAcknowledgmentType: getInformationBySegmentTypeAndIndex(message, 'MSA', 5),
+    expectedSequenceNumber: getInformationBySegmentTypeAndIndex(
+      message,
+      'MSA',
+      4
+    ),
+    delayedAcknowledgmentType: getInformationBySegmentTypeAndIndex(
+      message,
+      'MSA',
+      5
+    ),
     errorCondition: getInformationBySegmentTypeAndIndex(message, 'MSA', 6)
   });
 };

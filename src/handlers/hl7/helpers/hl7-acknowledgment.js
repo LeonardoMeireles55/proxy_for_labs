@@ -5,8 +5,7 @@ const {
   parseMshSegment,
   parseRawHL7ToString
 } = require('./parser');
-const { MLLP_START, MLLP_END } = require('../../utils/buffers')
-
+const { MLLP_START, MLLP_END } = require('../../utils/buffers');
 
 /**
  * Creates MSH segment for acknowledgment messages

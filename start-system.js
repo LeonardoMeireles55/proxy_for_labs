@@ -47,7 +47,9 @@ const spawnNodeProcess = (scriptPath, processName) => {
     });
 
     child.on('spawn', () => {
-      log.info(`${processName} process spawned successfully (PID: ${child.pid})`);
+      log.info(
+        `${processName} process spawned successfully (PID: ${child.pid})`
+      );
       resolve(child);
     });
 
@@ -58,7 +60,9 @@ const spawnNodeProcess = (scriptPath, processName) => {
 
     child.on('exit', (code, signal) => {
       if (code !== 0) {
-        log.error(`${processName} exited with code ${code} and signal ${signal}`);
+        log.error(
+          `${processName} exited with code ${code} and signal ${signal}`
+        );
       } else {
         log.info(`${processName} exited successfully`);
       }
@@ -71,7 +75,7 @@ const spawnNodeProcess = (scriptPath, processName) => {
  * @param {number} ms - Milliseconds to wait
  * @returns {Promise<void>}
  */
-const delay = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 /**
  * Attempts to start a process with retry logic
@@ -84,7 +88,9 @@ const startProcessWithRetry = async (config) => {
   while (attempts < config.maxRetries) {
     try {
       attempts++;
-      log.info(`Attempt ${attempts}/${config.maxRetries} to start ${config.name}`);
+      log.info(
+        `Attempt ${attempts}/${config.maxRetries} to start ${config.name}`
+      );
 
       const process = await spawnNodeProcess(config.script, config.name);
 
@@ -98,7 +104,9 @@ const startProcessWithRetry = async (config) => {
       log.error(`Attempt ${attempts} failed: ${error.message}`);
 
       if (attempts >= config.maxRetries) {
-        throw new Error(`Failed to start ${config.name} after ${config.maxRetries} attempts`);
+        throw new Error(
+          `Failed to start ${config.name} after ${config.maxRetries} attempts`
+        );
       }
 
       // Wait before retry
@@ -118,11 +126,15 @@ const startupSequence = async () => {
 
     // Step 1: Start emulator
     log.info('Phase 1: Starting laboratory emulator...');
-    const emulatorProcess = await startProcessWithRetry(STARTUP_CONFIG.emulator);
+    const emulatorProcess = await startProcessWithRetry(
+      STARTUP_CONFIG.emulator
+    );
     processes.push(emulatorProcess);
 
     // Step 2: Wait before starting proxy
-    log.info(`Waiting ${STARTUP_CONFIG.proxy.startDelay}ms before starting proxy...`);
+    log.info(
+      `Waiting ${STARTUP_CONFIG.proxy.startDelay}ms before starting proxy...`
+    );
     await delay(STARTUP_CONFIG.proxy.startDelay);
 
     // Step 3: Start proxy
@@ -135,12 +147,11 @@ const startupSequence = async () => {
     log.info(`Proxy PID: ${proxyProcess.pid}`);
 
     return processes;
-
   } catch (error) {
     log.error(`Startup sequence failed: ${error.message}`);
 
     // Cleanup any started processes
-    processes.forEach(proc => {
+    processes.forEach((proc) => {
       if (proc && proc.pid) {
         log.info(`Cleaning up process ${proc.pid}`);
         proc.kill('SIGTERM');

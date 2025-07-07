@@ -8,8 +8,8 @@
  */
 
 const net = require('node:net');
-const { ASCII_BUFFERS } = require('../../handlers/utils/buffers')
-const log = require('../../../configs/logger')
+const { ASCII_BUFFERS } = require('../../handlers/utils/buffers');
+const log = require('../../../configs/logger');
 
 /**
  * Creates a laboratory equipment simulator server

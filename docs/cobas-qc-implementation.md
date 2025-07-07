@@ -9,6 +9,7 @@ Na mensagem HL7 fornecida, os testes eram identificados apenas por códigos num�
 ### 1. Função de Agrupamento de Resultados
 
 Criada a função `groupResultsByTestCode()` que:
+
 - Agrupa resultados por timestamp para associar valores QC aos testes
 - Identifica testes principais (códigos de 5 dígitos com unidades)
 - Extrai automaticamente `QC_TARGET` e `QC_SD_RANGE` associados
@@ -38,6 +39,7 @@ Implementada a função `getTestNameMapping()` com mapeamento dos códigos cobas
 ### 3. Cálculo Estatístico Aprimorado
 
 Criada a função `calculateStatisticsFromQC()` que:
+
 - Usa valores `QC_TARGET` e `QC_SD_RANGE` do equipamento
 - Fornece estatísticas mais precisas baseadas na calibração do equipamento
 - Mantém fallback para cálculo tradicional se valores QC não estiverem disponíveis
@@ -45,6 +47,7 @@ Criada a função `calculateStatisticsFromQC()` que:
 ### 4. Transformação de Dados Especializada
 
 Implementada a função `transformResultCobas()` que:
+
 - Inclui código do teste (`test_code`) e nome (`name`)
 - Adiciona valores QC originais (`qc_target`, `qc_sd_range`)
 - Usa timestamp específico de cada observação
@@ -83,7 +86,9 @@ Cada resultado QC agora contém:
 ## Uso
 
 ```javascript
-const { extractQcValuesAndConvertToJsonCobas } = require('./src/handlers/hl7/helpers/convert-to-qc-json-cobas');
+const {
+  extractQcValuesAndConvertToJsonCobas
+} = require('./src/handlers/hl7/helpers/convert-to-qc-json-cobas');
 
 // Processar dados HL7 do cobas®pure
 const qcResults = extractQcValuesAndConvertToJsonCobas(hl7Data);
@@ -102,6 +107,7 @@ const qcResults = extractQcValuesAndConvertToJsonCobas(hl7Data);
 ## Expansão Futura
 
 O mapeamento pode ser facilmente expandido para incluir:
+
 - Novos códigos de teste do cobas®pure
 - Mapeamentos específicos por modelo de equipamento
 - Configuração externa via arquivo JSON/base de dados

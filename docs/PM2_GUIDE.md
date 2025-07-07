@@ -5,6 +5,7 @@ Este guia explica como usar o PM2 para gerenciar o sistema de laboratório.
 ## Pré-requisitos
 
 1. Instalar o PM2 globalmente:
+
 ```bash
 npm install -g pm2
 ```
@@ -54,6 +55,7 @@ npm run start
 O arquivo `ecosystem.config.js` define dois processos:
 
 1. **lab-emulator** (`start-emu-environment.js`)
+
    - Inicia primeiro
    - Simula equipamentos de laboratório
 
@@ -76,6 +78,7 @@ npm run pm2:save
 ## Logs
 
 Os logs são automaticamente organizados em:
+
 - `./logs/emulator.log` - Log combinado do emulador
 - `./logs/proxy.log` - Log combinado do proxy
 - `./logs/*-out.log` - Saída padrão
@@ -98,6 +101,7 @@ pm2 monit
 ## Troubleshooting
 
 ### Processos não iniciam
+
 ```bash
 # Verificar logs de erro
 npm run pm2:logs
@@ -108,6 +112,7 @@ pm2 restart lab-proxy
 ```
 
 ### Conflitos de porta
+
 ```bash
 # Verificar portas em uso
 npm run check:ports
@@ -117,6 +122,7 @@ npm run stop:all
 ```
 
 ### Reset completo
+
 ```bash
 # Parar e remover todos os processos
 npm run pm2:delete
@@ -128,12 +134,14 @@ npm run pm2:start
 ## Produção vs Desenvolvimento
 
 ### Desenvolvimento
+
 ```bash
 # Uso normal com logs no console
 npm run start:system
 ```
 
 ### Produção
+
 ```bash
 # Com PM2 para monitoramento e auto-restart
 npm run pm2:start

@@ -1,25 +1,33 @@
 const log = require('../../../../configs/logger');
-const { extractCommonOrderInfo } = require('../segments/common-order')
+const { extractCommonOrderInfo } = require('../segments/common-order');
 const {
   extractEquipmentInfo,
   extractEquipmentCommandInfo
 } = require('../segments/equipment');
 const { extractMessageHeaderInfo } = require('../segments/header');
 const { extractInventoryInfo } = require('../segments/inventory');
-const { extractMessageAcknowledmentInfo } = require('../segments/message-acknowledgment')
+const {
+  extractMessageAcknowledmentInfo
+} = require('../segments/message-acknowledgment');
 const { extractOrderInfo } = require('../segments/order');
 const { extractPatientInfo } = require('../segments/patient');
 const { extractObxSegments } = require('../segments/results');
 const { extractSpecimenInfo } = require('../segments/specimen');
-const { extractSpecimenContainerInfo } = require('../segments/specimen-container-detail')
-const { extractSystemClockInfo } = require('../segments/system-clock')
-const { extractTestCodeDetailInfo } = require('../segments/test-code-detail')
-const { extractTimingQuantityInfo } = require('../segments/time-quantity')
+const {
+  extractSpecimenContainerInfo
+} = require('../segments/specimen-container-detail');
+const { extractSystemClockInfo } = require('../segments/system-clock');
+const { extractTestCodeDetailInfo } = require('../segments/test-code-detail');
+const { extractTimingQuantityInfo } = require('../segments/time-quantity');
 const { extractQcValuesAndConvertToJson } = require('./convert-to-qc-json');
-const { extractQcValuesAndConvertToJsonCobas } = require('./convert-to-qc-json-cobas')
+const {
+  extractQcValuesAndConvertToJsonCobas
+} = require('./convert-to-qc-json-cobas');
 const { cleanObject } = require('./mappers');
 const { parseRawHL7ToString } = require('./parser');
-const { generateValidationReportCobas } = require('./generate-validation-report-cobas');
+const {
+  generateValidationReportCobas
+} = require('./generate-validation-report-cobas');
 
 /**
  * Comprehensive HL7 message extraction
@@ -45,13 +53,23 @@ const extractHl7Data = (message) => {
 
     const data = cleanObject({
       ...(Object.keys(messageHeader).length && { messageHeader }),
-      ...(Object.keys(systemClockInfo).length && { systemClock: systemClockInfo }),
-      ...(Object.keys(acknowledmentInfo).length && { acknowledgment: acknowledmentInfo }),
+      ...(Object.keys(systemClockInfo).length && {
+        systemClock: systemClockInfo
+      }),
+      ...(Object.keys(acknowledmentInfo).length && {
+        acknowledgment: acknowledmentInfo
+      }),
       ...(Object.keys(patientInfo).length && { patient: patientInfo }),
       ...(Object.keys(orderInfo).length && { order: orderInfo }),
-      ...(Object.keys(commonOrderInfo).length && { commonOrder: commonOrderInfo }),
-      ...(Object.keys(timingQuatityInfo).length && { timingQuantity: timingQuatityInfo }),
-      ...(Object.keys(testCodeDetailInfo).length && { testCodeDetail: testCodeDetailInfo }),
+      ...(Object.keys(commonOrderInfo).length && {
+        commonOrder: commonOrderInfo
+      }),
+      ...(Object.keys(timingQuatityInfo).length && {
+        timingQuantity: timingQuatityInfo
+      }),
+      ...(Object.keys(testCodeDetailInfo).length && {
+        testCodeDetail: testCodeDetailInfo
+      }),
       ...(Object.keys(specimenInfo).length && { specimen: specimenInfo }),
       ...(Object.keys(specimenContainerInfo).length && {
         specimenContainer: specimenContainerInfo
@@ -72,7 +90,6 @@ const extractHl7Data = (message) => {
 
     return data;
   } catch (error) {
-
     log.error('Error extracting complete HL7 data:', error);
 
     return {};

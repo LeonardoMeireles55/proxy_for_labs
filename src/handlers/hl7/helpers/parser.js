@@ -32,8 +32,7 @@ const removeMllpFraming = (rawMessage) => {
       ? rawMessage.subarray(1)
       : rawMessage;
 
-  const cleanMessage = cleaned
-    .subarray(0, -HL7_FRAMING.END_BLOCK.length)
+  const cleanMessage = cleaned.subarray(0, -HL7_FRAMING.END_BLOCK.length);
 
   return cleanMessage;
 };
@@ -46,7 +45,7 @@ const escapeHL7 = (text) => {
     .replaceAll('&', '\\T\\')
     .replaceAll('~', '\\R\\')
     .replaceAll('\\', '\\E\\');
-}
+};
 
 /**
  * Unescape HL7 special characters according to HL7 encoding rules.
@@ -82,13 +81,18 @@ const unescapeHL7 = (text) => {
 const formatHL7LineBreaks = (text) => {
   if (!text) return '';
 
-  const newtext = text.replaceAll(',', '').replaceAll(/["\\]/g, "").replaceAll(/\\"{2}/g, '')
+  const newtext = text
+    .replaceAll(',', '')
+    .replaceAll(/["\\]/g, '')
+    .replaceAll(/\\"{2}/g, '');
 
-  return unescapeHL7(newtext).replaceAll('\n', HL7_FRAMING.SEGMENT_SEPARATOR.toString('utf8'))
+  return unescapeHL7(newtext).replaceAll(
+    '\n',
+    HL7_FRAMING.SEGMENT_SEPARATOR.toString('utf8')
+  );
 };
 
 const parseRawStringToHL7Buffer = (/** @type {string} */ rawMessage) => {
-
   rawMessage = formatHL7LineBreaks(rawMessage);
 
   return Buffer.from(MLLP_START + rawMessage + MLLP_END, 'utf-8');
@@ -106,11 +110,10 @@ const parseRawStringToHL7Buffer = (/** @type {string} */ rawMessage) => {
  * const segments = parseRawHL7ToString(buffer);
  */
 const parseRawHL7ToString = (rawMessage) => {
-
   rawMessage = Buffer.from(unescapeHL7(rawMessage.toString('utf8')), 'utf8');
 
-
-  return removeMllpFraming(rawMessage).toString('utf8')
+  return removeMllpFraming(rawMessage)
+    .toString('utf8')
     .split(String.fromCharCode(HL7_FRAMING.SEGMENT_SEPARATOR[0]))
     .filter((segment) => segment.trim().length > 0);
 };
@@ -142,7 +145,6 @@ const isValidHL7Message = (rawMessage) => {
  * @returns {Object} JSON representation of the HL7 message, with segments as keys
  */
 const HL7toJson = (rawMessage) => {
-
   const segments = parseRawHL7ToString(rawMessage);
   const json = {};
 
@@ -160,59 +162,60 @@ const HL7toJson = (rawMessage) => {
   return json;
 };
 
-
 /**
  * Convert HL7 message to JSON structure working directly with Buffer
  * @param {Buffer} rawMessage - The raw HL7 message buffer
  * @returns {Object} JSON representation of the HL7 message, with segments as keys
  */
 const HL7BufferToJson = (rawMessage) => {
-
   if (!isValidHL7Message(rawMessage)) {
-    return {}
+    return {};
   }
 
   // Remove MLLP framing without string conversion
-  const cleaned = rawMessage[0] === HL7_FRAMING.START_BLOCK[0]
-    ? rawMessage.subarray(1, -HL7_FRAMING.END_BLOCK.length)
-    : rawMessage.subarray(0, -HL7_FRAMING.END_BLOCK.length)
+  const cleaned =
+    rawMessage[0] === HL7_FRAMING.START_BLOCK[0]
+      ? rawMessage.subarray(1, -HL7_FRAMING.END_BLOCK.length)
+      : rawMessage.subarray(0, -HL7_FRAMING.END_BLOCK.length);
 
-  const json = {}
+  const json = {};
 
-  const segmentSeparator = HL7_FRAMING.SEGMENT_SEPARATOR[0] // 0x0D (carriage return)
+  const segmentSeparator = HL7_FRAMING.SEGMENT_SEPARATOR[0]; // 0x0D (carriage return)
 
-  const fieldSeparator = HL7_FRAMING.FIELD_SEPARATOR[0] // '|' character
+  const fieldSeparator = HL7_FRAMING.FIELD_SEPARATOR[0]; // '|' character
 
-  let segmentStart = 0
+  let segmentStart = 0;
 
-  for (let i = 0;i <= cleaned.length;i++) {
+  for (let i = 0; i <= cleaned.length; i++) {
     // Process segment when we hit separator or end of buffer
     if (i === cleaned.length || cleaned[i] === segmentSeparator) {
       if (i > segmentStart) {
-        const segmentBuffer = cleaned.subarray(segmentStart, i)
+        const segmentBuffer = cleaned.subarray(segmentStart, i);
 
         // Find first field separator to get segment type
-        const firstPipeIndex = segmentBuffer.indexOf(fieldSeparator)
+        const firstPipeIndex = segmentBuffer.indexOf(fieldSeparator);
 
         if (firstPipeIndex > 0) {
-          const segmentType = segmentBuffer.subarray(0, firstPipeIndex).toString('utf8')
-          const segmentData = segmentBuffer.subarray(firstPipeIndex).toString('utf8')
+          const segmentType = segmentBuffer
+            .subarray(0, firstPipeIndex)
+            .toString('utf8');
+          const segmentData = segmentBuffer
+            .subarray(firstPipeIndex)
+            .toString('utf8');
 
           if (!json[segmentType]) {
-            json[segmentType] = []
+            json[segmentType] = [];
           }
 
-          json[segmentType].push(segmentBuffer)
+          json[segmentType].push(segmentBuffer);
         }
       }
-      segmentStart = i + 1
+      segmentStart = i + 1;
     }
   }
 
-  return json
+  return json;
 };
-
-
 
 /**
  * Get specific segment data by type
@@ -221,7 +224,6 @@ const HL7BufferToJson = (rawMessage) => {
  * @returns {string|null} The segment data as a string, or null if not found
  */
 const getSegmentData = (rawMessage, segmentType) => {
-
   const jsonData = HL7BufferToJson(rawMessage);
 
   return jsonData[segmentType]?.[0] || null;
@@ -239,42 +241,44 @@ const getInformationBySegmentTypeAndIndex = (
   segmentType,
   fieldIndex
 ) => {
-  const segmentData = getSegmentData(message, segmentType)
+  const segmentData = getSegmentData(message, segmentType);
 
-  if (!segmentData) return null
+  if (!segmentData) return null;
 
-  if(segmentType === 'MSH' && fieldIndex < 1) {
-    return segmentData.toString().split('|')[0] || null
+  if (segmentType === 'MSH' && fieldIndex < 1) {
+    return segmentData.toString().split('|')[0] || null;
   }
 
   // For MSH segment, field 1 is the field separator character
   if (segmentType === 'MSH' && fieldIndex === 1) {
-    return '|'
+    return '|';
   }
 
-  const segmentString = segmentData.toString()
-  const fields = segmentString.split('|')
+  const segmentString = segmentData.toString();
+  const fields = segmentString.split('|');
 
   // For MSH segment, field 2 is the encoding characters (after the first |)
   if (segmentType === 'MSH' && fieldIndex === 2) {
     // Extract encoding characters from the segment string directly
-    const pipeIndex = segmentString.indexOf('|')
+    const pipeIndex = segmentString.indexOf('|');
     if (pipeIndex >= 0 && pipeIndex + 1 < segmentString.length) {
-      const afterPipe = segmentString.substring(pipeIndex + 1)
-      const nextPipeIndex = afterPipe.indexOf('|')
-      return nextPipeIndex >= 0 ? afterPipe.substring(0, nextPipeIndex) : afterPipe
+      const afterPipe = segmentString.substring(pipeIndex + 1);
+      const nextPipeIndex = afterPipe.indexOf('|');
+      return nextPipeIndex >= 0
+        ? afterPipe.substring(0, nextPipeIndex)
+        : afterPipe;
     }
-    return null
+    return null;
   }
 
   // For other fields in MSH and all fields in other segments
   if (segmentType === 'MSH') {
     // MSH fields are offset by 1 because field 1 and 2 are handled specially
-    return fields[fieldIndex - 1] || null
+    return fields[fieldIndex - 1] || null;
   }
 
   // For non-MSH segments, use standard indexing
-  return fields[fieldIndex] || null
+  return fields[fieldIndex] || null;
 };
 
 /**
@@ -293,29 +297,27 @@ const getHL7ValueBySegmentTypeFieldComponentAndSubcomponent = (
   componentIndex,
   subcomponentIndex
 ) => {
-
   const field = getInformationBySegmentTypeAndIndex(
     message,
     segmentType,
-    fieldIndex);
+    fieldIndex
+  );
 
-  if (!field) return null
+  if (!field) return null;
 
-  if (componentIndex === null) return field
+  if (componentIndex === null) return field;
 
-  const components = field.split('^')
+  const components = field.split('^');
 
-  const component = components[componentIndex]
+  const component = components[componentIndex];
 
-  if (!component) return null
+  if (!component) return null;
 
-  if (subcomponentIndex === null) return component
+  if (subcomponentIndex === null) return component;
 
-  const subcomponents = component.split('&')
-  return subcomponents[subcomponentIndex] || null
+  const subcomponents = component.split('&');
+  return subcomponents[subcomponentIndex] || null;
 };
-
-
 
 /**
  * Parse MSH segment for control information
@@ -323,13 +325,12 @@ const getHL7ValueBySegmentTypeFieldComponentAndSubcomponent = (
  * @returns {Object} An object containing messageControlId and triggerEvent
  */
 const parseMshSegment = (cleanMessage) => {
-
   if (!cleanMessage || cleanMessage.length === 0) {
     log.warn('Empty or invalid HL7 message provided for MSH parsing');
     return '';
   }
 
-  if(Buffer.isBuffer(cleanMessage)) {
+  if (Buffer.isBuffer(cleanMessage)) {
     cleanMessage = cleanMessage.toString('utf8');
   }
 

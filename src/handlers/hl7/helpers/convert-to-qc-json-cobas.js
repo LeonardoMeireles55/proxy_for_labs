@@ -16,7 +16,10 @@
 
 const log = require('../../../../configs/logger');
 const config = require('../../../../configs/config');
-const { postQualityControlData, sendToLabSpecAPI } = require('../../../api/send-cq-data');
+const {
+  postQualityControlData,
+  sendToLabSpecAPI
+} = require('../../../api/send-cq-data');
 const { writeDebugFile } = require('../../../shared/save-data-to-file');
 
 /**
@@ -78,7 +81,7 @@ const parseHL7Date = (hl7DateString) => {
  * @see {@link parseLevel} - Used internally to parse level values
  */
 const extractQcLevel = (inventory) => {
-    const qcLevelResult = inventory
+  const qcLevelResult = inventory;
 
   return parseLevel(qcLevelResult) || 'unknown';
 };
@@ -114,7 +117,6 @@ const parseLevel = (value) => {
   return null;
 };
 
-
 /**
  * Creates a test code to name mapping for cobas®pure equipment
  * Based on common clinical chemistry and immunoassay parameters
@@ -124,35 +126,34 @@ const parseLevel = (value) => {
  */
 const getTestNameMapping = () => {
   return {
-    '20090': 'ALB2',
-    '20110': 'ALP2S',
-    '20140': 'ALTL',
-    '20230': 'ASTL',
-    '20170': 'AMYL2',
-    '20300': 'BILD2',
-    '20310': 'BILT3',
-    '20340': 'CA2',
-    '20411': 'CHOL2',
-    '21130': 'TRIGL',
-    '21170': 'UA2',
-    '21191': 'UREAL',
-    '20420': 'CK2',
-    '20430': 'CKMB2',
-    '20470': 'CREJ2',
-    '20500': 'CRP4',
-    '20600': 'GGTI2',
-    '20630': 'GLUC3',
-    '20710': 'HDLC4',
-    '29090': 'CL-I',
-    '29080': 'K-I',
-    '29070': 'NA-I',
-    '20990': 'PHOS2',
-    '20810': 'LDHI2',
-    '20850': 'LIP',
-    '20890': 'MG-2',
+    20090: 'ALB2',
+    20110: 'ALP2S',
+    20140: 'ALTL',
+    20230: 'ASTL',
+    20170: 'AMYL2',
+    20300: 'BILD2',
+    20310: 'BILT3',
+    20340: 'CA2',
+    20411: 'CHOL2',
+    21130: 'TRIGL',
+    21170: 'UA2',
+    21191: 'UREAL',
+    20420: 'CK2',
+    20430: 'CKMB2',
+    20470: 'CREJ2',
+    20500: 'CRP4',
+    20600: 'GGTI2',
+    20630: 'GLUC3',
+    20710: 'HDLC4',
+    29090: 'CL-I',
+    29080: 'K-I',
+    29070: 'NA-I',
+    20990: 'PHOS2',
+    20810: 'LDHI2',
+    20850: 'LIP',
+    20890: 'MG-2'
   };
 };
-
 
 /**
  * Calculates statistical measures (mean and standard deviation) from a reference range
@@ -228,44 +229,46 @@ const calculateStatistics = (value, referenceRange) => {
  * // Returns quality control object with QC statistics from equipment
  */
 const transformResultCobas = (hl7Data) => {
+  let infoValues = 0;
+  let infoQCTarget = 4;
+  let infoQCSdRange = 5;
 
-  let infoValues = 0
-  let infoQCTarget = 4
-  let infoQCSdRange = 5
-
-  const result = []
+  const result = [];
   const length = hl7Data.results.length;
 
   hl7Data.results.forEach((res) => {
+    if (
+      infoValues >= length ||
+      infoQCTarget >= length ||
+      infoQCSdRange >= length
+    ) {
+      return;
+    }
 
-      if(infoValues >= length || infoQCTarget >= length || infoQCSdRange >= length) {
-        return;
-      }
+    const cqObject = {
+      date: parseHL7Date(
+        res.observationTimestamp || hl7Data.order?.observationDateTime
+      ),
+      test_lot: '-',
+      level_lot: hl7Data.specimenContainer?.carrierIdentifier || 'DEFAULT_LOT',
+      name: getTestNameMapping()[hl7Data.results[infoValues].observationName],
+      level: hl7Data.inventory?.substanceIdentifier.split('^')[1],
+      value: hl7Data.results[infoValues].value,
+      mean: hl7Data.results[infoQCTarget].value,
+      sd: hl7Data.results[infoQCSdRange].value,
+      unit_value: hl7Data.results[infoValues].unit,
+      equipment: 11
+    };
 
-      const cqObject = {
-        date: parseHL7Date(res.observationTimestamp || hl7Data.order?.observationDateTime),
-        test_lot: '-',
-        level_lot: hl7Data.specimenContainer?.carrierIdentifier || 'DEFAULT_LOT',
-        name: getTestNameMapping()[hl7Data.results[infoValues].observationName],
-        level: hl7Data.inventory?.substanceIdentifier.split('^')[1],
-        value: hl7Data.results[infoValues].value,
-        mean: hl7Data.results[infoQCTarget].value,
-        sd: hl7Data.results[infoQCSdRange].value,
-        unit_value: hl7Data.results[infoValues].unit,
-        equipment: 11
-      }
+    result.push(cqObject);
 
-      result.push(cqObject)
-
-      infoValues = infoValues + 6
-      infoQCTarget = infoQCTarget + 6
-      infoQCSdRange = infoQCSdRange + 6
-
+    infoValues = infoValues + 6;
+    infoQCTarget = infoQCTarget + 6;
+    infoQCSdRange = infoQCSdRange + 6;
   });
 
   return result;
 };
-
 
 /**
  * Extracts quality control values from HL7 data and converts to JSON format for cobas®pure
@@ -291,9 +294,13 @@ const transformResultCobas = (hl7Data) => {
  */
 const extractQcValuesAndConvertToJsonCobas = (hl7Data) => {
   try {
-
-    if (hl7Data.specimen?.specimenRole[0] != 'Q' || hl7Data.specimen == undefined) {
-      log.warn('HL7 message is not a quality control message, skipping conversion');
+    if (
+      hl7Data.specimen?.specimenRole[0] != 'Q' ||
+      hl7Data.specimen == undefined
+    ) {
+      log.warn(
+        'HL7 message is not a quality control message, skipping conversion'
+      );
       return null;
     }
 
@@ -301,13 +308,10 @@ const extractQcValuesAndConvertToJsonCobas = (hl7Data) => {
       return null;
     }
 
-    const qualityControlObject = transformResultCobas(hl7Data)
-
+    const qualityControlObject = transformResultCobas(hl7Data);
 
     if (config.nodeEnv === 'development') {
-      log.debug(
-        JSON.stringify(qualityControlObject, null, 2)
-      );
+      log.debug(JSON.stringify(qualityControlObject, null, 2));
     }
 
     if (config.nodeEnv === 'production') {
@@ -317,7 +321,6 @@ const extractQcValuesAndConvertToJsonCobas = (hl7Data) => {
     writeDebugFile(JSON.stringify(qualityControlObject, null, 2));
 
     return qualityControlObject;
-
   } catch (error) {
     log.error('Error converting to Qc Json:', error);
     return null;

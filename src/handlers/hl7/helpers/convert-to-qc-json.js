@@ -265,7 +265,6 @@ const transformResult = (result, hl7Data, qcLevel) => {
  * @throws {Error} Logs error and returns null if conversion fails
  */
 const extractQcValuesAndConvertToJson = (hl7Data) => {
-
   // if (hl7Data.messageHeader.messageControlId !== 'Q') {
   //   log.warn('Is not a control quality message, skipping conversion');
   //   return null;

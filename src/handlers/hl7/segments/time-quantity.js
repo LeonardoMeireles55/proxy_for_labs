@@ -11,7 +11,11 @@ const extractTimingQuantityInfo = (message) => {
     quantity: getInformationBySegmentTypeAndIndex(message, 'TQ1', 2),
     repeatPattern: getInformationBySegmentTypeAndIndex(message, 'TQ1', 3),
     explicitTime: getInformationBySegmentTypeAndIndex(message, 'TQ1', 4),
-    relativeTimeAndUnits: getInformationBySegmentTypeAndIndex(message, 'TQ1', 5),
+    relativeTimeAndUnits: getInformationBySegmentTypeAndIndex(
+      message,
+      'TQ1',
+      5
+    ),
     serviceDuration: getInformationBySegmentTypeAndIndex(message, 'TQ1', 6),
     startDateTime: getInformationBySegmentTypeAndIndex(message, 'TQ1', 7),
     endDateTime: getInformationBySegmentTypeAndIndex(message, 'TQ1', 8),

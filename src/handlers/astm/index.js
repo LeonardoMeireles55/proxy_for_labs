@@ -431,8 +431,10 @@ const mockMessages = () => {
   };
 };
 
-
-console.info(createSampleMessages().result.toString(), 'Sample ASTM messages created successfully');
+console.info(
+  createSampleMessages().result.toString(),
+  'Sample ASTM messages created successfully'
+);
 
 module.exports = {
   parseAstmMessage,

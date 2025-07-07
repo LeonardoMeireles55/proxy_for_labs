@@ -85,18 +85,18 @@ node app.js
 
 ### Supported HL7 Segments
 
-| Segment | Purpose | Implementation |
-|---------|---------|----------------|
-| MSH | Message Header | ✅ Full support |
-| PID | Patient Identification | ✅ Full support |
-| OBR | Observation Request | ✅ Full support |
-| OBX | Observation Result | ✅ Full support |
-| SPM | Specimen | ✅ Full support |
-| EQU | Equipment Detail | ✅ Full support |
-| ECD | Equipment Command | ✅ Full support |
-| INV | Inventory Detail | ✅ Full support |
-| NTE | Notes and Comments | ✅ Basic support |
-| MSA | Message Acknowledgment | ✅ Full support |
+| Segment | Purpose                | Implementation   |
+| ------- | ---------------------- | ---------------- |
+| MSH     | Message Header         | ✅ Full support  |
+| PID     | Patient Identification | ✅ Full support  |
+| OBR     | Observation Request    | ✅ Full support  |
+| OBX     | Observation Result     | ✅ Full support  |
+| SPM     | Specimen               | ✅ Full support  |
+| EQU     | Equipment Detail       | ✅ Full support  |
+| ECD     | Equipment Command      | ✅ Full support  |
+| INV     | Inventory Detail       | ✅ Full support  |
+| NTE     | Notes and Comments     | ✅ Basic support |
+| MSA     | Message Acknowledgment | ✅ Full support  |
 
 ### ASTM Protocol
 
@@ -161,11 +161,11 @@ console.log('Results:', structuredData.results);
 const { createAcknowledgment } = require('./src/handlers/hl7');
 
 const ackMessage = createAcknowledgment(
-  'AA',      // Acknowledgment code
-  'MSG001',  // Message control ID
-  'P',       // Processing ID
-  '2.5.1',   // HL7 version
-  'R01'      // Trigger event
+  'AA', // Acknowledgment code
+  'MSG001', // Message control ID
+  'P', // Processing ID
+  '2.5.1', // HL7 version
+  'R01' // Trigger event
 );
 ```
 
@@ -187,11 +187,15 @@ The system includes sophisticated mock equipment for testing:
 
 ```javascript
 // HL7 Equipment Mock
-const { createEquipmentServerHL7 } = require('./src/mocks/hl-7/equipment-server-hl7');
+const {
+  createEquipmentServerHL7
+} = require('./src/mocks/hl-7/equipment-server-hl7');
 const server = createEquipmentServerHL7();
 
 // ASTM Equipment Mock
-const { createEquipmentServerASTM } = require('./src/mocks/astm/equipment-server-astm');
+const {
+  createEquipmentServerASTM
+} = require('./src/mocks/astm/equipment-server-astm');
 const astmServer = createEquipmentServerASTM();
 ```
 

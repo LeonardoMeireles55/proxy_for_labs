@@ -1,7 +1,7 @@
 const net = require('node:net');
 const { ASCII_BUFFERS } = require('../../handlers/utils/buffers');
-const log = require('../../../configs/logger')
-const config = require('../../../configs/config')
+const log = require('../../../configs/logger');
+const config = require('../../../configs/config');
 
 /**
  * ASTM message handlers

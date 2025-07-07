@@ -9,10 +9,9 @@
 // @ts-nocheck
 const winston = require('winston');
 const env = require('./config');
-const { timeStamp } = require('console')
+const { timeStamp } = require('console');
 
 const colorizer = winston.format.colorize();
-
 
 winston.addColors({
   error: 'red',
@@ -29,8 +28,8 @@ winston.addColors({
  * Hides level label for debug messages to reduce noise
  */
 const customConsoleFormat = winston.format.combine(
-  winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss'}),
-  winston.format.colorize({  all: true }),
+  winston.format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+  winston.format.colorize({ all: true }),
   winston.format.printf(({ level, message, timestamp, ...meta }) => {
     const metaStr = Object.keys(meta).length
       ? ` ${JSON.stringify(meta, null, 2)}`
@@ -44,13 +43,15 @@ const customConsoleFormat = winston.format.combine(
 
     const cleanedMessage = formattedMessage.replace(/\n/g, ' ');
 
-    const coloredTimestamp = colorizer.colorize('timeStamp', `[${timestamp}] ->`);
+    const coloredTimestamp = colorizer.colorize(
+      'timeStamp',
+      `[${timestamp}] ->`
+    );
     const coloredMetaStr = colorizer.colorize('debug', metaStr);
     const coloredMessage = colorizer.colorize('debug', cleanedMessage);
 
     // Hide level messages to reduce visual noise
     return `${coloredTimestamp} ${coloredMessage}${coloredMetaStr}`;
-
   })
 );
 
@@ -75,7 +76,6 @@ const customFileFormat = winston.format.combine(
 
     // Hide level for messages to reduce visual noise
     return `\n[${timestamp}] -> ${cleanedMessage} ${metaStr}\n`;
-
   })
 );
 

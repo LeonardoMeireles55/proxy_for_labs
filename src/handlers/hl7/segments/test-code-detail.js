@@ -12,21 +12,9 @@ const extractTestCodeDetailInfo = (message) => {
       'TCD',
       1
     ),
-    autoDilutionFactor: getInformationBySegmentTypeAndIndex(
-      message,
-      'TCD',
-      2
-    ),
-    rerunDilutionFactor: getInformationBySegmentTypeAndIndex(
-      message,
-      'TCD',
-      3
-    ),
-    preDilutionFactor: getInformationBySegmentTypeAndIndex(
-      message,
-      'TCD',
-      4
-    ),
+    autoDilutionFactor: getInformationBySegmentTypeAndIndex(message, 'TCD', 2),
+    rerunDilutionFactor: getInformationBySegmentTypeAndIndex(message, 'TCD', 3),
+    preDilutionFactor: getInformationBySegmentTypeAndIndex(message, 'TCD', 4),
     endogenousContentOfPreDilutionDiluent: getInformationBySegmentTypeAndIndex(
       message,
       'TCD',
@@ -37,16 +25,8 @@ const extractTestCodeDetailInfo = (message) => {
       'TCD',
       6
     ),
-    reflexAllowed: getInformationBySegmentTypeAndIndex(
-      message,
-      'TCD',
-      7
-    ),
-    analyteRepeatStatus: getInformationBySegmentTypeAndIndex(
-      message,
-      'TCD',
-      8
-    )
+    reflexAllowed: getInformationBySegmentTypeAndIndex(message, 'TCD', 7),
+    analyteRepeatStatus: getInformationBySegmentTypeAndIndex(message, 'TCD', 8)
   });
 };
 
