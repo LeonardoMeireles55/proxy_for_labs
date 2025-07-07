@@ -14,13 +14,13 @@
  * @since 1.0.0
  */
 
-const log = require('../../../../configs/logger');
-const config = require('../../../../configs/config');
+const log = require('../../../../../configs/logger');
+const config = require('../../../../../configs/config');
 const {
   postQualityControlData,
   sendToLabSpecAPI
-} = require('../../../api/send-cq-data');
-const { writeDebugFile } = require('../../../shared/save-data-to-file');
+} = require('../../../../api/send-cq-data');
+const { writeDebugFile } = require('../../../../shared/save-data-to-file');
 
 /**
  * Parses HL7 date format (YYYYMMDDHHMMSS) to SQL datetime format (YYYY-MM-DD HH:MM:SS)
@@ -155,52 +155,6 @@ const getTestNameMapping = () => {
   };
 };
 
-/**
- * Calculates statistical measures (mean and standard deviation) from a reference range
- *
- * This function takes a numeric value and its reference range to calculate
- * statistical measures for quality control analysis. It parses reference ranges
- * in the format "min-max" and calculates the mean as the midpoint and standard
- * deviation assuming a 3-sigma distribution (99.7% of values within range).
- *
- * @function calculateStatistics
- * @param {number} value - The measured numeric value
- * @param {string} referenceRange - Reference range in format "min-max" (e.g., "70-110")
- * @returns {Object} Object containing calculated statistics
- *
- * @example
- * // With valid reference range
- * const stats = calculateStatistics(95, "70-110");
- * console.log(stats); // { mean: 90, sd: 6.67 }
- *
- * @example
- * // Without reference range
- * const stats = calculateStatistics(95, null);
- * console.log(stats); // { mean: 95, sd: 95 }
- *
- * @example
- * // With invalid reference range
- * const stats = calculateStatistics(95, "invalid-range");
- * console.log(stats); // { mean: 95, sd: 95 }
- */
-const calculateStatistics = (value, referenceRange) => {
-  if (!referenceRange) return { mean: value, sd: value };
-
-  const rangeParts = referenceRange.split('-');
-
-  if (rangeParts.length === 2) {
-    const min = parseFloat(rangeParts[0]);
-    const max = parseFloat(rangeParts[1]);
-
-    if (!isNaN(min) && !isNaN(max)) {
-      const mean = (min + max) / 2;
-      const sd = (max - min) / 6; // Assuming 3 sigma range
-      return { mean, sd };
-    }
-  }
-
-  return { mean: value, sd: value };
-};
 
 /**
  * Transforms a single laboratory result into Analytics DTO (Data Transfer Object) format for cobas®pure
@@ -212,21 +166,6 @@ const calculateStatistics = (value, referenceRange) => {
  * @function transformResultCobas
  * @param {Object} hl7Data - HL7 message data containing order and patient Information
  *
- * @example
- * const result = {
- *   testCode: '20340',
- *   value: 9.02,
- *   unit: 'mg/dL',
- *   qcTarget: 8.78,
- *   qcSdRange: 0.361,
- *   observationTimestamp: '20250701192446'
- * };
- * const hl7Data = {
- *   order: { observationDateTime: '20250701193219' },
- *   patient: { patientIdentifierList: 'QC_LOT_001' }
- * };
- * const transformed = transformResultCobas(result, hl7Data, 'normal');
- * // Returns quality control object with QC statistics from equipment
  */
 const transformResultCobas = (hl7Data) => {
   let infoValues = 0;
@@ -272,24 +211,7 @@ const transformResultCobas = (hl7Data) => {
 
 /**
  * Extracts quality control values from HL7 data and converts to JSON format for cobas®pure
-
  * @function extractQcValuesAndConvertToJsonCobas
- *
- * @example
- * const hl7Data = {
- *   messageHeader: { messageControlId: 'P' },
- *   results: [
- *     { observationName: '20340', value: '9.02', unit: 'mg/dL', observationTimestamp: '20250701192446' },
- *     { observationName: 'QC_TARGET', value: '8.78', unit: 'mg/dL' },
- *     { observationName: 'QC_SD_RANGE', value: '0.361', unit: 'mg/dL' }
- *   ],
- *   order: { observationDateTime: '20250701193219' },
- *   patient: { patientIdentifierList: 'QC_LOT_001' }
- * };
- *
- * const qcObjects = extractQcValuesAndConvertToJsonCobas(hl7Data);
- * // Returns array of transformed QC objects ready for analytics
- *
  * @throws {Error} Logs error and returns null if conversion fails
  */
 const extractQcValuesAndConvertToJsonCobas = (hl7Data) => {

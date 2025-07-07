@@ -162,6 +162,19 @@ const HL7toJson = (rawMessage) => {
   return json;
 };
 
+const removeMllpFramingBuffer = (rawMessage) => {
+  if (!isValidHL7Message(rawMessage)) {
+    return Buffer.from('');
+  }
+
+  // Remove MLLP framing without string conversion
+  const cleaned =
+    rawMessage[0] === HL7_FRAMING.START_BLOCK[0]
+      ? rawMessage.subarray(1, -HL7_FRAMING.END_BLOCK.length)
+      : rawMessage.subarray(0, -HL7_FRAMING.END_BLOCK.length);
+
+  return cleaned;
+};
 /**
  * Convert HL7 message to JSON structure working directly with Buffer
  * @param {Buffer} rawMessage - The raw HL7 message buffer
@@ -172,11 +185,7 @@ const HL7BufferToJson = (rawMessage) => {
     return {};
   }
 
-  // Remove MLLP framing without string conversion
-  const cleaned =
-    rawMessage[0] === HL7_FRAMING.START_BLOCK[0]
-      ? rawMessage.subarray(1, -HL7_FRAMING.END_BLOCK.length)
-      : rawMessage.subarray(0, -HL7_FRAMING.END_BLOCK.length);
+  const cleaned = removeMllpFramingBuffer(rawMessage);
 
   const json = {};
 
@@ -199,13 +208,6 @@ const HL7BufferToJson = (rawMessage) => {
           const segmentType = segmentBuffer
             .subarray(0, firstPipeIndex)
             .toString('utf8');
-          const segmentData = segmentBuffer
-            .subarray(firstPipeIndex)
-            .toString('utf8');
-
-          if (!json[segmentType]) {
-            json[segmentType] = [];
-          }
 
           json[segmentType].push(segmentBuffer);
         }
@@ -355,5 +357,5 @@ module.exports = {
   unescapeHL7,
   parseRawHL7ToString,
   parseRawStringToHL7Buffer,
-  isValidMessage: isValidHL7Message
+  isValidHL7Message
 };

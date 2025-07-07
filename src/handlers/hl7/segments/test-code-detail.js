@@ -1,5 +1,7 @@
-const { cleanObject } = require('../helpers/mappers');
-const { getInformationBySegmentTypeAndIndex } = require('../helpers/parser');
+const { cleanObject } = require('../helpers/HL7-mappers');
+const {
+  getInformationBySegmentTypeAndIndex
+} = require('../helpers/hl7-parsers');
 
 /**
  * Extracts test code detail information from TCD segment

@@ -6,7 +6,7 @@ const {
 } = require('../../handlers/hl7/helpers/hl7-acknowledgment');
 const config = require('../../../configs/config');
 const log = require('../../../configs/logger');
-const parser = require('../../handlers/hl7/helpers/parser');
+const parser = require('../../handlers/hl7/helpers/hl7-parsers');
 
 /**
  * Creates connection to proxy server

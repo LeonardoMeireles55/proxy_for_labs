@@ -1,5 +1,5 @@
 const { HL7_FRAMING } = require('../../utils/buffers');
-const { processHL7Message } = require('./hl7-message-handle');
+const { processHL7Message } = require('./HL7-message-handler')
 
 let allocatedBuffer = Buffer.alloc(0);
 

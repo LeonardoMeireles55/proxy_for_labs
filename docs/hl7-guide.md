@@ -121,14 +121,14 @@ HL7 uses specific encoding characters for field separation and escaping:
 ### 1. Parsing HL7 Messages
 
 ```javascript
-const { HL7toJson, extractHl7Data } = require('./src/handlers/hl7');
+const { HL7toJson, retrieveHl7MessageData } = require('./src/handlers/hl7');
 
 // Parse raw HL7 message to JSON structure
 const jsonData = HL7toJson(rawMessageBuffer);
 console.log('Patient ID:', jsonData.PID[0].split('|')[3]);
 
 // Extract structured data with all segments
-const structuredData = extractHl7Data(rawMessageBuffer);
+const structuredData = retrieveHl7MessageData(rawMessageBuffer);
 console.log('Patient Info:', structuredData.patient);
 console.log('Lab Results:', structuredData.results);
 
@@ -215,8 +215,10 @@ src/handlers/hl7/
 
 ```javascript
 // src/handlers/hl7/segments/new-segment.js
-const { getInformationBySegmentTypeAndIndex } = require('../helpers/parser');
-const { cleanObject } = require('../helpers/mappers');
+const {
+  getInformationBySegmentTypeAndIndex
+} = require('../helpers/hl7-parsers');
+const { cleanObject } = require('../helpers/HL7-mappers');
 
 const extractNewSegmentInfo = (message) => {
   return cleanObject({
@@ -234,7 +236,7 @@ module.exports = { extractNewSegmentInfo };
 ```javascript
 const { extractNewSegmentInfo } = require('../segments/new-segment');
 
-// Add to extractHl7Data function
+// Add to retrieveHl7MessageData function
 const newSegmentInfo = extractNewSegmentInfo(message);
 
 const data = cleanObject({
@@ -247,7 +249,7 @@ const data = cleanObject({
 
 ```javascript
 try {
-  const parsedData = extractHl7Data(rawMessage);
+  const parsedData = retrieveHl7MessageData(rawMessage);
 
   // Validate required fields
   if (!parsedData.messageHeader?.messageControlId) {

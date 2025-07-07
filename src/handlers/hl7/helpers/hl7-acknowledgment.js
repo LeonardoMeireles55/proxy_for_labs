@@ -4,7 +4,7 @@ const {
   removeMllpFraming,
   parseMshSegment,
   parseRawHL7ToString
-} = require('./parser');
+} = require('./hl7-parsers');
 const { MLLP_START, MLLP_END } = require('../../utils/buffers');
 
 /**

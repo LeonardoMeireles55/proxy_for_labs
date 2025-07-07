@@ -18,42 +18,7 @@ const log = require('../../../../configs/logger');
 const config = require('../../../../configs/config');
 const { postQualityControlData } = require('../../../api/send-cq-data');
 const { writeDebugFile } = require('../../../shared/save-data-to-file');
-
-/**
- * Parses HL7 date format (YYYYMMDDHHMMSS) to SQL datetime format (YYYY-MM-DD HH:MM:SS)
- *
- * @function parseHL7Date
- * @param {string} hl7DateString - HL7 formatted date string (YYYYMMDDHHMMSS)
- * @returns {string} Formatted date string in SQL datetime format (YYYY-MM-DD HH:MM:SS)
- *
- * @example
- * // Convert HL7 date
- * const sqlDate = parseHL7Date('20231225143000');
- * console.log(sqlDate); // "2023-12-25 14:30:00"
- *
- * @example
- * // Handle incomplete date
- * const sqlDate = parseHL7Date('20231225');
- * console.log(sqlDate); // "2023-12-25 00:00:00"
- *
- * @example
- * // Handle null/undefined input
- * const sqlDate = parseHL7Date(null);
- * console.log(sqlDate); // Current datetime in SQL format
- */
-const parseHL7Date = (hl7DateString) => {
-  if (!hl7DateString)
-    return new Date().toISOString().slice(0, 19).replace('T', ' ');
-
-  const year = hl7DateString.substring(0, 4);
-  const month = hl7DateString.substring(4, 6);
-  const day = hl7DateString.substring(6, 8);
-  const hour = hl7DateString.substring(8, 10) || '00';
-  const minute = hl7DateString.substring(10, 12) || '00';
-  const second = hl7DateString.substring(12, 14) || '00';
-
-  return `${year}-${month}-${day} ${hour}:${minute}:${second}`;
-};
+const { formatHL7RawDate } = require('./HL7-format-raw-date')
 
 /**
  * Extracts quality control level from HL7 results array
@@ -206,23 +171,9 @@ const calculateStatistics = (value, referenceRange) => {
  * @param {Object} result - Individual laboratory result object
  * @param {Object} hl7Data - HL7 message data containing order and patient Information
  * @param {string} qcLevel - Quality control level (low, normal, high)
- *
- * @example
- * const result = {
- *   value: '95',
- *   observationName: 'Glucose',
- *   unit: 'mg/dL',
- *   referenceRange: '70-110'
- * };
- * const hl7Data = {
- *   order: { observationDateTime: '20231225143000' },
- *   patient: { patientIdentifierList: 'QC_LOT_001' }
- * };
- * const transformed = transformResult(result, hl7Data, 'normal');
- * // Returns quality control object with calculated statistics
  */
 const transformResult = (result, hl7Data, qcLevel) => {
-  const date = parseHL7Date(hl7Data.order?.observationDateTime);
+  const date = formatHL7RawDate(hl7Data.order?.observationDateTime);
 
   const value = parseFloat(result.value);
 
@@ -245,30 +196,17 @@ const transformResult = (result, hl7Data, qcLevel) => {
 
 /**
  * Extracts quality control values from HL7 data and converts to JSON format
-
  * @function extractQcValuesAndConvertToJson
- *
- * @example
- * const hl7Data = {
- *   messageHeader: { messageControlId: 'Q' },
- *   results: [
- *     { observationName: 'Glucose', value: '95', unit: 'mg/dL', referenceRange: '70-110' },
- *     { observationName: 'Qc Level', value: 'Level1M' }
- *   ],
- *   order: { observationDateTime: '20231225143000' },
- *   patient: { patientIdentifierList: 'QC_LOT_001' }
- * };
- *
- * const qcObjects = extractQcValuesAndConvertToJson(hl7Data);
- * // Returns array of transformed QC objects ready for analytics
- *
+ * @param {Object} hl7Data - Parsed HL7 message data
  * @throws {Error} Logs error and returns null if conversion fails
  */
 const extractQcValuesAndConvertToJson = (hl7Data) => {
-  // if (hl7Data.messageHeader.messageControlId !== 'Q') {
-  //   log.warn('Is not a control quality message, skipping conversion');
-  //   return null;
-  // }
+
+
+  if (hl7Data.messageHeader.messageControlId !== 'Q') {
+    log.warn('Is not a control quality message, skipping conversion');
+    return null;
+  }
 
   try {
     if (!hl7Data.results || !Array.isArray(hl7Data.results)) {
@@ -283,16 +221,16 @@ const extractQcValuesAndConvertToJson = (hl7Data) => {
       transformResult(result, hl7Data, qcLevel)
     );
 
-    // if (config.nodeEnv === 'development') {
-    //   log.debug(
-    //     'Quality Control Object:',
-    //     JSON.stringify(qualityControlObject, null, 2)
-    //   );
-    // }
+    if (config.nodeEnv === 'development') {
+      log.debug(
+        'Quality Control Object:',
+        JSON.stringify(qualityControlObject, null, 2)
+      );
+    }
 
-    // if (config.nodeEnv === 'production') {
-    //   postQualityControlData(qualityControlObject);
-    // }
+    if (config.nodeEnv === 'production') {
+      postQualityControlData(qualityControlObject);
+    }
 
     writeDebugFile(JSON.stringify(qualityControlObject, null, 2));
 
@@ -308,11 +246,11 @@ const extractQcValuesAndConvertToJson = (hl7Data) => {
  *
  * @module HL7QCConverter
  * @exports {Function} extractQcValuesAndConvertToJson - Main conversion function
- * @exports {Function} parseHL7Date - HL7 date parser utility
+ * @exports {Function} formatHL7RawDate - HL7 date parser utility
  * @exports {Function} extractQcLevel - QC level extraction utility
  */
 module.exports = {
   extractQcValuesAndConvertToJson,
-  parseHL7Date,
+  formatHL7RawDate,
   extractQcLevel
 };

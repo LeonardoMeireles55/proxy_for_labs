@@ -144,13 +144,13 @@ module.exports = winston.createLogger({
 ### Parsing HL7 Messages
 
 ```javascript
-const { HL7toJson, extractHl7Data } = require('./src/handlers/hl7');
+const { HL7toJson, retrieveHl7MessageData } = require('./src/handlers/hl7');
 
 // Parse message to JSON structure
 const jsonData = HL7toJson(messageBuffer);
 
 // Extract structured data with all segments
-const structuredData = extractHl7Data(messageBuffer);
+const structuredData = retrieveHl7MessageData(messageBuffer);
 console.log('Patient:', structuredData.patient);
 console.log('Results:', structuredData.results);
 ```

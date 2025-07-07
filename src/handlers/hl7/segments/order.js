@@ -1,5 +1,7 @@
-const { getInformationBySegmentTypeAndIndex } = require('../helpers/parser');
-const { cleanObject } = require('../helpers/mappers');
+const {
+  getInformationBySegmentTypeAndIndex
+} = require('../helpers/hl7-parsers');
+const { cleanObject } = require('../helpers/HL7-mappers');
 
 /**
  * Extracts complete order information from OBR segment

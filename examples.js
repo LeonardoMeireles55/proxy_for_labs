@@ -1,7 +1,7 @@
 const {
   parseRawStringToHL7Buffer,
   parseRawHL7ToString,
-  extractHl7Data,
+  retrieveHl7MessageData,
   HL7toJson,
   getInformationBySegmentTypeAndIndex,
   getHL7ValueBySegmentTypeFieldComponentAndSubcomponent,
@@ -775,7 +775,7 @@ const rawHL7MessageBuffer = parseRawStringToHL7Buffer(cobasMock);
 // const rawHL7MessageString = parseRawHL7ToString(rawHL7MessageBuffer)
 // // log.debug('HL7 Message text', rawHL7MessageString)
 
-// const extractedHL7Data = extractHl7Data(rawHL7MessageBuffer)
+// const extractedHL7Data = retrieveHl7MessageData(rawHL7MessageBuffer)
 
 // log.debug('Extracted HL7 Data:', extractedHL7Data)
 

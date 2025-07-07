@@ -1,4 +1,4 @@
-const { mapObxToLabResult } = require('../helpers/mappers');
+const { mapObxToLabResult } = require('../helpers/HL7-mappers');
 
 /**
  * Extract OBX segments and map to lab results

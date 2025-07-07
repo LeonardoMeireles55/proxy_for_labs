@@ -1,14 +1,11 @@
-const log = require('../../../../configs/logger');
-const config = require('../../../../configs/config');
+const log = require('../../../../../configs/logger');
+const config = require('../../../../../configs/config');
 
-const { sendToLabSpecAPI } = require('../../../api/send-cq-data');
-const { writeDebugFile } = require('../../../shared/save-data-to-file');
-const {
-  getTestNameMapping,
-  parseHL7Date
-} = require('./convert-to-qc-json-cobas');
+const { sendToLabSpecAPI } = require('../../../../api/send-cq-data');
+const { writeDebugFile } = require('../../../../shared/save-data-to-file');
+const { getTestNameMapping, parseHL7Date } = require('./convert-to-qc-json')
 
-const generateValidationReportCobas = (hl7Data) => {
+const generateValidationReport = (hl7Data) => {
   if (!config.isForValidation) {
     return;
   }
@@ -63,4 +60,4 @@ const generateValidationReportCobas = (hl7Data) => {
   }
 };
 
-module.exports = { generateValidationReportCobas };
+module.exports = { generateValidationReport };

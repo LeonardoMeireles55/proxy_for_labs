@@ -19,22 +19,18 @@ const {
 const { extractSystemClockInfo } = require('../segments/system-clock');
 const { extractTestCodeDetailInfo } = require('../segments/test-code-detail');
 const { extractTimingQuantityInfo } = require('../segments/time-quantity');
-const { extractQcValuesAndConvertToJson } = require('./convert-to-qc-json');
 const {
   extractQcValuesAndConvertToJsonCobas
-} = require('./convert-to-qc-json-cobas');
-const { cleanObject } = require('./mappers');
-const { parseRawHL7ToString } = require('./parser');
-const {
-  generateValidationReportCobas
-} = require('./generate-validation-report-cobas');
+} = require('./HL7-2.5.1/convert-to-qc-json');
+const { parseRawHL7ToString } = require('./hl7-parsers');
+const { cleanObject } = require('./HL7-mappers')
 
 /**
  * Comprehensive HL7 message extraction
  * @param {Buffer} message - The raw HL7 message buffer
  * @returns {Object} Extracted HL7 data as a structured object
  */
-const extractHl7Data = (message) => {
+const retrieveHl7MessageData = (message) => {
   try {
     const messageHeader = extractMessageHeaderInfo(message);
     const systemClockInfo = extractSystemClockInfo(message);
@@ -82,8 +78,6 @@ const extractHl7Data = (message) => {
       ...(labResults.length && { results: labResults })
     });
 
-    // generateValidationReportCobas(data);
-
     extractQcValuesAndConvertToJsonCobas(data);
 
     log.debug('Complete HL7 data extracted successfully');
@@ -97,5 +91,5 @@ const extractHl7Data = (message) => {
 };
 
 module.exports = {
-  extractHl7Data
+  retrieveHl7MessageData
 };
