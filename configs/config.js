@@ -53,7 +53,7 @@ const config = {
   // Server ports
   proxyPort: parseInt(process.env.PROXY_PORT || '5400'),
   equipmentPort: parseInt(process.env.EQUIPMENT_PORT || '7006'),
-  lisPort: parseInt(process.env.LIS_PORT || '8080'),
+  lisPort: parseInt(process.env.LIS_PORT || '5400'),
 
   // Hosts
   equipmentHost: process.env.EQUIPMENT_HOST || 'localhost',
