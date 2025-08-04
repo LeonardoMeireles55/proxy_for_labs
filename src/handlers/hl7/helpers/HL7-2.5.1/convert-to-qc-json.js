@@ -215,6 +215,7 @@ const transformResultCobas = (hl7Data) => {
  * @throws {Error} Logs error and returns null if conversion fails
  */
 const extractQcValuesAndConvertToJsonCobas = (hl7Data) => {
+
   try {
     if (
       hl7Data.specimen?.specimenRole[0] != 'Q' ||

@@ -80,8 +80,6 @@ const retrieveHl7MessageData = (message) => {
 
     extractQcValuesAndConvertToJsonCobas(data);
 
-    log.debug('Complete HL7 data extracted successfully');
-
     return data;
   } catch (error) {
     log.error('Error extracting complete HL7 data:', error);

@@ -226,7 +226,7 @@ const HL7BufferToJson = (rawMessage) => {
  * @returns {string|null} The segment data as a string, or null if not found
  */
 const getSegmentData = (rawMessage, segmentType) => {
-  const jsonData = HL7BufferToJson(rawMessage);
+  const jsonData = HL7toJson(rawMessage);
 
   return jsonData[segmentType]?.[0] || null;
 };
