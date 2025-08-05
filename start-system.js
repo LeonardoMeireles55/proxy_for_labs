@@ -17,16 +17,9 @@ const log = require('./configs/logger');
  * Configuration for startup sequence
  */
 const STARTUP_CONFIG = {
-  emulator: {
-    script: './start-emu-environment.js',
-    name: 'Lab Emulator',
-    healthCheckDelay: 3000,
-    maxRetries: 3
-  },
   proxy: {
     script: './app.js',
     name: 'Lab Proxy',
-    startDelay: 5000,
     maxRetries: 3
   }
 };
@@ -124,26 +117,12 @@ const startupSequence = async () => {
   try {
     log.info('=== Starting Laboratory System ===');
 
-    // Step 1: Start emulator
-    log.info('Phase 1: Starting laboratory emulator...');
-    const emulatorProcess = await startProcessWithRetry(
-      STARTUP_CONFIG.emulator
-    );
-    processes.push(emulatorProcess);
-
-    // Step 2: Wait before starting proxy
-    log.info(
-      `Waiting ${STARTUP_CONFIG.proxy.startDelay}ms before starting proxy...`
-    );
-    await delay(STARTUP_CONFIG.proxy.startDelay);
-
-    // Step 3: Start proxy
-    log.info('Phase 2: Starting laboratory proxy...');
+    // Start proxy
+    log.info('Starting laboratory proxy...');
     const proxyProcess = await startProcessWithRetry(STARTUP_CONFIG.proxy);
     processes.push(proxyProcess);
 
     log.info('=== Laboratory System Started Successfully ===');
-    log.info(`Emulator PID: ${emulatorProcess.pid}`);
     log.info(`Proxy PID: ${proxyProcess.pid}`);
 
     return processes;
@@ -169,10 +148,9 @@ const setupShutdownHandlers = (processes) => {
   const shutdown = (signal) => {
     log.info(`Received ${signal}. Shutting down laboratory system...`);
 
-    processes.forEach((proc, index) => {
+    processes.forEach((proc) => {
       if (proc && proc.pid) {
-        const name = index === 0 ? 'Emulator' : 'Proxy';
-        log.info(`Stopping ${name} (PID: ${proc.pid})`);
+        log.info(`Stopping Proxy (PID: ${proc.pid})`);
         proc.kill('SIGTERM');
       }
     });
