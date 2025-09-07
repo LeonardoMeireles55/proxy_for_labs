@@ -22,8 +22,8 @@ const { extractTimingQuantityInfo } = require('../segments/time-quantity');
 const {
   extractQcValuesAndConvertToJsonCobas
 } = require('./HL7-2.5.1/convert-to-qc-json');
-const { parseRawHL7ToString } = require('./hl7-parsers');
 const { cleanObject } = require('./HL7-mappers')
+const { parseRawHL7ToString } = require('./HL7-parsers')
 
 /**
  * Comprehensive HL7 message extraction

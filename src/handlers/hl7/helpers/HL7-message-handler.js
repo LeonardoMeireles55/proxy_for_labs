@@ -1,8 +1,6 @@
 const log = require('../../../../configs/logger');
 const net = require('node:net');
-const { writeDebugFile } = require('../../../shared/save-data-to-file');
 const { retrieveHl7MessageData } = require('./hl7-data-extract')
-const { parseRawHL7ToString } = require('./hl7-parsers')
 
 /**
  * Process complete HL7 message and send acknowledgment

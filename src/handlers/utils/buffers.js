@@ -118,7 +118,9 @@ const HL7_FRAMING = {
 
   FILE_SEPARATOR: Buffer.from([ASCII_BUFFERS.FS]),
 
-  END_BLOCK: Buffer.from([ASCII_BUFFERS.FS, ASCII_BUFFERS.CR])
+  END_BLOCK: Buffer.from([ASCII_BUFFERS.FS, ASCII_BUFFERS.CR]),
+
+  END_BLOCK_CR: Buffer.from([ASCII_BUFFERS.CR])
 };
 
 /** * MLLP framing constants for HL7 messages

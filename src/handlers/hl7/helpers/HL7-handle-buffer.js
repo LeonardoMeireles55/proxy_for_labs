@@ -8,12 +8,13 @@ const handleBuffer = (buffer, socket) => {
     allocatedBuffer = Buffer.concat([allocatedBuffer, buffer]);
   }
 
-  // Process all complete messages in a loop
   while (true) {
-    const endIndex = allocatedBuffer.indexOf(HL7_FRAMING.END_BLOCK);
+     let endIndex = allocatedBuffer.indexOf(HL7_FRAMING.END_BLOCK);
 
-    if (endIndex === -1) {
-      // No complete message found, exit loop
+    if (endIndex == -1) {
+      endIndex = allocatedBuffer.indexOf(HL7_FRAMING.END_BLOCK_CR);
+
+      if (endIndex == -1) {
       break;
     }
 
@@ -29,5 +30,5 @@ const handleBuffer = (buffer, socket) => {
     processHL7Message(completeMessage, socket);
   }
 };
-
+}
 module.exports = { handleBuffer };
