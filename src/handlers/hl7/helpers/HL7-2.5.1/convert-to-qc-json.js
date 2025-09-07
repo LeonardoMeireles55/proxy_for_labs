@@ -217,15 +217,6 @@ const transformResultCobas = (hl7Data) => {
 const extractQcValuesAndConvertToJsonCobas = (hl7Data) => {
 
   try {
-    if (
-      hl7Data.specimen?.specimenRole[0] != 'Q' ||
-      hl7Data.specimen == undefined
-    ) {
-      log.warn(
-        'HL7 message is not a quality control message, skipping conversion'
-      );
-      return null;
-    }
 
     if (!hl7Data.results || !Array.isArray(hl7Data.results)) {
       return null;

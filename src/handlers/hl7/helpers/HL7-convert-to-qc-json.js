@@ -202,12 +202,6 @@ const transformResult = (result, hl7Data, qcLevel) => {
  */
 const extractQcValuesAndConvertToJson = (hl7Data) => {
 
-
-  if (hl7Data.messageHeader.messageControlId !== 'Q') {
-    log.warn('Is not a control quality message, skipping conversion');
-    return null;
-  }
-
   try {
     if (!hl7Data.results || !Array.isArray(hl7Data.results)) {
       return null;
